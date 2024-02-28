@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--텍스트 사이즈 및 컬러 지정-->
+
+    <style name="title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#5551FF</item>
+    </style>
+
+    <style name="login_join">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="sign_up">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="modify_info">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="guide">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="certifi_button">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#5C5C5C</item>
+    </style>
+
+    <style name="find_account">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">#6E6E6E</item>
+    </style>
+
+    <style name="top">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="button_white">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+
+</resources>

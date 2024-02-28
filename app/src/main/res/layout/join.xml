@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/signup"
+    android:layout_width="411dp"
+    android:layout_height="732dp"
+    android:clipToOutline="true"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/sign_up"
+        android:layout_width="83dp"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="176dp"
+        android:layout_marginTop="88dp"
+        android:gravity="top"
+        android:text="Sign_Up"
+        android:textAppearance="@style/sign_up" />
+
+    <ImageView
+        android:id="@+id/icon_profile_circled"
+        android:layout_width="87.58dp"
+        android:layout_height="76.12dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="170dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="122dp"
+        android:background="@drawable/icon_profile_circled"
+        />
+
+    <View
+        android:id="@+id/join_nickname"
+        android:layout_width="327.41dp"
+        android:layout_height="37.11dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="42dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="247dp"
+        android:background="@drawable/rectangle_joininfo"
+        />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="57.68dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="257.47dp"
+        android:background="@null"
+        android:hint="닉네임"
+        android:textAppearance="@style/login_join"
+        />
+
+
+    <ImageView
+        android:id="@+id/nickname_check"
+        android:layout_width="34dp"
+        android:layout_height="28dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="328.41dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="251.18dp"
+        android:background="@drawable/icons8_check_30"
+        />
+
+    <View
+        android:id="@+id/join_id"
+        android:layout_width="327.41dp"
+        android:layout_height="37.11dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="42dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="302.18dp"
+        android:background="@drawable/rectangle_joininfo"
+        />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="58dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="313dp"
+        android:background="@null"
+        android:hint="아이디(이메일)"
+        android:textAppearance="@style/login_join"
+        />
+
+<!--    <TextView-->
+<!--        android:id="@+id/join_id_TextView"-->
+<!--        android:layout_width="114dp"-->
+<!--        android:layout_height="16dp"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_marginLeft="58dp"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginTop="313dp"-->
+<!--        android:text="아이디(이메일)"-->
+<!--        android:textAppearance="@style/login_join"-->
+<!--        android:gravity="top"-->
+<!--        />-->
+
+    <Button
+        android:id="@+id/email_certifi_button"
+        android:layout_width="102dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="258dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="313dp"
+        android:background="@drawable/rectangle_joincertifi"
+        />
+
+    <TextView
+        android:id="@+id/email_certifi_textview"
+        android:layout_width="80dp"
+        android:layout_height="12dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="270dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="316dp"
+        android:text="이메일 인증"
+        android:textAppearance="@style/certifi_button"
+        android:gravity="center_horizontal|top"
+        />
+    <!--
+    Font family: JejuGothic
+    Line height: 13sp
+    -->
+
+    <View
+        android:id="@+id/join_pw"
+        android:layout_width="327.41dp"
+        android:layout_height="37.11dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="42dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="357.37dp"
+        android:background="@drawable/rectangle_joininfo"
+        />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="57.86dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="366.88dp"
+        android:background="@null"
+        android:hint="비밀번호"
+        android:textAppearance="@style/login_join"
+        />
+
+<!--    <TextView-->
+<!--        android:id="@+id/some_id"-->
+<!--        android:layout_width="66.84dp"-->
+<!--        android:layout_height="16.17dp"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_marginLeft="57.86dp"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginTop="366.88dp"-->
+<!--        android:text="비밀번호"-->
+<!--        android:textAppearance="@style/login_join"-->
+<!--        android:gravity="top"-->
+<!--        />-->
+
+    <View
+        android:id="@+id/pw_check"
+        android:layout_width="34dp"
+        android:layout_height="29dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="328.41dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="361.18dp"
+        android:background="@drawable/icons8_check_30"
+        />
+
+    <View
+        android:id="@+id/join_pw_confirm"
+        android:layout_width="327.41dp"
+        android:layout_height="37.11dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="42dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="412.55dp"
+        android:background="@drawable/rectangle_joininfo"
+        />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="57.86dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="422.07dp"
+        android:background="@null"
+        android:hint="비밀번호 확인"
+        android:textAppearance="@style/login_join"
+        />
+
+    <ImageView
+        android:id="@+id/pw_confirm_check"
+        android:layout_width="34dp"
+        android:layout_height="29dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="328.41dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="417.18dp"
+        android:background="@drawable/icons8_check_30"
+        />
+
+    <View
+        android:id="@+id/join_phone_num"
+        android:layout_width="327.41dp"
+        android:layout_height="37.11dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="42dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="468dp"
+        android:background="@drawable/rectangle_joininfo"
+        />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="57.86dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="478.47dp"
+        android:background="@null"
+        android:hint="전화번호"
+        android:textAppearance="@style/login_join"
+        />
+
+    <Button
+        android:id="@+id/phoneNum_certifi_button"
+        android:layout_width="102dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="258.41dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="479.26dp"
+        android:background="@drawable/rectangle_joincertifi"
+        />
+
+    <TextView
+        android:id="@+id/phoneNum_certifi_TextView"
+        android:layout_width="80dp"
+        android:layout_height="12dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="270dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="483dp"
+        android:text="인증번호 발송"
+        android:textAppearance="@style/certifi_button"
+        android:gravity="center_horizontal|top"
+        />
+
+    <View
+        android:id="@+id/join_phoneNum_certifi"
+        android:layout_width="327.41dp"
+        android:layout_height="37.11dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="42dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="523.18dp"
+        android:background="@drawable/rectangle_joininfo"
+        />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="57.86dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="533.65dp"
+        android:background="@null"
+        android:hint="인증번호"
+        android:textAppearance="@style/login_join"
+        />
+
+    <ImageView
+        android:id="@+id/phoneNum_certifi_check"
+        android:layout_width="34dp"
+        android:layout_height="29dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="328dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="527dp"
+        android:background="@drawable/icons8_check_30"
+        />
+
+    <android.widget.Button
+        android:id="@+id/rectangle_1"
+        android:layout_width="169dp"
+        android:layout_height="47dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="600dp"
+        android:text="가입하기"
+        android:background="@drawable/rectangle_mainbutton"
+        />
+<!--텍스트뷰 왜 숨지-->
+    <TextView
+        android:id="@+id/some_id"
+        android:layout_width="84dp"
+        android:layout_height="21dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="169dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="613dp"
+        android:text="가입하기"
+        android:textAppearance="@style/sign_up"
+        />
+
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>
