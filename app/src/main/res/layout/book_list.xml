@@ -16,7 +16,7 @@
             android:layout_height="40dp"
             android:layout_alignParentTop="true"
             android:layout_marginTop="12dp"
-            android:background="@drawable/icon" />
+            android:background="@drawable/icons8_smile_32" />
 
         <SearchView
             android:layout_width="100dp"
