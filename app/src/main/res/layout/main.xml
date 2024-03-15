@@ -92,10 +92,10 @@
 
                 <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="120dp"
+                    android:layout_height="160dp"
                     android:layout_marginBottom="10dp"
-                    android:src="@tools:sample/avatars" />
+                    android:src="@drawable/book1" />
 
                 <View
                     android:id="@+id/view8"
@@ -105,9 +105,10 @@
 
                 <ImageView
                     android:id="@+id/imageView10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@tools:sample/avatars" />
+                    android:layout_width="120dp"
+                    android:layout_height="160dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/book1" />
 
                 <View
                     android:id="@+id/view9"
@@ -117,9 +118,10 @@
 
                 <ImageView
                     android:id="@+id/imageView11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@tools:sample/avatars" />
+                    android:layout_width="120dp"
+                    android:layout_height="160dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/book1" />
 
             </LinearLayout>
 
@@ -156,10 +158,10 @@
 
                     <ImageView
                         android:id="@+id/imageView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="120dp"
+                        android:layout_height="160dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@tools:sample/avatars" />
+                        android:src="@drawable/book1" />
 
                     <View
                         android:id="@+id/view10"
@@ -169,9 +171,10 @@
 
                     <ImageView
                         android:id="@+id/imageView13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@tools:sample/avatars" />
+                        android:layout_width="120dp"
+                        android:layout_height="160dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/book1" />
 
                     <View
                         android:id="@+id/view11"
@@ -181,9 +184,10 @@
 
                     <ImageView
                         android:id="@+id/imageView14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@tools:sample/avatars" />
+                        android:layout_width="120dp"
+                        android:layout_height="160dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/book1" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -218,10 +222,10 @@
 
                         <ImageView
                             android:id="@+id/imageView4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="120dp"
+                            android:layout_height="160dp"
                             android:layout_marginBottom="10dp"
-                            android:src="@tools:sample/avatars" />
+                            android:src="@drawable/book1" />
 
                         <View
                             android:id="@+id/view12"
@@ -231,9 +235,10 @@
 
                         <ImageView
                             android:id="@+id/imageView15"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@tools:sample/avatars" />
+                            android:layout_width="120dp"
+                            android:layout_height="160dp"
+                            android:layout_marginBottom="10dp"
+                            android:src="@drawable/book1" />
 
                         <View
                             android:id="@+id/view13"
@@ -243,9 +248,10 @@
 
                         <ImageView
                             android:id="@+id/imageView16"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@tools:sample/avatars" />
+                            android:layout_width="120dp"
+                            android:layout_height="160dp"
+                            android:layout_marginBottom="10dp"
+                            android:src="@drawable/book1" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -276,10 +282,10 @@
 
                         <ImageView
                             android:id="@+id/imageView9"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="120dp"
+                            android:layout_height="160dp"
                             android:layout_marginBottom="10dp"
-                            android:src="@tools:sample/avatars" />
+                            android:src="@drawable/book1" />
 
                         <View
                             android:id="@+id/view14"
@@ -289,9 +295,10 @@
 
                         <ImageView
                             android:id="@+id/imageView17"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@tools:sample/avatars" />
+                            android:layout_width="120dp"
+                            android:layout_height="160dp"
+                            android:layout_marginBottom="10dp"
+                            android:src="@drawable/book1" />
 
                         <View
                             android:id="@+id/view15"
@@ -301,9 +308,10 @@
 
                         <ImageView
                             android:id="@+id/imageView18"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@tools:sample/avatars" />
+                            android:layout_width="120dp"
+                            android:layout_height="160dp"
+                            android:layout_marginBottom="10dp"
+                            android:src="@drawable/book1" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -334,10 +342,10 @@
 
                         <ImageView
                             android:id="@+id/imageView12"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="120dp"
+                            android:layout_height="160dp"
                             android:layout_marginBottom="10dp"
-                            android:src="@tools:sample/avatars" />
+                            android:src="@drawable/book1" />
 
                         <View
                             android:id="@+id/view6"
@@ -347,9 +355,10 @@
 
                         <ImageView
                             android:id="@+id/imageView19"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@tools:sample/avatars" />
+                            android:layout_width="120dp"
+                            android:layout_height="160dp"
+                            android:layout_marginBottom="10dp"
+                            android:src="@drawable/book1" />
 
                         <View
                             android:id="@+id/view16"
@@ -359,9 +368,10 @@
 
                         <ImageView
                             android:id="@+id/imageView20"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@tools:sample/avatars" />
+                            android:layout_width="120dp"
+                            android:layout_height="160dp"
+                            android:layout_marginBottom="10dp"
+                            android:src="@drawable/book1" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -393,10 +403,10 @@
 
                         <ImageView
                             android:id="@+id/imageView21"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="120dp"
+                            android:layout_height="160dp"
                             android:layout_marginBottom="10dp"
-                            android:src="@tools:sample/avatars" />
+                            android:src="@drawable/book1" />
 
                         <View
                             android:id="@+id/view17"
@@ -406,9 +416,10 @@
 
                         <ImageView
                             android:id="@+id/imageView22"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@tools:sample/avatars" />
+                            android:layout_width="120dp"
+                            android:layout_height="160dp"
+                            android:layout_marginBottom="10dp"
+                            android:src="@drawable/book1" />
 
                         <View
                             android:id="@+id/view18"
@@ -418,9 +429,10 @@
 
                         <ImageView
                             android:id="@+id/imageView23"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@tools:sample/avatars" />
+                            android:layout_width="120dp"
+                            android:layout_height="160dp"
+                            android:layout_marginBottom="10dp"
+                            android:src="@drawable/book1" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -451,10 +463,10 @@
 
                         <ImageView
                             android:id="@+id/imageView24"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="120dp"
+                            android:layout_height="160dp"
                             android:layout_marginBottom="10dp"
-                            android:src="@tools:sample/avatars" />
+                            android:src="@drawable/book1" />
 
                         <View
                             android:id="@+id/view19"
@@ -464,9 +476,10 @@
 
                         <ImageView
                             android:id="@+id/imageView25"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@tools:sample/avatars" />
+                            android:layout_width="120dp"
+                            android:layout_height="160dp"
+                            android:layout_marginBottom="10dp"
+                            android:src="@drawable/book1" />
 
                         <View
                             android:id="@+id/view20"
@@ -476,9 +489,10 @@
 
                         <ImageView
                             android:id="@+id/imageView26"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@tools:sample/avatars" />
+                            android:layout_width="120dp"
+                            android:layout_height="160dp"
+                            android:layout_marginBottom="10dp"
+                            android:src="@drawable/book1" />
                     </LinearLayout>
 
                 </LinearLayout>

@@ -39,7 +39,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="65dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/more"/>
+            android:background="@drawable/img"/>
 
     </LinearLayout>
 
@@ -61,10 +61,10 @@
 
                 <ImageView
                     android:id="@+id/imageView6"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@tools:sample/avatars" />
+                    android:src="@drawable/user" />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -83,10 +83,10 @@
 
                 <ImageView
                     android:id="@+id/imageView8"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@tools:sample/avatars" />
+                    android:src="@drawable/user" />
 
                 <TextView
                     android:id="@+id/textView18"
@@ -105,10 +105,10 @@
 
                 <ImageView
                     android:id="@+id/imageView27"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@tools:sample/avatars" />
+                    android:src="@drawable/user" />
 
                 <TextView
                     android:id="@+id/textView19"
@@ -127,10 +127,10 @@
 
                 <ImageView
                     android:id="@+id/imageView40"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@tools:sample/avatars" />
+                    android:src="@drawable/user" />
 
                 <TextView
                     android:id="@+id/textView20"

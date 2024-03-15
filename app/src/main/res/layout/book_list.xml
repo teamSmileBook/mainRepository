@@ -33,7 +33,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/more" />
+            android:background="@drawable/img" />
 
     </LinearLayout>
 
@@ -109,9 +109,9 @@
 
                         <ImageView
                             android:id="@+id/imageView41"
-                            android:layout_width="match_parent"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:src="@tools:sample/avatars" />
+                            android:src="@drawable/book1" />
 
                         <View
                             android:id="@+id/heart"
@@ -147,9 +147,9 @@
 
                         <ImageView
                             android:id="@+id/imageView42"
-                            android:layout_width="match_parent"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:src="@tools:sample/avatars" />
+                            android:src="@drawable/book1" />
 
                         <View
                             android:id="@+id/heart2"
@@ -191,9 +191,9 @@
 
                         <ImageView
                             android:id="@+id/imageView43"
-                            android:layout_width="match_parent"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:src="@tools:sample/avatars" />
+                            android:src="@drawable/book1" />
 
                         <View
                             android:id="@+id/heart3"
@@ -228,9 +228,9 @@
 
                         <ImageView
                             android:id="@+id/imageView44"
-                            android:layout_width="match_parent"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:src="@tools:sample/avatars" />
+                            android:src="@drawable/book1" />
 
                         <View
                             android:id="@+id/heart4"

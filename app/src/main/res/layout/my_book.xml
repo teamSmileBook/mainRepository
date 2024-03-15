@@ -47,7 +47,7 @@
         android:layout_height="438dp"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:src="@tools:sample/avatars" />
+        android:src="@drawable/book1" />
 
     <TextView
         android:id="@+id/book_content"
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="도서 예약" />
+            android:text="도서 예약"/>
     </LinearLayout>
 
     <View
