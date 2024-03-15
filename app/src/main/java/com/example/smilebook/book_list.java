@@ -11,6 +11,6 @@ public class book_list extends AppCompatActivity {
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(layout.book_list);
+        this.setContentView(R.layout.book_list);
     }
 }
