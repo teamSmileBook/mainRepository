@@ -1,18 +1,14 @@
 package com.example.smilebook;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.material.snackbar.Snackbar;
-
-public class mainActionbar extends AppCompatActivity {
+public class main_b extends AppCompatActivity {
 
     Toolbar mainToolbar;
 
