@@ -17,7 +17,7 @@ public class my_book extends AppCompatActivity {
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), location.getClass());
+                Intent intent = new Intent(my_book.this, book_location.class);
                 startActivity(intent);
             }
         });
