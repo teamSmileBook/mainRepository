@@ -95,6 +95,50 @@
                     android:background="@drawable/line1"
                     />
 
+                <View
+                    android:id="@+id/best_book_1"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/best_book_2"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="104dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/best_book_3"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="188dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/best_book_4"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="272dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
             </RelativeLayout>
 
             <RelativeLayout
