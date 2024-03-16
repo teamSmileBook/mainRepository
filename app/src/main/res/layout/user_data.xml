@@ -80,6 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginLeft="45dp"
+            android:background="@drawable/user_button"
             android:text="이용정지" />
 
         <View
@@ -94,6 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginRight="45dp"
+            android:background="@drawable/user_button"
             android:text="이용경고" />
     </LinearLayout>
 
