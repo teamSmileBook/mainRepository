@@ -68,23 +68,29 @@
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_marginTop="20dp"
                     android:text="      인기 도서\n      총 12권"
                     android:textAlignment="center" />
 
                 <View
                     android:id="@+id/view42"
-                    android:layout_width="20dp"
+                    android:layout_width="10dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/button12"
-                    android:layout_width="30dp"
+                    android:layout_width="10dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="50dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
                     android:layout_weight="1"
-                    android:text="전체"/>
+                    android:background="@drawable/book_filter"
+                    android:textColor="#000000"
+                    android:text="전체" />
+
+
 
             </LinearLayout>
 
@@ -127,7 +133,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:text="______________________ \n \n 실패에서 성공으로 \n 대출 가능" />
+                        android:text="______________________ \n \n 흥부와 놀부" />
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="대출 가능"
+                        android:textColor="#009000"/>
 
                 </LinearLayout>
 
@@ -149,7 +163,7 @@
                             android:id="@+id/imageView42"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/book1" />
+                            android:src="@drawable/book2" />
 
                         <View
                             android:id="@+id/heart2"
@@ -165,7 +179,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:text="______________________ \n \n 걱정 세탁소 \n 대출 가능" />
+                        android:text="______________________ \n \n 실패에서 성공으로" />
+
+                    <TextView
+                        android:id="@+id/textView22"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="대출 가능"
+                        android:textColor="#009000"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -193,7 +215,7 @@
                             android:id="@+id/imageView43"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/book1" />
+                            android:src="@drawable/book3" />
 
                         <View
                             android:id="@+id/heart3"
@@ -208,7 +230,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:text="______________________ \n \n 코믹 메이플스토리 \n 대출 가능" />
+                        android:text="______________________ \n \n 성공하는 사람들의 ..." />
+
+                    <TextView
+                        android:id="@+id/textView24"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="대출 가능"
+                        android:textColor="#009000"/>
 
                 </LinearLayout>
 
@@ -230,7 +260,7 @@
                             android:id="@+id/imageView44"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/book1" />
+                            android:src="@drawable/book4" />
 
                         <View
                             android:id="@+id/heart4"
@@ -245,7 +275,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:text="______________________ \n \n 나의 첫 번재 요리책 \n 대출 불가능" />
+                        android:text="______________________ \n \n 책에서 성공을 훔치다" />
+
+                    <TextView
+                        android:id="@+id/textView26"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="대출 불가능"
+                        android:textColor="#FF0000"/>
 
                 </LinearLayout>
             </LinearLayout>
