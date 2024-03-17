@@ -14,6 +14,7 @@
         android:layout_height="55dp"
         android:background="#FFFFFF">
 
+<!--최상단 검색버튼 및 더보기 버튼은 menu폴더 main_toolbar.xml 툴바로 만들어 놓음!-->
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
