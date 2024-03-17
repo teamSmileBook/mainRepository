@@ -7,6 +7,15 @@
     android:clipToOutline="true"
     android:background="#FFFFFF">
 
+    <android.widget.Button
+        android:id="@+id/arrow_back"
+        android:layout_width="20dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginLeft="36dp"
+        android:background="@drawable/arrow_back"
+        />
+
     <TextView
         android:id="@+id/sign_up"
         android:layout_width="83dp"

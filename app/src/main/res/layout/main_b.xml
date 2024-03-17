@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/some_id"
+    android:layout_width="411dp"
+    android:layout_height="732dp"
+    android:clipToOutline="true"
+    android:background="#FFFFFF">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/main_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#FFFFFF">
+
+<!--최상단 검색버튼 및 더보기 버튼은 menu폴더 main_toolbar.xml 툴바로 만들어 놓음!-->
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/icons8_smile_32"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="21dp"
+                android:layout_alignParentTop="true"
+                />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/rectangle_warning"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="55dp"
+        android:background="@drawable/rectangle_warning"
+        android:text="@string/warning_login"
+        style="@style/warning"
+        />
+
+    <ScrollView
+        android:id="@+id/mainScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="89dp"
+        android:background="#EFEFEF">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <RelativeLayout
+                android:layout_width="354dp"
+                android:layout_height="178dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/rectangle_scroll">
+
+                <TextView
+                    android:id="@+id/main_list_best"
+                    android:layout_width="64dp"
+                    android:layout_height="17dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="22dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/bestlist"
+                    android:textAppearance="@style/mainScrollTitle"
+                    android:gravity="center_horizontal|top"
+                    />
+
+                <Button
+                    android:id="@+id/best_arrow_btn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="321dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/icons8_arrow_50"
+                    />
+
+                <ImageView
+                    android:layout_width="306dp"
+                    android:layout_height="1dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="24dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="51dp"
+                    android:background="@drawable/line1"
+                    />
+
+                <View
+                    android:id="@+id/best_book_1"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/best_book_2"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="104dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/best_book_3"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="188dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/best_book_4"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="272dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="354dp"
+                android:layout_height="178dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/rectangle_scroll">
+
+                <TextView
+                    android:id="@+id/main_list_new"
+                    android:layout_width="64dp"
+                    android:layout_height="17dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="22dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/newlist"
+                    android:textAppearance="@style/mainScrollTitle"
+                    android:gravity="center_horizontal|top"
+                    />
+
+                <Button
+                    android:id="@+id/new_arrow_btn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="321dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/icons8_arrow_50"
+                    />
+
+                <ImageView
+                    android:layout_width="306dp"
+                    android:layout_height="1dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="24dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="51dp"
+                    android:background="@drawable/line1"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="354dp"
+                android:layout_height="178dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/rectangle_scroll">
+
+                <TextView
+                    android:id="@+id/main_list_education"
+                    android:layout_width="64dp"
+                    android:layout_height="17dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="22dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/education"
+                    android:textAppearance="@style/mainScrollTitle"
+                    android:gravity="center_horizontal|top"
+                    />
+
+                <Button
+                    android:id="@+id/education_arrow_btn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="321dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/icons8_arrow_50"
+                    />
+
+                <ImageView
+                    android:layout_width="306dp"
+                    android:layout_height="1dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="24dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="51dp"
+                    android:background="@drawable/line1"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="354dp"
+                android:layout_height="178dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/rectangle_scroll">
+
+                <TextView
+                    android:id="@+id/main_list_fiction"
+                    android:layout_width="64dp"
+                    android:layout_height="17dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal|top"
+                    android:text="@string/fiction"
+                    android:textAppearance="@style/mainScrollTitle" />
+
+                <Button
+                    android:id="@+id/fiction_arrow_btn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="321dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/icons8_arrow_50" />
+
+                <ImageView
+                    android:layout_width="306dp"
+                    android:layout_height="1dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="51dp"
+                    android:background="@drawable/line1" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
+
