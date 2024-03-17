@@ -18,4 +18,27 @@
             android:strokeColor="#D2D2D2"
             />
     </group>
+
+    <item>
+        <shape android:shape="rectagle">
+            <corners android:radius="8dp">
+                <solid android:color="FFFFFF"/> //배경 색상
+            </corners>
+        </shape>
+    </item>
+
+    <item android:top="2dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="8dp"/>
+            <solid android:color="#D2D2D2"/> //그림자 색상
+        </shape>
+
+        <item android:bottom="2dp" android:right="2dp" android:left="2dp"> //그림자
+            <shape android:shape="rectagle">
+                <corners android:radius="8dp"/>
+                <solid android:color="@android:color/white"/>
+            </shape>
+        </item>
+
+    </item>
 </vector>
