@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">smilebook</string>
+    <string name="bestlist">인기 도서</string>
+    <string name="newlist">신규 도서</string>
+    <string name="education">교육</string>
+    <string name="fiction">소설</string>
+    <string name="warning_login">로그인 후 앱을 이용해보세요.</string>
 </resources>
