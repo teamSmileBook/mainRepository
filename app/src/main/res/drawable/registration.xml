@@ -20,9 +20,9 @@
     </group>
 
     <item>
-        <shape android:shape="rectagle">
+        <shape android:shape="rectangle">
             <corners android:radius="8dp">
-                <solid android:color="FFFFFF"/> //배경 색상
+                <solid android:color="#FFFFFF"/> //배경 색상
             </corners>
         </shape>
     </item>
@@ -34,7 +34,7 @@
         </shape>
 
         <item android:bottom="2dp" android:right="2dp" android:left="2dp"> //그림자
-            <shape android:shape="rectagle">
+            <shape android:shape="rectangle">
                 <corners android:radius="8dp"/>
                 <solid android:color="@android:color/white"/>
             </shape>
