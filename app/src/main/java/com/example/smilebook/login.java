@@ -10,8 +10,9 @@ public class login extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        임시로 activity_main 연결
-//        추후 나영이 코드 연결하면 수정하기
-        setContentView(R.layout.test);
+
+        //추후 코드 추가 예정~~
+        //ex) 올바른 ID, PW 입력 시 아래 코드 실행
+        setContentView(R.layout.main_b);
     }
 }
