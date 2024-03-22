@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical">
 
     <LinearLayout
@@ -24,20 +25,20 @@
             android:layout_width="139dp"
             android:layout_height="26dp"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="80dp"
             android:layout_alignParentTop="true"
+            android:layout_marginLeft="80dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/rectangle"/>
+            android:background="@drawable/rectangle" />
 
         <View
             android:id="@+id/more"
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="80dp"
             android:layout_alignParentTop="true"
+            android:layout_marginLeft="80dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/more"/>
+            android:background="@drawable/more" />
 
     </LinearLayout>
 
@@ -78,9 +79,10 @@
             android:id="@+id/button13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginLeft="45dp"
+            android:layout_weight="1"
             android:background="@drawable/user_button"
+            android:backgroundTint="#000000"
             android:text="이용정지" />
 
         <View
@@ -93,8 +95,8 @@
             android:id="@+id/button25"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginRight="45dp"
+            android:layout_weight="1"
             android:background="@drawable/user_button"
             android:text="이용경고" />
     </LinearLayout>

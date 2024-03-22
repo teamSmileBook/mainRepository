@@ -88,33 +88,24 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:textAlignment="center"
-        android:text="대출 가능"
-        android:textColor="#009000"/>
+        android:text="대출 불가능"
+        android:textColor="#FF0000"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="103dp"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/black"
-            android:text="위치 확인" />
 
         <Button
-            android:id="@+id/reservation"
+            android:id="@+id/extension"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:backgroundTint="@color/white"
             android:textColor="@color/black"
             android:layout_weight="1"
-            android:text="도서 예약"/>
+            android:text="대출 연장"/>
     </LinearLayout>
 
     <View
