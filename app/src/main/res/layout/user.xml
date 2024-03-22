@@ -1,31 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="82dp"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="8"
-            android:text="전체" />
+        <LinearLayout
+            android:layout_width="104dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="8"
-            android:text="정지회원" />
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="전체"/>
 
+            <View
+                android:id="@+id/view2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/user_btn"/>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="104dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="정지 회원"/>
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
         <SearchView
             android:layout_width="205dp"
             android:layout_height="match_parent"
@@ -35,18 +57,14 @@
             android:id="@+id/view28"
             android:layout_width="26dp"
             android:layout_height="26dp"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="65dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/img"/>
-
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="658dp">>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,12 +84,29 @@
                     android:layout_weight="1"
                     android:src="@drawable/user" />
 
-                <TextView
-                    android:id="@+id/textView5"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="닉네임 : 이나영 \n 가입 날짜 : 2023/11/22 \n 경고 1회" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="\n닉네임 : 이나영 \n\n가입 날짜 : 2023/11/22"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/textView33"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="경고 1회"
+                        android:textColor="@color/red"/>
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -88,12 +123,29 @@
                     android:layout_weight="1"
                     android:src="@drawable/user" />
 
-                <TextView
-                    android:id="@+id/textView18"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="닉네임 : 홍길동 \n 가입 날짜 : 2023/09/10 \n 정상" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="\n닉네임 : 홍길동 \n\n가입 날짜 : 2023/09/10"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/textView34"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="정상"
+                        android:textColor="#009000"/>
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -110,12 +162,29 @@
                     android:layout_weight="1"
                     android:src="@drawable/user" />
 
-                <TextView
-                    android:id="@+id/textView19"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="닉네임 : 이성결 \n 가입 날짜 : 2023/06/11 \n 정상" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="\n닉네임 : 이성결 \n\n가입 날짜 : 2023/06/11"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/textView35"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="정상"
+                        android:textColor="#009000"/>
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -132,15 +201,30 @@
                     android:layout_weight="1"
                     android:src="@drawable/user" />
 
-                <TextView
-                    android:id="@+id/textView20"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="닉네임 : 이컴공 \n 가입 날짜 : 2023/09/10 \n 정상" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="\n닉네임 : 이컴공 \n\n가입 날짜 : 2023/09/10"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/textView36"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="정상"
+                        android:textColor="#009000"/>
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-
 </LinearLayout>
