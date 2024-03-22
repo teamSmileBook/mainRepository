@@ -18,15 +18,19 @@
             android:layout_marginTop="14dp"
             android:background="@drawable/icon" />
 
-        <View
+        <TextView
             android:id="@+id/rectangle_1"
-            android:layout_width="139dp"
-            android:layout_height="26dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="60dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/rectangle" />
+            android:text="회원정보"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:background="@drawable/rectangle"/>
 
         <View
             android:id="@+id/view23"
