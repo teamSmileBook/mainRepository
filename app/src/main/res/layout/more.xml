@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/some_id"
+    android:layout_width="411dp"
+    android:layout_height="732dp"
+    android:clipToOutline="true"
+    android:background="#FFFFFF"
+    >
+
+    <Button
+        android:id="@+id/icons8_clos"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="341dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="83dp"
+        android:background="@drawable/icons8_close"
+
+        />
+
+
+    <ImageButton
+        android:id="@+id/more_alarm"
+        android:layout_width="139dp"
+        android:layout_height="123dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="52dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="146dp"
+        android:background="@drawable/alarm"
+        />
+
+
+    <ImageButton
+        android:id="@+id/more_myPage"
+        android:layout_width="139dp"
+        android:layout_height="123dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="220dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="146dp"
+        android:background="@drawable/mypage"
+        />
+
+
+    <ImageButton
+        android:id="@+id/more_myBook"
+        android:layout_width="139dp"
+        android:layout_height="123dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="52dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="338dp"
+        android:background="@drawable/mypage"
+        />
+
+
+    <ImageButton
+        android:id="@+id/more_wishBook"
+        android:layout_width="139dp"
+        android:layout_height="123dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="220dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="338dp"
+        android:background="@drawable/wishbook"
+        />
+
+
+    <ImageButton
+        android:id="@+id/more_adminTrans"
+        android:layout_width="139dp"
+        android:layout_height="123dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="52dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="530dp"
+        android:background="@drawable/admintrans"
+        />
+
+
+
+    <ImageButton
+        android:id="@+id/more_logOut"
+        android:layout_width="139dp"
+        android:layout_height="123dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="220dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="530dp"
+        android:background="@drawable/logout"
+        />
+
+
+</RelativeLayout>
+

@@ -12,6 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Smilebook"
         tools:targetApi="31">
+
+        <activity
+            android:name=".main_b"
+            android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".login" />
+        <activity android:name=".join" />
+        <activity
+            android:name=".search"
+            android:exported="true" />
+        <activity
+            android:name=".more"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -22,8 +38,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".login"/>
-        <activity android:name=".join"/>
+
+
     </application>
 
 </manifest>

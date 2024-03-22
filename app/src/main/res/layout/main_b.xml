@@ -2,29 +2,17 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/some_id"
     android:layout_width="411dp"
     android:layout_height="732dp"
     android:clipToOutline="true"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    tools:context=".main_b">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/main_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="#FFFFFF">
-
-<!--최상단 검색버튼 및 더보기 버튼은 menu폴더 main_toolbar.xml 툴바로 만들어 놓음!-->
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/icons8_smile_32"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="21dp"
-                android:layout_alignParentTop="true"
-                />
-
-    </androidx.appcompat.widget.Toolbar>
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/toolbar"/>
 
     <TextView
         android:id="@+id/rectangle_warning"
@@ -184,6 +172,50 @@
                     android:layout_marginTop="51dp"
                     android:background="@drawable/line1"
                     />
+
+                <View
+                    android:id="@+id/new_book_1"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/new_book_2"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="104dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/new_book_3"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="188dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/new_book_4"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="272dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
@@ -196,7 +228,7 @@
                 android:background="@drawable/rectangle_scroll">
 
                 <TextView
-                    android:id="@+id/main_list_education"
+                    android:id="@+id/main_list_edu"
                     android:layout_width="64dp"
                     android:layout_height="17dp"
                     android:layout_alignParentStart="true"
@@ -209,7 +241,7 @@
                     />
 
                 <Button
-                    android:id="@+id/education_arrow_btn"
+                    android:id="@+id/edu_arrow_btn"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentLeft="true"
@@ -229,6 +261,49 @@
                     android:background="@drawable/line1"
                     />
 
+                <View
+                    android:id="@+id/edu_book_1"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/edu_book_2"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="104dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/edu_book_3"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="188dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/edu_book_4"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="272dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
@@ -271,7 +346,392 @@
                     android:layout_marginTop="51dp"
                     android:background="@drawable/line1" />
 
+                <View
+                    android:id="@+id/fiction_book_1"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/fiction_book_2"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="104dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/fiction_book_3"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="188dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/fiction_book_4"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="272dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
             </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="354dp"
+                android:layout_height="178dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/rectangle_scroll">
+
+                <TextView
+                    android:id="@+id/main_list_cartoon"
+                    android:layout_width="64dp"
+                    android:layout_height="17dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal|top"
+                    android:text="만화"
+                    android:textAppearance="@style/mainScrollTitle" />
+
+                <Button
+                    android:id="@+id/cartoon_arrow_btn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="321dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/icons8_arrow_50" />
+
+                <ImageView
+                    android:layout_width="306dp"
+                    android:layout_height="1dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="51dp"
+                    android:background="@drawable/line1" />
+
+                <View
+                    android:id="@+id/cartoon_book_1"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/cartoon_book_2"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="104dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/cartoon_book_3"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="188dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/cartoon_book_4"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="272dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="354dp"
+                android:layout_height="178dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/rectangle_scroll">
+
+                <TextView
+                    android:id="@+id/main_list_cook"
+                    android:layout_width="64dp"
+                    android:layout_height="17dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal|top"
+                    android:text="요리"
+                    android:textAppearance="@style/mainScrollTitle" />
+
+                <Button
+                    android:id="@+id/cook_arrow_btn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="321dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/icons8_arrow_50" />
+
+                <ImageView
+                    android:layout_width="306dp"
+                    android:layout_height="1dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="51dp"
+                    android:background="@drawable/line1" />
+
+                <View
+                    android:id="@+id/cook_book_1"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/cook_book_2"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="104dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/cook_book_3"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="188dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/cook_book_4"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="272dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="354dp"
+                android:layout_height="178dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/rectangle_scroll">
+
+                <TextView
+                    android:id="@+id/main_list_sports"
+                    android:layout_width="64dp"
+                    android:layout_height="17dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal|top"
+                    android:text="스포츠"
+                    android:textAppearance="@style/mainScrollTitle" />
+
+                <Button
+                    android:id="@+id/sports_arrow_btn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="321dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/icons8_arrow_50" />
+
+                <ImageView
+                    android:layout_width="306dp"
+                    android:layout_height="1dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="51dp"
+                    android:background="@drawable/line1" />
+
+                <View
+                    android:id="@+id/sports_book_1"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/sports_book_2"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="104dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/sports_book_3"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="188dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/sports_book_4"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="272dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="354dp"
+                android:layout_height="178dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/rectangle_scroll">
+
+                <TextView
+                    android:id="@+id/main_list_travel"
+                    android:layout_width="64dp"
+                    android:layout_height="17dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal|top"
+                    android:text="여행"
+                    android:textAppearance="@style/mainScrollTitle" />
+
+                <Button
+                    android:id="@+id/travel_arrow_btn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="321dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/icons8_arrow_50" />
+
+                <ImageView
+                    android:layout_width="306dp"
+                    android:layout_height="1dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="51dp"
+                    android:background="@drawable/line1" />
+
+                <View
+                    android:id="@+id/travel_book_1"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/travel_book_2"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="104dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/travel_book_3"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="188dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+
+                <View
+                    android:id="@+id/travel_book_4"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="272dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    />
+            </RelativeLayout>
+
         </LinearLayout>
     </ScrollView>
 
