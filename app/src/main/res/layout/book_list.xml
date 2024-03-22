@@ -80,15 +80,15 @@
 
                 <Button
                     android:id="@+id/button12"
-                    android:layout_width="10dp"
+                    android:layout_width="8dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="50dp"
                     android:layout_weight="1"
                     android:background="@drawable/book_filter"
-                    android:textColor="#000000"
-                    android:text="전체" />
+                    android:textColor="#808080"
+                    android:text="전체 ▼" />
 
 
 

@@ -97,15 +97,28 @@
         android:orientation="horizontal">
 
 
+        <View
+            android:id="@+id/view"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
         <Button
             android:id="@+id/extension"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/black"
             android:layout_weight="1"
-            android:text="대출 연장"/>
+            android:background="@drawable/book_filter"
+            android:backgroundTint="@color/white"
+            android:text="대출 연장"
+            android:textColor="@color/black" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
     </LinearLayout>
 
     <View
