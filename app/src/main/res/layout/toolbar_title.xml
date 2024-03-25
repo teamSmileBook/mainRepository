@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="titleText"
+            type="String" />
+    </data>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@color/white"
+        android:id="@+id/toolbar"
+        >
+
+        <android.widget.Button
+            android:id="@+id/ReturnBtn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/back"
+            />
+
+        <android.widget.Button
+            android:id="@+id/icons8_smile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="30dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/icons8_smile_32"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/rectangle"
+            android:gravity="center"
+            android:text="@{titleText}"
+            android:textColor="#FFFFFF" />
+
+        <android.widget.Button
+            android:id="@+id/more"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/more"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="24dp"
+            />
+    </FrameLayout>
+</layout>

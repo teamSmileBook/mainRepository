@@ -29,6 +29,18 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    buildFeatures { //0324 보라
+        dataBinding = true
+    }
+
+    viewBinding {
+        enable = true
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {

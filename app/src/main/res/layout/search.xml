@@ -1,245 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/search_xml"
-    android:layout_width="411dp"
-    android:layout_height="732dp"
-    android:clipToOutline="true"
-    android:background="#FFFFFF"
-    >
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="titleText"
+            type="String" />
+    </data>
 
-    <Button
-        android:id="@+id/ReturnBtn"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="31dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="69dp"
-        android:background="@drawable/back"
-        />
+<!--    버튼 클릭시 색 변경 (selector_tag, selector_switch) 수정 예정-->
+<!--    아마 button말고 ToggleButton으로 바꾸는게 나을거 같음-->
 
-    <ImageView
-        android:id="@+id/title_search"
-        android:layout_width="139dp"
-        android:layout_height="26dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="136dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="67dp"
-        android:src="@drawable/title_search"
-        />
+    <RelativeLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/search_xml"
+        android:layout_width="411dp"
+        android:layout_height="732dp"
+        android:clipToOutline="true"
+        android:background="#FFFFFF"
+        >
 
-    <androidx.appcompat.widget.SearchView
-        android:layout_width="379dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="120dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/search_box"
-        />
+        <include
+            layout="@layout/toolbar_title"
+            android:id="@+id/toolbar"
+            app:titleText="@{titleText}" />
 
-    <android.widget.Button
-        android:id="@+id/login_pink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/login_btn"/>
+        <androidx.appcompat.widget.SearchView
+            android:layout_width="379dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="65dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/search_box"
+            />
 
-<!--버튼 수정 예정-->
-<!--    리니어 레이아웃으로 바꿔서 4*2 정렬?-->
-
-    <android.widget.Button
-        android:id="@+id/search_all"
-        android:layout_width="110dp"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="64dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="260dp"
-        android:background="@drawable/rectangle_search_category"
-        android:text="전체"
-        android:gravity="center"
-        android:elevation="4dp"
-        />
-
-    <View
-        android:id="@+id/search_best"
-        android:layout_width="110dp"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="236dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="260dp"
-        android:background="@drawable/rectangle_search_category"
-        android:elevation="4dp"
-        />
-
-
-    <View
-        android:id="@+id/view26"
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/button15"
+        <android.widget.Button
+            android:id="@+id/login_pink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="45dp"
-            android:text="전체" />
+            android:layout_marginTop="150dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/login_btn"/>
 
-        <View
-            android:id="@+id/view33"
-            android:layout_width="5dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="250dp"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginRight="45dp"
-            android:text="인기" />
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/view29"
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/button17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="45dp"
-            android:text="만화" />
-
-        <View
-            android:id="@+id/view34"
-            android:layout_width="5dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/button18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginRight="45dp"
-            android:text="요리" />
-    </LinearLayout>
-
-    <View
-        android:id="@+id/view30"
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/button19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="45dp"
-            android:text="소설/시" />
-
-        <View
-            android:id="@+id/view35"
-            android:layout_width="5dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/button20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginRight="45dp"
-            android:text="스포츠" />
-    </LinearLayout>
+            <android.widget.Button
+                android:id="@+id/tag_best"
+                android:layout_width="59dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="12dp"
+                android:layout_alignParentTop="true"
+                style="@style/search_tag"
+                android:background="@drawable/selector_tag"
+                android:text="인기"
+                />
 
 
-    <View
-        android:id="@+id/view31"
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
+            <android.widget.Button
+                android:id="@+id/tag_all"
+                android:layout_width="59dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="7dp"
+                android:layout_alignParentTop="true"
+                style="@style/search_tag"
+                android:background="@drawable/selector_tag"
+                android:text="전체"
+                />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+            <android.widget.Button
+                android:id="@+id/tag_cook"
+                android:layout_width="59dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="7dp"
+                android:layout_alignParentTop="true"
+                style="@style/search_tag"
+                android:background="@drawable/selector_tag"
+                android:text="요리"
+                />
 
-        <Button
-            android:id="@+id/button21"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="45dp"
-            android:text="여행" />
+            <android.widget.Button
+                android:id="@+id/tag_cartoon"
+                android:layout_width="59dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="7dp"
+                android:layout_alignParentTop="true"
+                style="@style/search_tag"
+                android:background="@drawable/selector_tag"
+                android:text="만화"
+                />
 
-        <View
-            android:id="@+id/view36"
-            android:layout_width="5dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            <android.widget.Button
+                android:id="@+id/tag_child"
+                android:layout_width="59dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="7dp"
+                android:layout_alignParentTop="true"
+                style="@style/search_tag"
+                android:background="@drawable/selector_tag"
+                android:text="아동"
+                />
 
-        <Button
-            android:id="@+id/button22"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginRight="45dp"
-            android:text="건강" />
-    </LinearLayout>
+            <android.widget.Button
+                android:id="@+id/tag_sports"
+                android:layout_width="59dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="7dp"
+                android:layout_alignParentTop="true"
+                style="@style/search_tag"
+                android:background="@drawable/selector_tag"
+                android:text="스포츠"
+                />
+        </LinearLayout>
 
-    <View
-        android:id="@+id/view32"
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="300dp"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button23"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="45dp"
-            android:text="IT" />
+            <android.widget.Button
+                android:id="@+id/tag_literature"
+                android:layout_width="59dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="12dp"
+                android:layout_alignParentTop="true"
+                style="@style/search_tag"
+                android:background="@drawable/selector_tag"
+                android:text="소설/시"
+                />
 
-        <View
-            android:id="@+id/view37"
-            android:layout_width="5dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            <android.widget.Button
+                android:id="@+id/tag_humanities"
+                android:layout_width="59dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="7dp"
+                android:layout_alignParentTop="true"
+                style="@style/search_tag"
+                android:background="@drawable/selector_tag"
+                android:text="인문"
+                />
 
-        <Button
-            android:id="@+id/button24"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginRight="45dp"
-            android:text="교육" />
-    </LinearLayout>
-</RelativeLayout>
+            <android.widget.Button
+                android:id="@+id/tag_IT"
+                android:layout_width="59dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="7dp"
+                android:layout_alignParentTop="true"
+                style="@style/search_tag"
+                android:background="@drawable/selector_tag"
+                android:text="IT"
+                />
+
+            <android.widget.Button
+                android:id="@+id/tag_edu"
+                android:layout_width="59dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="7dp"
+                android:layout_alignParentTop="true"
+                style="@style/search_tag"
+                android:background="@drawable/selector_tag"
+                android:text="교육"
+                />
+
+            <android.widget.Button
+                android:id="@+id/tag_travel"
+                android:layout_width="59dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="7dp"
+                style="@style/search_tag"
+                android:background="@drawable/selector_tag"
+                android:text="여행"
+                />
+
+            <android.widget.Button
+                android:id="@+id/tag_health"
+                android:layout_width="59dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="7dp"
+                android:layout_alignParentTop="true"
+                style="@style/search_tag"
+                android:background="@drawable/selector_tag"
+                android:text="건강"
+                />
+        </LinearLayout>
+
+
+        <!--        이전 디자인-->
+<!--        <android.widget.Button-->
+<!--            android:id="@+id/search_all"-->
+<!--            android:layout_width="110dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:layout_marginLeft="64dp"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_marginTop="260dp"-->
+<!--            android:background="@drawable/rectangle_search_category"-->
+<!--            android:text="전체"-->
+<!--            android:gravity="center"-->
+<!--            android:elevation="4dp"-->
+<!--            />-->
+
+<!--        <View-->
+<!--            android:id="@+id/search_best"-->
+<!--            android:layout_width="110dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:layout_marginLeft="236dp"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_marginTop="260dp"-->
+<!--            android:background="@drawable/rectangle_search_category"-->
+<!--            android:elevation="4dp"-->
+<!--            />-->
+
+    </RelativeLayout>
+</layout>

@@ -13,6 +13,16 @@
         android:theme="@style/Theme.Smilebook"
         tools:targetApi="31">
 
+
+        <activity
+            android:name=".admin_mode_switch"
+            android:exported="true" />
+        <activity
+            android:name=".user_my_info"
+            android:exported="true" />
+        <activity
+            android:name=".user_alarm_b"
+            android:exported="true" />
         <activity
             android:name=".main_b"
             android:exported="true">
@@ -20,8 +30,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login" />
-        <activity android:name=".join" />
+
+        <activity
+            android:name=".login"
+            android:exported="true"/>
+        <activity
+            android:name=".join"
+            android:exported="true"/>
         <activity
             android:name=".search"
             android:exported="true" />
@@ -37,9 +52,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
     </application>
 
 </manifest>

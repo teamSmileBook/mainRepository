@@ -23,6 +23,7 @@ public class main_b extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar); //툴바 사용 설정
         getSupportActionBar().setDisplayShowTitleEnabled(false); //타이틀 안 보이게
+
     }
 
     @Override

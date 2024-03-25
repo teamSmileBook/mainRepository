@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="titleText"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/alarm_xml"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToOutline="true"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        >
+
+        <include
+            layout="@layout/toolbar_title"
+            android:id="@+id/toolbar"
+            app:titleText="@{titleText}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="26dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="#F2F2F2"
+            android:padding="3dp"
+            android:textSize="14sp"
+            android:textColor="#676767"
+            android:text="   푸시 알림" />
+
+
+        <FrameLayout
+            android:id="@+id/table_row"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="#FFFFFF">
+
+            <TextView
+                android:id="@+id/subtitle_1"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:text="알림 켜기"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:gravity="center_vertical"
+                />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/push_alarm_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|right"
+                android:layout_margin="10dp"
+
+                android:thumb="@drawable/thumb"
+                app:track="@drawable/selector_switch"
+                app:thumbTextPadding="24dp"
+                app:switchMinWidth="0dp"
+                android:textOff=""
+                android:textOn="" />
+
+            <!--        <Switch-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_gravity="center|right"-->
+            <!--            android:layout_margin="10dp"-->
+            <!--            />-->
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="26dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="#F2F2F2"
+            android:padding="3dp"
+            android:textSize="14sp"
+            android:textColor="#676767"
+            android:text="   알림 내용" />
+
+        <ListView
+            android:id="@+id/alarm_list"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+</layout>
+

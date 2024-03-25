@@ -8,88 +8,88 @@
     android:background="#FFFFFF"
     >
 
-    <Button
-        android:id="@+id/icons8_clos"
+    <android.widget.Button
+        android:id="@+id/closeBtn"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="341dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="83dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/icons8_close"
 
         />
 
 
     <ImageButton
-        android:id="@+id/more_alarm"
+        android:id="@+id/user_alarmBtn"
         android:layout_width="139dp"
         android:layout_height="123dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="52dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="146dp"
+        android:layout_marginTop="106dp"
         android:background="@drawable/alarm"
         />
 
 
     <ImageButton
-        android:id="@+id/more_myPage"
+        android:id="@+id/user_myInfoBtn"
         android:layout_width="139dp"
         android:layout_height="123dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="220dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="146dp"
+        android:layout_marginTop="106dp"
         android:background="@drawable/mypage"
         />
 
 
     <ImageButton
-        android:id="@+id/more_myBook"
+        android:id="@+id/user_myBookBtn"
         android:layout_width="139dp"
         android:layout_height="123dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="52dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="338dp"
-        android:background="@drawable/mypage"
+        android:layout_marginTop="298dp"
+        android:background="@drawable/mybook"
         />
 
 
     <ImageButton
-        android:id="@+id/more_wishBook"
+        android:id="@+id/user_wishBookBtn"
         android:layout_width="139dp"
         android:layout_height="123dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="220dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="338dp"
+        android:layout_marginTop="298dp"
         android:background="@drawable/wishbook"
         />
 
 
     <ImageButton
-        android:id="@+id/more_adminTrans"
+        android:id="@+id/user_adminTransBtn"
         android:layout_width="139dp"
         android:layout_height="123dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="52dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="530dp"
+        android:layout_marginTop="490dp"
         android:background="@drawable/admintrans"
         />
 
 
 
     <ImageButton
-        android:id="@+id/more_logOut"
+        android:id="@+id/user_logOutBtn"
         android:layout_width="139dp"
         android:layout_height="123dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="220dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="530dp"
+        android:layout_marginTop="490dp"
         android:background="@drawable/logout"
         />
 
