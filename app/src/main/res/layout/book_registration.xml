@@ -6,17 +6,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="82dp"
+        android:layout_height="60dp"
         android:orientation="horizontal">
 
         <View
-            android:id="@+id/icons8_smil"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:id="@+id/back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="14dp"
-            android:background="@drawable/icon" />
+            android:layout_marginLeft="31dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/back" />
 
         <TextView
             android:id="@+id/rectangle_1"
@@ -24,47 +25,158 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="80dp"
             android:layout_marginTop="20dp"
-            android:text="회원정보"
+            android:text="도서 등록"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:gravity="center"
             android:background="@drawable/rectangle"/>
 
         <View
-            android:id="@+id/view23"
+            android:id="@+id/more"
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="65dp"
+            android:layout_marginLeft="80dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/more" />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="630dp"
         android:layout_margin="16dp"
         android:background="@drawable/registration"
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView39"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:id="@+id/imageView"
+            android:layout_marginTop="10dp"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
             android:layout_gravity="center"
-            android:src="@drawable/book1" />
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:maxWidth="200dp"
+            android:maxHeight="150dp"
+            android:onClick="onClick"
+            android:src="@drawable/picture_background" />
 
-        <TextView
-            android:id="@+id/textView8"
+        <Button
+            android:id="@+id/button14"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="PHOTO"
+            android:backgroundTint="@color/black"
+            android:textSize="15sp"
+            android:onClick="onClick" />
+
+        <EditText
+            android:id="@+id/editTextText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            android:text="책 제목 :"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/editTextText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            android:text="저자 : "
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/editTextText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            android:text="출판사 : "
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/editTextText4"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            android:text=" 메모 : "
             android:layout_gravity="center"
-            android:text="TextView" />
+            android:background="@drawable/memo_border"/>
+
+        <View
+            android:id="@+id/view23"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="91dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <android.widget.Button
+                    android:id="@+id/button4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:background="@drawable/user_button"
+                    android:text="대출 가능"
+                    android:textColor="#FFFFFF"/>
+
+                <android.widget.Button
+                    android:id="@+id/button5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:background="@drawable/user_button2"
+                    android:text="대출 불가능"
+                    android:textColor="#8F8F8F"/>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view27"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_weight="1" />
+
+            <android.widget.Button
+                android:id="@+id/button26"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/user_button"
+                android:text="등록"
+                android:textColor="#FFFFFF"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
