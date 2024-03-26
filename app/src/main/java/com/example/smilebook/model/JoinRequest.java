@@ -5,19 +5,19 @@ public class JoinRequest {
     private String memberId;
     private String password;
     private String password2;
-    private String email;
+    private String eMail;
     private String phoneNumber;
 
-    public JoinRequest(String nickname, String memberId, String password, String password2, String email, String phoneNumber) {
+    public JoinRequest(String nickname, String memberId, String password, String password2, String eMail, String phoneNumber) {
         this.nickname = nickname;
         this.memberId = memberId;
         this.password = password;
         this.password2 = password2;
-        this.email = email;
+        this.eMail = eMail;
         this.phoneNumber = phoneNumber;
     }
 
-    // Getter and Setter methods
+    // Getter and Setter
     public String getNickname() {
         return nickname;
     }
@@ -50,12 +50,11 @@ public class JoinRequest {
         this.password2 = password2;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmail() {return eMail;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.eMail = email;
     }
 
     public String getPhoneNumber() {
