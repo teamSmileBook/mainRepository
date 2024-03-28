@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="titleText"
@@ -7,7 +8,6 @@
     </data>
 
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/some_id"
         android:layout_width="411dp"
         android:layout_height="732dp"
@@ -81,229 +81,280 @@
             android:layout_marginTop="150dp"
             android:src="@drawable/profile_change"/>
 
-        <TextView
-            android:id="@+id/modify_guide_nickname"
-            android:layout_width="66dp"
-            android:layout_height="20dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="28dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="207dp"
-            android:text="닉네임"
-            android:textAppearance="@style/guide"
-            android:gravity="top"
-            />
+<!--        <TextView-->
+<!--            android:id="@+id/modify_guide_nickname"-->
+<!--            android:layout_width="66dp"-->
+<!--            android:layout_height="22dp"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:layout_marginLeft="24dp"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:text="닉네임"-->
+<!--            android:textAppearance="@style/guide"-->
+<!--            android:gravity="top"-->
+<!--            />-->
 
-        <View
-            android:id="@+id/rectangle_modify_nickname"
-            android:layout_width="343.54dp"
-            android:layout_height="39dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="24dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="231dp"
-            android:background="@drawable/rectangle_modify_info"
-            />
+<!--        <View-->
+<!--            android:id="@+id/rectangle_modify_nickname"-->
+<!--            android:layout_width="343.54dp"-->
+<!--            android:layout_height="39dp"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:layout_marginLeft="24dp"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_marginTop="231dp"-->
+<!--            android:background="@drawable/rectangle_modify_info"-->
+<!--            />-->
 
-        <EditText
-            android:layout_width="333dp"
-            android:layout_height="39dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="29dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="231dp"
-            android:background="@null"
-            android:hint="닉네임"
-            android:textAppearance="@style/login_join"
-            />
 
-        <TextView
-            android:id="@+id/modify_guide_id"
-            android:layout_width="139dp"
-            android:layout_height="20dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="24dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="296dp"
-            android:text="아이디(이메일)"
-            android:textAppearance="@style/guide"
-            android:gravity="top"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="185dp"
+            android:orientation="vertical">
 
-        <View
-            android:id="@+id/rectangle_modify_email"
-            android:layout_width="142dp"
-            android:layout_height="39dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="24dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="320dp"
-            android:background="@drawable/rectangle_modify_email"
-            />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                >
 
-        <TextView
-            android:id="@+id/modifyinfo_id"
-            android:layout_width="130dp"
-            android:layout_height="35dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="30dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="320dp"
-            android:text="UserId"
-            android:textAppearance="@style/guide"
-            android:gravity="center_vertical"
-            />
+                <TextView
+                    android:id="@+id/modify_guide_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="닉네임"
+                    android:textAppearance="@style/guide" />
+                <View
+                    android:id="@+id/rectangle_modify_nickname"
+                    android:layout_width="344dp"
+                    android:layout_height="39dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="27dp"
+                    android:background="@drawable/rectangle_modify_info"
+                    />
 
-        <TextView
-            android:id="@+id/email"
-            android:layout_width="19dp"
-            android:layout_height="25dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="191dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="320dp"
-            android:text="\@"
-            android:textAppearance="@style/guide"
-            android:gravity="center"
-            />
+                <EditText
+                    android:layout_width="334dp"
+                    android:layout_height="39dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="27dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:hint="닉네임"
+                    android:gravity="center_vertical"
+                    android:textAppearance="@style/login_join"
+                    />
+            </RelativeLayout>
 
-        <View
-            android:id="@+id/rectangle_email_address"
-            android:layout_width="135.91dp"
-            android:layout_height="39dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="232.92dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="320dp"
-            android:background="@drawable/rectangle_modify_email"
-            />
 
-        <TextView
-            android:id="@+id/modifyinfo_email"
-            android:layout_width="130dp"
-            android:layout_height="35dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="238dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="320dp"
-            android:text="UserEmail"
-            android:textAppearance="@style/guide"
-            android:gravity="center_vertical"
-            />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp">
 
-        <Spinner
-            android:id="@+id/email_spinner"
-            android:layout_width="343.54dp"
-            android:layout_height="39dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="25.08dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="375dp"
-            android:background="@drawable/rectangle_email_spinner"
-            />
+                <TextView
+                    android:id="@+id/modify_guide_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="이메일"
+                    android:textAppearance="@style/guide" />
 
-        <TextView
-            android:id="@+id/modify_guide_pw"
-            android:layout_width="84dp"
-            android:layout_height="20dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="24dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="440dp"
-            android:text="비밀번호"
-            android:textAppearance="@style/guide"
-            android:gravity="top"
-            />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
-        <View
-            android:id="@+id/rectangle_modify_pw"
-            android:layout_width="343.54dp"
-            android:layout_height="39dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="24dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="465dp"
-            android:background="@drawable/rectangle_modify_info"
-            />
+                    <TextView
+                        android:id="@+id/modifyinfo_id"
+                        android:layout_width="140dp"
+                        android:layout_height="39dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text="  UserId"
+                        android:textAppearance="@style/guide"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/rectangle_modify_email"
+                        />
 
-        <EditText
-            android:layout_width="333dp"
-            android:layout_height="39dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="29dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="465dp"
-            android:textAppearance="@style/login_join"
-            android:background="@null"
-            android:hint="*********"
+                    <TextView
+                        android:id="@+id/email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="24dp"
+                        android:layout_alignParentTop="true"
+                        android:text="\@"
+                        android:textAppearance="@style/guide"
+                        android:gravity="center"
+                        />
 
-            />
+                    <TextView
+                        android:id="@+id/modifyinfo_email"
+                        android:layout_width="140dp"
+                        android:layout_height="39dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="24dp"
+                        android:layout_alignParentTop="true"
+                        android:text="  UserEmail"
+                        android:textAppearance="@style/guide"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/rectangle_modify_email"
+                        />
+                </LinearLayout>
 
-        <TextView
-            android:id="@+id/modify_guide_phoneNum"
-            android:layout_width="84dp"
-            android:layout_height="20dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="25dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="530dp"
-            android:text="전화번호"
-            android:textAppearance="@style/guide"
-            android:gravity="top"
-            />
+                <Spinner
+                    android:id="@+id/email_spinner"
+                    android:layout_width="344dp"
+                    android:layout_height="39dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/rectangle_email_spinner"
+                    />
+            </LinearLayout>
 
-        <View
-            android:id="@+id/rectangle_modify_phoneNum"
-            android:layout_width="343.54dp"
-            android:layout_height="39dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="24dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="555dp"
-            android:background="@drawable/rectangle_modify_info"
-            />
 
-        <EditText
-            android:layout_width="333dp"
-            android:layout_height="39dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="29dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="555dp"
-            android:textAppearance="@style/login_join"
-            android:background="@null"
-            android:hint="010-XXXX-XXXX"
-            />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/modify_guide_pw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="비밀번호"
+                    android:textAppearance="@style/guide"
+                    />
+
+                <View
+                    android:layout_width="344dp"
+                    android:layout_height="39dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="27dp"
+                    android:background="@drawable/rectangle_modify_info"/>
+
+                <EditText
+                    android:layout_width="334dp"
+                    android:layout_height="39dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="27dp"
+                    android:layout_marginLeft="10dp"
+                    android:textAppearance="@style/login_join"
+                    android:hint="*********"
+                    android:background="@null" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" >
+
+                <TextView
+                    android:id="@+id/modify_guide_phoneNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="전화번호"
+                    android:textAppearance="@style/guide"
+                    android:gravity="top"
+                    />
+
+                <View
+                    android:layout_width="344dp"
+                    android:layout_height="39dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="27dp"
+                    android:background="@drawable/rectangle_modify_info"/>
+
+                <EditText
+                    android:layout_width="334dp"
+                    android:layout_height="39dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="27dp"
+                    android:layout_marginLeft="10dp"
+                    android:textAppearance="@style/login_join"
+                    android:hint="010-XXXX-XXXX"
+                    android:background="@null"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+
+
+<!--        <View-->
+<!--            android:id="@+id/rectangle_modify_email"-->
+<!--            android:layout_width="142dp"-->
+<!--            android:layout_height="39dp"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:layout_marginLeft="24dp"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_marginTop="320dp"-->
+<!--            android:background="@drawable/rectangle_modify_email"-->
+<!--            />-->
+
+
+
+<!--        <View-->
+<!--            android:id="@+id/rectangle_email_address"-->
+<!--            android:layout_width="135.91dp"-->
+<!--            android:layout_height="39dp"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:layout_marginLeft="232.92dp"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_marginTop="320dp"-->
+<!--            android:background="@drawable/rectangle_modify_email"-->
+<!--            />-->
+
+
+
+
+<!--        <View-->
+<!--            android:id="@+id/rectangle_modify_phoneNum"-->
+<!--            android:layout_width="343.54dp"-->
+<!--            android:layout_height="39dp"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:layout_marginLeft="24dp"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_marginTop="555dp"-->
+<!--            android:background="@drawable/rectangle_modify_info"-->
+<!--            />-->
 
         <android.widget.Button
-            android:id="@+id/modify_button"
+            android:id="@+id/myInfo_modify_button"
             android:layout_width="169dp"
             android:layout_height="47dp"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="121dp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="610dp"
+            android:layout_marginTop="600dp"
             android:text="수정"
-            android:textColor="@color/white"
+            android:textAppearance="@style/btn_bold_white"
             android:background="@drawable/rectangle_mainbutton"
             />
-
-        <!--    텍스트뷰 왜 뒤로 숨지?? ㅜㅜㅜㅜㅜㅜ-->
-        <TextView
-            android:id="@+id/modify_textview"
-            android:layout_width="38dp"
-            android:layout_height="22dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="187dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="641dp"
-            android:text="수정"
-            android:textAppearance="@style/button_white"
-            android:gravity="center"
-            />
-
-
-
 
     </RelativeLayout>
 </layout>

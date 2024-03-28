@@ -5,26 +5,25 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class main_b extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+
+public class AdminMainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_b);
+        setContentView(R.layout.admin_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar); //툴바 사용 설정
-        getSupportActionBar().setDisplayShowTitleEnabled(false); //타이틀 안 보이게
-
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
-    @Override
 
-//    툴바에 menu_toolbar 삽입
+    //    툴바에 menu_toolbar 삽입
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_toolbar, menu);
@@ -38,11 +37,11 @@ public class main_b extends AppCompatActivity {
         int itemId = item.getItemId();
 
         if (itemId == R.id.item_search) {
-            Intent searchIntent = new Intent(getApplicationContext(), userSearch.class);
+            Intent searchIntent = new Intent(getApplicationContext(), AdminSearch.class);
             startActivity(searchIntent);
             return true;
         } else if (itemId == R.id.item_more) {
-            Intent moreIntent = new Intent(getApplicationContext(), userMore.class);
+            Intent moreIntent = new Intent(getApplicationContext(), AdminMore.class);
             startActivity(moreIntent);
             return true;
         } else {
@@ -50,3 +49,4 @@ public class main_b extends AppCompatActivity {
         }
     }
 }
+

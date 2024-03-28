@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/some_id"
-    android:layout_width="411dp"
-    android:layout_height="732dp"
+    android:id="@+id/user_more_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:clipToOutline="true"
     android:background="#FFFFFF"
     >
@@ -17,7 +17,6 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="40dp"
         android:background="@drawable/icons8_close"
-
         />
 
 

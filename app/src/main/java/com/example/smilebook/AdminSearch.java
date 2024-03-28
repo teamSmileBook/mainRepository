@@ -8,21 +8,21 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.example.smilebook.databinding.AdminSearchBinding;
 import com.example.smilebook.databinding.SearchBinding;
 import com.example.smilebook.databinding.ToolbarTitleBinding;
-import com.example.smilebook.databinding.UserAlarmBBinding;
 
-public class search extends AppCompatActivity{
+public class AdminSearch extends AppCompatActivity{
 
     private Button[] buttons;
-    private SearchBinding binding;
+    private AdminSearchBinding binding;
     private ToolbarTitleBinding toolbarTitleBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // 데이터 바인딩 설정
-        binding = DataBindingUtil.setContentView(this, R.layout.search);
+        binding = DataBindingUtil.setContentView(this, R.layout.admin_search);
 
         // TextView의 text 설정
         binding.setTitleText("검색");
@@ -30,18 +30,18 @@ public class search extends AppCompatActivity{
         toolbarTitleBinding = binding.toolbar;
 
         //홈(main_b.xml)으로
-        toolbarTitleBinding.icons8Smile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // main_b 화면으로 이동하는 인텐트 생성
-                Intent intent = new Intent(search.this, main_b.class);
-                startActivity(intent);
-                // 현재 액티비티 종료
-                finish();
-            }
-        });
+//        toolbarTitleBinding.icons8Smile.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // main_b 화면으로 이동하는 인텐트 생성
+//                Intent intent = new Intent(search.this, main_b.class);
+//                startActivity(intent);
+//                // 현재 액티비티 종료
+//                finish();
+//            }
+//        });
 
-        //뒤로가기(more.xml)
+        //뒤로가기
         toolbarTitleBinding.ReturnBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,11 +53,13 @@ public class search extends AppCompatActivity{
         toolbarTitleBinding.more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(search.this, more.class);
+                Intent intent = new Intent(AdminSearch.this, AdminMore.class);
                 startActivity(intent);
             }
         });
 
+
+        //버튼 누르면 다른 색으로 변하는 효과 주려고 넣었던 코드
 //        buttons = new Button[12];
 //        buttons[0] = findViewById(R.id.tag_best);
 //        buttons[1] = findViewById(R.id.tag_all);

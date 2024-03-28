@@ -1,14 +1,16 @@
 package com.example.smilebook;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class more extends AppCompatActivity {
+public class userMore extends AppCompatActivity {
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,7 @@ public class more extends AppCompatActivity {
         ImageButton user_myInfo_btn = (ImageButton) findViewById(R.id.user_myInfoBtn);
         ImageButton user_admin_Trans_btn = (ImageButton) findViewById(R.id.user_adminTransBtn);
         ImageButton user_logout_btn = (ImageButton) findViewById(R.id.user_logOutBtn);
+
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { finish(); }
@@ -30,7 +33,7 @@ public class more extends AppCompatActivity {
         user_alarm_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent alarmIntent = new Intent(getApplicationContext(), user_alarm_b.class);
+                Intent alarmIntent = new Intent(getApplicationContext(), userAlarm.class);
                 startActivity(alarmIntent);
             }
         });
@@ -39,7 +42,7 @@ public class more extends AppCompatActivity {
         user_myInfo_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myInfoIntent = new Intent(getApplicationContext(), user_my_info.class);
+                Intent myInfoIntent = new Intent(getApplicationContext(), userMyInfo.class);
                 startActivity(myInfoIntent);
             }
         });
@@ -48,7 +51,7 @@ public class more extends AppCompatActivity {
         user_admin_Trans_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent adminTransIntent = new Intent(getApplicationContext(), admin_mode_switch.class);
+                Intent adminTransIntent = new Intent(getApplicationContext(), userAdminModeSwitch.class);
                 startActivity(adminTransIntent);
             }
         });
@@ -57,8 +60,20 @@ public class more extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent logoutIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(logoutIntent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(userMore.this);
+
+                builder.setMessage("로그아웃 하시겠습니까?");
+                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        Intent logoutIntent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(logoutIntent);
+                    }
+                });
+
+                builder.setNegativeButton("취소", null);
+                builder.show();
             }
         });
     }

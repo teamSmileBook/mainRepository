@@ -5,4 +5,8 @@
     <string name="education">교육</string>
     <string name="fiction">소설</string>
     <string name="warning_login">로그인 후 앱을 이용해보세요.</string>
+    <string name="return_book">반납 완료</string>
+    <string name="borrow_book">대출 완료</string>
+    <string name="due_date">반납 기간까지 @일 남았습니다.</string>
+    <string name="admin_mode">현 화면은 관리자 화면입니다.</string>
 </resources>

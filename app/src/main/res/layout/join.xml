@@ -1,50 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/signup"
     android:layout_width="411dp"
     android:layout_height="732dp"
     android:clipToOutline="true"
+    android:orientation="vertical"
     android:background="#FFFFFF">
+
 
     <android.widget.Button
         android:id="@+id/arrow_back"
         android:layout_width="20dp"
         android:layout_height="17dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="25dp"
         android:layout_marginLeft="36dp"
         android:background="@drawable/arrow_back"
         />
 
     <TextView
         android:id="@+id/sign_up"
-        android:layout_width="83dp"
+        android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="176dp"
-        android:layout_marginTop="68dp"
-        android:gravity="top"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
         android:text="Sign_Up"
         android:textAppearance="@style/sign_up" />
 
     <ImageView
         android:id="@+id/icon_profile_circled"
-        android:layout_width="87.58dp"
-        android:layout_height="76.12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="170dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="102dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
         android:background="@drawable/icon_profile_circled"
         />
 
 <LinearLayout
+    android:gravity="center"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginLeft="42dp"
-    android:layout_marginTop="205dp">
+    android:layout_gravity="center"
+    android:layout_marginTop="20dp">
 
     <LinearLayout
         android:layout_width="327dp"
@@ -56,7 +58,7 @@
         <EditText
             android:id="@+id/join_info_nickName"
             android:layout_width="260dp"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:background="@null"
@@ -85,7 +87,7 @@
         <EditText
             android:id="@+id/join_info_id"
             android:layout_width="260dp"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:background="@null"
@@ -113,7 +115,7 @@
         <EditText
             android:id="@+id/join_info_pw"
             android:layout_width="260dp"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:background="@null"
@@ -142,7 +144,7 @@
         <EditText
             android:id="@+id/join_info_pw_confirm"
             android:layout_width="260dp"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:background="@null"
@@ -171,7 +173,7 @@
         <EditText
             android:id="@+id/join_info_eMail"
             android:layout_width="260dp"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:background="@null"
@@ -200,7 +202,7 @@
         <EditText
             android:id="@+id/join_info_phoneNum"
             android:layout_width="200dp"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:background="@null"
@@ -231,7 +233,7 @@
         <EditText
             android:id="@+id/join_phoneNum_certifi"
             android:layout_width="260dp"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:background="@null"
@@ -251,14 +253,16 @@
 </LinearLayout>
 
     <android.widget.Button
-        android:id="@+id/rectangle_1"
-        android:layout_width="169dp"
+        android:id="@+id/join_info_complete"
+        android:layout_width="wrap_content"
         android:layout_height="47dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="590dp"
+        android:layout_marginTop="18dp"
+        android:layout_gravity="center"
         android:text="가입하기"
+        android:textAppearance="@style/btn_bold"
         android:background="@drawable/rectangle_mainbutton"
         />
 
-</RelativeLayout>
+</LinearLayout>

@@ -14,14 +14,25 @@
         tools:targetApi="31">
 
 
-        <activity
-            android:name=".admin_mode_switch"
+        <activity android:name=".AdminCodeModify"
+            android:exported="true" />
+
+        <activity android:name=".AdminSearch"
+            android:exported="true" />
+
+        <activity android:name=".AdminMore"
+            android:exported="true" />
+
+        <activity android:name=".AdminMainActivity"
             android:exported="true" />
         <activity
-            android:name=".user_my_info"
+            android:name=".userAdminModeSwitch"
             android:exported="true" />
         <activity
-            android:name=".user_alarm_b"
+            android:name=".userMyInfo"
+            android:exported="true" />
+        <activity
+            android:name=".userAlarm"
             android:exported="true" />
         <activity
             android:name=".main_b"
@@ -38,10 +49,10 @@
             android:name=".join"
             android:exported="true"/>
         <activity
-            android:name=".search"
+            android:name=".userSearch"
             android:exported="true" />
         <activity
-            android:name=".more"
+            android:name=".userMore"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

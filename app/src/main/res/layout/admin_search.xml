@@ -7,12 +7,12 @@
             type="String" />
     </data>
 
-<!--    버튼 클릭시 색 변경 (selector_tag, selector_switch) 수정 예정-->
-<!--    아마 button말고 ToggleButton으로 바꾸는게 나을거 같음-->
+    <!--    버튼 클릭시 색 변경 (selector_tag, selector_switch) 수정 예정-->
+    <!--    아마 button말고 ToggleButton으로 바꾸는게 나을거 같음-->
 
     <RelativeLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/search_xml"
+        android:id="@+id/admin_search_xml"
         android:layout_width="411dp"
         android:layout_height="732dp"
         android:clipToOutline="true"
@@ -32,22 +32,14 @@
             android:background="@drawable/search_box"
             />
 
-        <android.widget.Button
-            android:id="@+id/login_pink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/login_btn"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:layout_marginTop="250dp"
+            android:layout_marginTop="150dp"
             android:orientation="horizontal">
 
             <android.widget.Button
-                android:id="@+id/tag_best"
+                android:id="@+id/admin_tag_best"
                 android:layout_width="59dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
@@ -60,7 +52,7 @@
 
 
             <android.widget.Button
-                android:id="@+id/tag_all"
+                android:id="@+id/admin_tag_all"
                 android:layout_width="59dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
@@ -72,7 +64,7 @@
                 />
 
             <android.widget.Button
-                android:id="@+id/tag_cook"
+                android:id="@+id/admin_tag_cook"
                 android:layout_width="59dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
@@ -84,7 +76,7 @@
                 />
 
             <android.widget.Button
-                android:id="@+id/tag_cartoon"
+                android:id="@+id/admin_tag_cartoon"
                 android:layout_width="59dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
@@ -96,7 +88,7 @@
                 />
 
             <android.widget.Button
-                android:id="@+id/tag_child"
+                android:id="@+id/admin_tag_child"
                 android:layout_width="59dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
@@ -108,7 +100,7 @@
                 />
 
             <android.widget.Button
-                android:id="@+id/tag_sports"
+                android:id="@+id/admin_tag_sports"
                 android:layout_width="59dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
@@ -124,11 +116,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="200dp"
             android:orientation="horizontal">
 
             <android.widget.Button
-                android:id="@+id/tag_literature"
+                android:id="@+id/admin_tag_literature"
                 android:layout_width="59dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
@@ -140,7 +132,7 @@
                 />
 
             <android.widget.Button
-                android:id="@+id/tag_humanities"
+                android:id="@+id/admin_tag_humanities"
                 android:layout_width="59dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
@@ -152,7 +144,7 @@
                 />
 
             <android.widget.Button
-                android:id="@+id/tag_IT"
+                android:id="@+id/admin_tag_IT"
                 android:layout_width="59dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
@@ -164,7 +156,7 @@
                 />
 
             <android.widget.Button
-                android:id="@+id/tag_edu"
+                android:id="@+id/admin_tag_edu"
                 android:layout_width="59dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
@@ -176,7 +168,7 @@
                 />
 
             <android.widget.Button
-                android:id="@+id/tag_travel"
+                android:id="@+id/admin_tag_travel"
                 android:layout_width="59dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
@@ -187,7 +179,7 @@
                 />
 
             <android.widget.Button
-                android:id="@+id/tag_health"
+                android:id="@+id/admin_tag_health"
                 android:layout_width="59dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
@@ -201,31 +193,31 @@
 
 
         <!--        이전 디자인(태그 박스)-->
-<!--        <android.widget.Button-->
-<!--            android:id="@+id/search_all"-->
-<!--            android:layout_width="110dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_alignParentLeft="true"-->
-<!--            android:layout_marginLeft="64dp"-->
-<!--            android:layout_alignParentTop="true"-->
-<!--            android:layout_marginTop="260dp"-->
-<!--            android:background="@drawable/rectangle_search_category"-->
-<!--            android:text="전체"-->
-<!--            android:gravity="center"-->
-<!--            android:elevation="4dp"-->
-<!--            />-->
+        <!--        <android.widget.Button-->
+        <!--            android:id="@+id/search_all"-->
+        <!--            android:layout_width="110dp"-->
+        <!--            android:layout_height="40dp"-->
+        <!--            android:layout_alignParentLeft="true"-->
+        <!--            android:layout_marginLeft="64dp"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_marginTop="260dp"-->
+        <!--            android:background="@drawable/rectangle_search_category"-->
+        <!--            android:text="전체"-->
+        <!--            android:gravity="center"-->
+        <!--            android:elevation="4dp"-->
+        <!--            />-->
 
-<!--        <View-->
-<!--            android:id="@+id/search_best"-->
-<!--            android:layout_width="110dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_alignParentLeft="true"-->
-<!--            android:layout_marginLeft="236dp"-->
-<!--            android:layout_alignParentTop="true"-->
-<!--            android:layout_marginTop="260dp"-->
-<!--            android:background="@drawable/rectangle_search_category"-->
-<!--            android:elevation="4dp"-->
-<!--            />-->
+        <!--        <View-->
+        <!--            android:id="@+id/search_best"-->
+        <!--            android:layout_width="110dp"-->
+        <!--            android:layout_height="40dp"-->
+        <!--            android:layout_alignParentLeft="true"-->
+        <!--            android:layout_marginLeft="236dp"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_marginTop="260dp"-->
+        <!--            android:background="@drawable/rectangle_search_category"-->
+        <!--            android:elevation="4dp"-->
+        <!--            />-->
 
     </RelativeLayout>
 </layout>

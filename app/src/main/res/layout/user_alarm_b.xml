@@ -57,13 +57,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|right"
                 android:layout_margin="10dp"
-
-                android:thumb="@drawable/thumb"
-                app:track="@drawable/selector_switch"
+                android:thumb="@drawable/switch_thumb"
+                app:track="@drawable/switch_track_selector"
                 app:thumbTextPadding="24dp"
-                app:switchMinWidth="0dp"
                 android:textOff=""
-                android:textOn="" />
+                android:textOn=""/>
 
             <!--        <Switch-->
             <!--            android:layout_width="wrap_content"-->
@@ -86,8 +84,8 @@
 
         <ListView
             android:id="@+id/alarm_list"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </layout>
