@@ -1,13 +1,11 @@
 package com.example.smilebook.api;
-
-import com.example.smilebook.model.JoinRequest;
-import com.example.smilebook.model.JoinResponse;
+import com.example.smilebook.model.MemberDTO;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface ApiService {
-    @POST("/member/register")
-    Call<JoinResponse> join(@Body JoinRequest request);
+    @POST("/join")
+    Call<MemberDTO> join(@Body MemberDTO memberDTO);
 }

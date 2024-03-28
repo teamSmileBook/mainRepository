@@ -1,29 +1,24 @@
 package com.example.smilebook.model;
 
-public class JoinRequest {
-    private String nickname;
+public class MemberDTO {
     private String memberId;
+    private String nickname;
     private String password;
     private String password2;
-    private String eMail;
+    private String email;
     private String phoneNumber;
 
-    public JoinRequest(String nickname, String memberId, String password, String password2, String eMail, String phoneNumber) {
-        this.nickname = nickname;
+    public MemberDTO() {
+        // Default constructor
+    }
+
+    public MemberDTO(String memberId, String nickname, String password, String password2, String email, String phoneNumber) {
         this.memberId = memberId;
+        this.nickname = nickname;
         this.password = password;
         this.password2 = password2;
-        this.eMail = eMail;
+        this.email = email;
         this.phoneNumber = phoneNumber;
-    }
-
-    // Getter and Setter
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
     }
 
     public String getMemberId() {
@@ -32,6 +27,14 @@ public class JoinRequest {
 
     public void setMemberId(String memberId) {
         this.memberId = memberId;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getPassword() {
@@ -50,11 +53,12 @@ public class JoinRequest {
         this.password2 = password2;
     }
 
-    public String getEmail() {return eMail;
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
-        this.eMail = email;
+        this.email = email;
     }
 
     public String getPhoneNumber() {
@@ -65,3 +69,4 @@ public class JoinRequest {
         this.phoneNumber = phoneNumber;
     }
 }
+
