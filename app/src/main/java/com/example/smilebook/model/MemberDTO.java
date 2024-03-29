@@ -8,8 +8,8 @@ public class MemberDTO {
     private String email;
     private String phoneNumber;
 
+
     public MemberDTO() {
-        // Default constructor
     }
 
     public MemberDTO(String memberId, String nickname, String password, String password2, String email, String phoneNumber) {
@@ -68,5 +68,6 @@ public class MemberDTO {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
 }
 
