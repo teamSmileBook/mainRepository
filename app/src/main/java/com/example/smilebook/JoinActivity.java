@@ -35,45 +35,44 @@ public class JoinActivity extends AppCompatActivity {
                 String password2 = ((EditText) findViewById(R.id.join_info_pw_confirm)).getText().toString();
                 String email = ((EditText) findViewById(R.id.join_info_eMail)).getText().toString();
                 String phoneNumber = ((EditText) findViewById(R.id.join_info_phoneNum)).getText().toString();
-                // 입력값 유효성 검사
+
                 if (nickname.isEmpty() || memberId.isEmpty() || password.isEmpty() || password2.isEmpty() || email.isEmpty() || phoneNumber.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "모든 항목을 입력하세요.", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                MemberDTO memberDTO = new MemberDTO(memberId, nickname, password, password2, email, phoneNumber);
-                // Retrofit을 통한 API 호출
+
+                if (!password.equals(password2)) {
+                    Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                MemberDTO memberDTO = new MemberDTO(memberId, nickname, password, email, phoneNumber);
+                //API 호출
                 if (apiService != null) {
                     apiService.join(memberDTO).enqueue(new Callback<ResponseDTO>() {
                         @Override
                         public void onResponse(Call<ResponseDTO> call, Response<ResponseDTO> response) {
                             if (response.isSuccessful() && response.body() != null) {
                                 ResponseDTO responseBody = response.body();
-                                // 서버 응답 코드에 따라 처리
+
                                 if (responseBody.getCode() == 200) {
                                     // 회원가입 성공
                                     Toast.makeText(getApplicationContext(), responseBody.getMessage(), Toast.LENGTH_SHORT).show();
-                                    // 로그인 페이지로 이동
                                     Intent intent = new Intent(JoinActivity.this, LoginActivity.class);
                                     startActivity(intent);
                                     finish();
-                                } else if (responseBody.getCode() == 400) {
-                                    // 비밀번호 불일치
-                                    Toast.makeText(getApplicationContext(), responseBody.getMessage(), Toast.LENGTH_SHORT).show();
-                                } else {
-                                    // 기타 실패 상황
-                                    Toast.makeText(getApplicationContext(), responseBody.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
+
                             } else {
-                                // 응답이 실패했을 때
-                                Toast.makeText(getApplicationContext(), "서버 응답이 실패했습니다.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "회원가입 실패", Toast.LENGTH_SHORT).show();
                             }
                         }
+
 
                         @Override
                         public void onFailure(Call<ResponseDTO> call, Throwable t) {
                             // 통신 실패
                             Toast.makeText(getApplicationContext(), "네트워크 오류", Toast.LENGTH_SHORT).show();
-                            t.printStackTrace(); // 추가: 오류를 확인하기 위해 스택 트레이스 출력
                         }
                     });
                 } else {
