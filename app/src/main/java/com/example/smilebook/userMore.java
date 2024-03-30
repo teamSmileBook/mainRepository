@@ -22,6 +22,7 @@ public class userMore extends AppCompatActivity {
         ImageButton user_myInfo_btn = (ImageButton) findViewById(R.id.user_myInfoBtn);
         ImageButton user_admin_Trans_btn = (ImageButton) findViewById(R.id.user_adminTransBtn);
         ImageButton user_logout_btn = (ImageButton) findViewById(R.id.user_logOutBtn);
+        ImageButton user_myBook_btn = findViewById(R.id.user_myBookBtn);
 
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +45,15 @@ public class userMore extends AppCompatActivity {
             public void onClick(View view) {
                 Intent myInfoIntent = new Intent(getApplicationContext(), userMyInfo.class);
                 startActivity(myInfoIntent);
+            }
+        });
+
+        //내 도서
+        user_myBook_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(userMore.this, user_book.class);
+                startActivity(intent);
             }
         });
 

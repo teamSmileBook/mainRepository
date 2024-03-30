@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <Button
+                <android.widget.Button
                     android:id="@+id/button12"
                     android:layout_width="8dp"
                     android:layout_height="wrap_content"
