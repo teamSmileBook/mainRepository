@@ -9,12 +9,12 @@ import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class main_b extends AppCompatActivity {
+public class UserMain extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_b);
+        setContentView(R.layout.user_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar); //툴바 사용 설정
@@ -38,11 +38,11 @@ public class main_b extends AppCompatActivity {
         int itemId = item.getItemId();
 
         if (itemId == R.id.item_search) {
-            Intent searchIntent = new Intent(getApplicationContext(), userSearch.class);
+            Intent searchIntent = new Intent(getApplicationContext(), UserSearch.class);
             startActivity(searchIntent);
             return true;
         } else if (itemId == R.id.item_more) {
-            Intent moreIntent = new Intent(getApplicationContext(), userMore.class);
+            Intent moreIntent = new Intent(getApplicationContext(), UserMore.class);
             startActivity(moreIntent);
             return true;
         } else {

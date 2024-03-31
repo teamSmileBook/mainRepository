@@ -16,7 +16,7 @@ import androidx.databinding.DataBindingUtil;
 import com.example.smilebook.databinding.ToolbarTitleBinding;
 import com.example.smilebook.databinding.UserMyInfoBinding;
 
-public class userMyInfo extends AppCompatActivity {
+public class UserMyInfo extends AppCompatActivity {
 
     private UserMyInfoBinding binding;
     private ToolbarTitleBinding toolbarTitleBinding;
@@ -56,7 +56,7 @@ public class userMyInfo extends AppCompatActivity {
         toolbarTitleBinding.more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(userMyInfo.this, userMore.class);
+                Intent intent = new Intent(UserMyInfo.this, UserMore.class);
                 startActivity(intent);
             }
         });
@@ -69,12 +69,12 @@ public class userMyInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                AlertDialog.Builder dlg = new AlertDialog.Builder(userMyInfo.this);
+                AlertDialog.Builder dlg = new AlertDialog.Builder(UserMyInfo.this);
                 dlg.setMessage("정보를 수정하시겠습니까?");
                 dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(userMyInfo.this, "정보를 수정하였습니다.",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserMyInfo.this, "정보를 수정하였습니다.",Toast.LENGTH_SHORT).show();
                     }
                 });
                 dlg.setNegativeButton("취소", null);

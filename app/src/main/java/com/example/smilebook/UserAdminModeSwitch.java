@@ -14,7 +14,7 @@ import androidx.databinding.DataBindingUtil;
 import com.example.smilebook.databinding.AdminModeSwitchBinding;
 import com.example.smilebook.databinding.ToolbarTitleBinding;
 
-public class userAdminModeSwitch extends AppCompatActivity {
+public class UserAdminModeSwitch extends AppCompatActivity {
 
     private ToolbarTitleBinding toolbarTitleBinding;
     private AdminModeSwitchBinding binding;
@@ -58,7 +58,7 @@ public class userAdminModeSwitch extends AppCompatActivity {
         toolbarTitleBinding.more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(userAdminModeSwitch.this, userMore.class);
+                Intent intent = new Intent(UserAdminModeSwitch.this, UserMore.class);
                 startActivity(intent);
             }
         });
@@ -87,7 +87,7 @@ public class userAdminModeSwitch extends AppCompatActivity {
 
     //admin_main.xml로 이동
     private void moveAdminMain() {
-        Intent adminSwitchIntent = new Intent(userAdminModeSwitch.this, AdminMainActivity.class);
+        Intent adminSwitchIntent = new Intent(UserAdminModeSwitch.this, AdminMainActivity.class);
         startActivity(adminSwitchIntent);
         finish(); // 현재 액티비티 종료
     }

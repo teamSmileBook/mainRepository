@@ -7,8 +7,8 @@
             type="String" />
     </data>
 
-<!--    버튼 클릭시 색 변경 (selector_tag, selector_switch) 수정 예정-->
-<!--    아마 button말고 ToggleButton으로 바꾸는게 나을거 같음-->
+    <!--    버튼 클릭시 색 변경 (selector_tag, selector_switch) 수정 예정-->
+    <!--    아마 button말고 ToggleButton으로 바꾸는게 나을거 같음-->
 
     <RelativeLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -201,31 +201,31 @@
 
 
         <!--        이전 디자인(태그 박스)-->
-<!--        <android.widget.Button-->
-<!--            android:id="@+id/search_all"-->
-<!--            android:layout_width="110dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_alignParentLeft="true"-->
-<!--            android:layout_marginLeft="64dp"-->
-<!--            android:layout_alignParentTop="true"-->
-<!--            android:layout_marginTop="260dp"-->
-<!--            android:background="@drawable/rectangle_search_category"-->
-<!--            android:text="전체"-->
-<!--            android:gravity="center"-->
-<!--            android:elevation="4dp"-->
-<!--            />-->
+        <!--        <android.widget.Button-->
+        <!--            android:id="@+id/search_all"-->
+        <!--            android:layout_width="110dp"-->
+        <!--            android:layout_height="40dp"-->
+        <!--            android:layout_alignParentLeft="true"-->
+        <!--            android:layout_marginLeft="64dp"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_marginTop="260dp"-->
+        <!--            android:background="@drawable/rectangle_search_category"-->
+        <!--            android:text="전체"-->
+        <!--            android:gravity="center"-->
+        <!--            android:elevation="4dp"-->
+        <!--            />-->
 
-<!--        <View-->
-<!--            android:id="@+id/search_best"-->
-<!--            android:layout_width="110dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_alignParentLeft="true"-->
-<!--            android:layout_marginLeft="236dp"-->
-<!--            android:layout_alignParentTop="true"-->
-<!--            android:layout_marginTop="260dp"-->
-<!--            android:background="@drawable/rectangle_search_category"-->
-<!--            android:elevation="4dp"-->
-<!--            />-->
+        <!--        <View-->
+        <!--            android:id="@+id/search_best"-->
+        <!--            android:layout_width="110dp"-->
+        <!--            android:layout_height="40dp"-->
+        <!--            android:layout_alignParentLeft="true"-->
+        <!--            android:layout_marginLeft="236dp"-->
+        <!--            android:layout_alignParentTop="true"-->
+        <!--            android:layout_marginTop="260dp"-->
+        <!--            android:background="@drawable/rectangle_search_category"-->
+        <!--            android:elevation="4dp"-->
+        <!--            />-->
 
     </RelativeLayout>
 </layout>

@@ -9,7 +9,7 @@
     android:layout_height="wrap_content"
     android:clipToOutline="true"
     android:background="#FFFFFF"
-    tools:context=".main_b">
+    tools:context=".UserMain">
 
     <include
         layout="@layout/toolbar"
@@ -451,7 +451,7 @@
                     android:layout_marginTop="51dp"
                     android:background="@drawable/line1" />
 
-                <View
+                <ImageView
                     android:id="@+id/cartoon_book_1"
                     android:layout_width="64dp"
                     android:layout_height="100dp"
@@ -460,9 +460,10 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
+                    android:src="@drawable/book1"
                     />
 
-                <View
+                <ImageView
                     android:id="@+id/cartoon_book_2"
                     android:layout_width="64dp"
                     android:layout_height="100dp"
@@ -471,9 +472,10 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
+                    android:src="@drawable/book2"
                     />
 
-                <View
+                <ImageView
                     android:id="@+id/cartoon_book_3"
                     android:layout_width="64dp"
                     android:layout_height="100dp"
@@ -482,9 +484,10 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
+                    android:src="@drawable/book3"
                     />
 
-                <View
+                <ImageView
                     android:id="@+id/cartoon_book_4"
                     android:layout_width="64dp"
                     android:layout_height="100dp"
@@ -493,6 +496,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
+                    android:src="@drawable/book4"
                     />
             </RelativeLayout>
 
@@ -536,7 +540,7 @@
                     android:layout_marginTop="51dp"
                     android:background="@drawable/line1" />
 
-                <View
+                <ImageView
                     android:id="@+id/cook_book_1"
                     android:layout_width="64dp"
                     android:layout_height="100dp"
@@ -545,9 +549,10 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
+                    android:src="@drawable/book5"
                     />
 
-                <View
+                <ImageView
                     android:id="@+id/cook_book_2"
                     android:layout_width="64dp"
                     android:layout_height="100dp"
@@ -556,9 +561,10 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
+                    android:src="@drawable/book6"
                     />
 
-                <View
+                <ImageView
                     android:id="@+id/cook_book_3"
                     android:layout_width="64dp"
                     android:layout_height="100dp"
@@ -567,9 +573,10 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
+                    android:src="@drawable/book7"
                     />
 
-                <View
+                <ImageView
                     android:id="@+id/cook_book_4"
                     android:layout_width="64dp"
                     android:layout_height="100dp"
@@ -578,6 +585,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
+                    android:src="@drawable/book8"
                     />
             </RelativeLayout>
 
@@ -621,7 +629,7 @@
                     android:layout_marginTop="51dp"
                     android:background="@drawable/line1" />
 
-                <View
+                <ImageView
                     android:id="@+id/sports_book_1"
                     android:layout_width="64dp"
                     android:layout_height="100dp"
@@ -630,9 +638,10 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
+                    android:src="@drawable/book9"
                     />
 
-                <View
+                <ImageView
                     android:id="@+id/sports_book_2"
                     android:layout_width="64dp"
                     android:layout_height="100dp"
@@ -641,6 +650,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
+                    android:src="@drawable/book10"
                     />
 
                 <View

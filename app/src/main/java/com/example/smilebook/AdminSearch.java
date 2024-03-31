@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.example.smilebook.databinding.AdminSearchBinding;
-import com.example.smilebook.databinding.SearchBinding;
+import com.example.smilebook.databinding.UserSearchBinding;
 import com.example.smilebook.databinding.ToolbarTitleBinding;
 
 public class AdminSearch extends AppCompatActivity{

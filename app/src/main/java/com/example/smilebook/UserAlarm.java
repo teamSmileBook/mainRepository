@@ -11,10 +11,10 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.example.smilebook.databinding.ToolbarTitleBinding;
-import com.example.smilebook.databinding.UserAlarmBBinding;
+import com.example.smilebook.databinding.UserAlarmBinding;
 
-public class userAlarm extends AppCompatActivity {
-    private UserAlarmBBinding binding;
+public class UserAlarm extends AppCompatActivity {
+    private UserAlarmBinding binding;
     private ToolbarTitleBinding toolbarTitleBinding;
     private ListView listView;
     private AlarmListViewItemAdapter adapter;
@@ -25,7 +25,7 @@ public class userAlarm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // 데이터 바인딩 설정
-        binding = DataBindingUtil.setContentView(this, R.layout.user_alarm_b);
+        binding = DataBindingUtil.setContentView(this, R.layout.user_alarm);
 
         // TextView의 text 설정
         binding.setTitleText("알림");
@@ -55,7 +55,7 @@ public class userAlarm extends AppCompatActivity {
         toolbarTitleBinding.more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(userAlarm.this, userMore.class);
+                Intent intent = new Intent(UserAlarm.this, UserMore.class);
                 startActivity(intent);
             }
         });

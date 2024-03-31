@@ -33,7 +33,7 @@ public class AdminMore extends AppCompatActivity {
         admin_user_trans_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent userTransIntent = new Intent(getApplicationContext(), main_b.class);
+                Intent userTransIntent = new Intent(getApplicationContext(), UserMain.class);
                 startActivity(userTransIntent);
             }
         });

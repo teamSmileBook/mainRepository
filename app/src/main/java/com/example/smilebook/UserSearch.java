@@ -8,20 +8,21 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import com.example.smilebook.databinding.SearchBinding;
+import com.example.smilebook.databinding.UserSearchBinding;
 import com.example.smilebook.databinding.ToolbarTitleBinding;
+import com.example.smilebook.databinding.UserSearchBinding;
 
-public class userSearch extends AppCompatActivity{
+public class UserSearch extends AppCompatActivity{
 
     private Button[] buttons;
-    private SearchBinding binding;
+    private UserSearchBinding binding;
     private ToolbarTitleBinding toolbarTitleBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // 데이터 바인딩 설정
-        binding = DataBindingUtil.setContentView(this, R.layout.search);
+        binding = DataBindingUtil.setContentView(this, R.layout.user_search);
 
         // TextView의 text 설정
         binding.setTitleText("검색");
@@ -52,7 +53,7 @@ public class userSearch extends AppCompatActivity{
         toolbarTitleBinding.more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(userSearch.this, userMore.class);
+                Intent intent = new Intent(UserSearch.this, UserMore.class);
                 startActivity(intent);
             }
         });

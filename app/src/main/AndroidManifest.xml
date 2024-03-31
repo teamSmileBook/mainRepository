@@ -26,16 +26,16 @@
         <activity android:name=".AdminMainActivity"
             android:exported="true" />
         <activity
-            android:name=".userAdminModeSwitch"
+            android:name=".UserAdminModeSwitch"
             android:exported="true" />
         <activity
-            android:name=".userMyInfo"
+            android:name=".UserMyInfo"
             android:exported="true" />
         <activity
-            android:name=".userAlarm"
+            android:name=".UserAlarm"
             android:exported="true" />
         <activity
-            android:name=".main_b"
+            android:name=".UserMain"
             android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -49,10 +49,10 @@
             android:name=".join"
             android:exported="true"/>
         <activity
-            android:name=".userSearch"
+            android:name=".UserSearch"
             android:exported="true" />
         <activity
-            android:name=".userMore"
+            android:name=".UserMore"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

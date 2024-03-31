@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class userMore extends AppCompatActivity {
+public class UserMore extends AppCompatActivity {
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class userMore extends AppCompatActivity {
         user_alarm_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent alarmIntent = new Intent(getApplicationContext(), userAlarm.class);
+                Intent alarmIntent = new Intent(getApplicationContext(), UserAlarm.class);
                 startActivity(alarmIntent);
             }
         });
@@ -43,7 +43,7 @@ public class userMore extends AppCompatActivity {
         user_myInfo_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myInfoIntent = new Intent(getApplicationContext(), userMyInfo.class);
+                Intent myInfoIntent = new Intent(getApplicationContext(), UserMyInfo.class);
                 startActivity(myInfoIntent);
             }
         });
@@ -52,7 +52,7 @@ public class userMore extends AppCompatActivity {
         user_myBook_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(userMore.this, user_book.class);
+                Intent intent = new Intent(UserMore.this, user_book.class);
                 startActivity(intent);
             }
         });
@@ -61,7 +61,7 @@ public class userMore extends AppCompatActivity {
         user_admin_Trans_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent adminTransIntent = new Intent(getApplicationContext(), userAdminModeSwitch.class);
+                Intent adminTransIntent = new Intent(getApplicationContext(), UserAdminModeSwitch.class);
                 startActivity(adminTransIntent);
             }
         });
@@ -70,7 +70,7 @@ public class userMore extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(userMore.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(UserMore.this);
 
                 builder.setMessage("로그아웃 하시겠습니까?");
                 builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
