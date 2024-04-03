@@ -83,7 +83,7 @@ public class UserSearch extends AppCompatActivity{
         go_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goLoginIntent = new Intent(getApplicationContext(), login.class);
+                Intent goLoginIntent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(goLoginIntent);
             }
         });
