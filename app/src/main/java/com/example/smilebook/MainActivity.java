@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.main);
 
         Button loginbtn = (Button) findViewById(R.id.loginButton);
         Button joinbtn = (Button) findViewById(R.id.joinButton);

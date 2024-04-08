@@ -26,7 +26,7 @@ public class JoinActivity extends AppCompatActivity {
         setContentView(R.layout.join);
         // Retrofit 객체 생성
         apiService = RetrofitClient.getInstance().create(ApiService.class);
-        findViewById(R.id.rectangle_1).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.join_info_complete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String nickname = ((EditText) findViewById(R.id.join_info_nickName)).getText().toString();
