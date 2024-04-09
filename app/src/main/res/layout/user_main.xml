@@ -15,8 +15,8 @@
         layout="@layout/toolbar"
         android:id="@+id/toolbar"/>
 
-    <TextView
-        android:id="@+id/rectangle_warning"
+    <android.widget.Button
+        android:id="@+id/rectangle_login"
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:layout_alignParentLeft="true"

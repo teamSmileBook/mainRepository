@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,14 +18,20 @@ public class UserMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_main);
 
+        Button loginbtn = (Button) findViewById(R.id.rectangle_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar); //툴바 사용 설정
         getSupportActionBar().setDisplayShowTitleEnabled(false); //타이틀 안 보이게
 
+        loginbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            }
+        });
     }
 
     @Override
-
 //    툴바에 menu_toolbar 삽입
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
