@@ -3,6 +3,7 @@ package com.example.smilebook;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -52,8 +53,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    // 로그인 성공 시 메인 화면으로 이동
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+
+                    //로그인 성공 시 메인으로 이동, 로그인 요청 버튼 숨김
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class)
+                            .putExtra("hideButton", true));
                     finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
@@ -66,4 +70,5 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
 }

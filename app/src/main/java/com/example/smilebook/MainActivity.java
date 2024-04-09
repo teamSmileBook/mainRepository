@@ -23,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar); //툴바 사용 설정
         getSupportActionBar().setDisplayShowTitleEnabled(false); //타이틀 안 보이게
 
+        // 로그인 성공 시 rectangle_login 숨김
+        boolean hideButton = getIntent().getBooleanExtra("hideButton", false);
+        if (hideButton) { loginbtn.setVisibility(View.GONE);}
+
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

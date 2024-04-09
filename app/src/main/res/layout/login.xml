@@ -143,19 +143,6 @@
     <!--    </string>-->
 
     <!--    우선 버튼 내에 텍스트 삽입/ 스타일 지정하려면 아래 TextView 주석 풀기-->
-    <android.widget.Button
-        android:id="@+id/loginButton"
-        android:layout_width="169dp"
-        android:layout_height="48dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="121dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="471dp"
-        android:background="@drawable/rectangle_mainbutton"
-        android:text="로그인"
-        android:textAppearance="@style/btn_bold"
-        android:contentDescription="로그인"
-        />
     <!-- Auto layout, variables, and unit scale are not yet supported -->
     <!--    <TextView-->
     <!--        android:id="@+id/login_TextView"-->
@@ -195,6 +182,19 @@
       Line height: 22sp
       (identical to box height)
       -->
+
+    <android.widget.Button
+        android:id="@+id/loginButton"
+        android:layout_width="169dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="121dp"
+        android:layout_marginTop="473dp"
+        android:background="@drawable/rectangle_mainbutton"
+        android:contentDescription="로그인"
+        android:text="로그인"
+        android:textAppearance="@style/btn_bold" />
 
     <android.widget.Button
         android:id="@+id/joinButton"
