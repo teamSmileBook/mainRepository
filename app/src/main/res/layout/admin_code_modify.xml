@@ -27,7 +27,7 @@
             android:layout_marginLeft="64dp"
             android:layout_alignParentTop="true"
             android:layout_marginTop="188dp"
-            android:text="관리자 인증번호를 입력해주세요"
+            android:text="현재 인증번호를 입력해주세요"
             android:textSize="20sp"
             android:gravity="top"
             />
@@ -46,13 +46,12 @@
             android:id="@+id/admin_code_editText"
             android:layout_width="215dp"
             android:layout_height="77dp"
-            android:layout_marginTop="266dp"
             android:layout_marginLeft="93dp"
-            android:textSize="64sp"
+            android:layout_marginTop="266dp"
             android:background="@null"
-            android:hint="0 0 0 0"
             android:gravity="center"
+            android:hint="0 0 0 0"
             android:inputType="textPassword"
-            />
+            android:textSize="64sp" />
     </RelativeLayout>
 </layout>

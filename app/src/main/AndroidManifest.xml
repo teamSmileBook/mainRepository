@@ -19,7 +19,7 @@
         android:usesCleartextTraffic="true">
 
 
-        <activity android:name=".AdminCodeModify"
+        <activity android:name=".AdminmodeSwitchActivity"
             android:exported="true" />
 
         <activity android:name=".AdminSearch"

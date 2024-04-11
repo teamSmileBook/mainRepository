@@ -28,7 +28,7 @@ public class AdminMore extends AppCompatActivity {
         admin_code_modify_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent adminModifyIntent = new Intent(getApplicationContext(), AdminCodeModify.class);
+                Intent adminModifyIntent = new Intent(getApplicationContext(), AdminmodeSwitchActivity.class);
                 startActivity(adminModifyIntent);
             }
         });

@@ -23,7 +23,7 @@ public class AdminMainActivity extends AppCompatActivity {
     }
 
 
-    //    툴바에 menu_toolbar 삽입
+    // 툴바에 menu_toolbar 삽입
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_toolbar, menu);
