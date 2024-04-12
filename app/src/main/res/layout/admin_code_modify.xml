@@ -24,13 +24,12 @@
             android:layout_width="275dp"
             android:layout_height="25dp"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="64dp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="188dp"
-            android:text="현재 인증번호를 입력해주세요"
-            android:textSize="20sp"
+            android:layout_marginLeft="59dp"
+            android:layout_marginTop="146dp"
             android:gravity="top"
-            />
+            android:text="현재 인증번호를 입력해주세요"
+            android:textSize="20sp" />
 
         <ImageView
             android:layout_width="223dp"

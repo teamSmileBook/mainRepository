@@ -19,6 +19,7 @@ public class AdminMore extends AppCompatActivity {
         ImageButton admin_add_book_btn = findViewById(R.id.add_book);
         ImageButton admin_user_btn = findViewById(R.id.user_manage);
 
+
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { finish(); }
@@ -54,8 +55,11 @@ public class AdminMore extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AdminMore.this, user.class);
+                startActivity(intent);
             }
         });
+
+
 
     }
 }
