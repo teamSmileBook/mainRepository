@@ -1,4 +1,5 @@
 package com.example.smilebook.api;
+import com.example.smilebook.model.BookLocationResponse;
 import com.example.smilebook.model.LoginRequest;
 import com.example.smilebook.model.MemberDTO;
 import com.example.smilebook.model.ResponseDTO;
@@ -18,4 +19,7 @@ public interface ApiService {
 
     @POST("/api/checkAdminCode")
     Call<String> checkAdminCode(@Query("adminCode") String adminCode);
+
+    @GET("/books/bookLocation")
+    Call<BookLocationResponse> getBookLocation(@Query("title") String bookTitle);
 }

@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,11 +14,17 @@ public class my_book extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_book);
 
-        Button location = (Button) findViewById(R.id.location);
+        Button location = findViewById(R.id.location);
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(my_book.this, book_location.class);
+                // book_title TextView에서 텍스트 가져오기
+                TextView bookTitleTextView = findViewById(R.id.book_title);
+                String bookTitle = bookTitleTextView.getText().toString();
+
+                // Intent를 통해 BookLocationActivity로 이동하고 book_title 전달
+                Intent intent = new Intent(my_book.this, BookLocationActivity.class);
+                intent.putExtra("book_title", bookTitle);
                 startActivity(intent);
             }
         });

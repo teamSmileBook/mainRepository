@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 public class CustomImageView extends AppCompatImageView {
     private Paint paint;
     private float circleX, circleY; // 동그라미의 중심 좌표
-    private float radius = 5; // 동그라미의 반지름
+    private float radius = 18; // 동그라미의 반지름
 
     public CustomImageView(Context context) {
         super(context);
