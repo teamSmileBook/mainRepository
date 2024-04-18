@@ -14,10 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Smilebook"
         tools:targetApi="31"
-
-
         android:usesCleartextTraffic="true">
 
+        <activity android:name=".BookListCartoon"
+            android:exported="true"/>
+
+        <activity android:name=".BookInfo"
+            android:exported="true"/>
+
+        <activity android:name=".BookListAll"
+            android:exported="true"/>
 
         <activity android:name=".AdminmodeSwitchActivity"
             android:exported="true" />
@@ -51,6 +57,7 @@
         <activity
             android:name=".UserMain"
             android:exported="true">
+
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

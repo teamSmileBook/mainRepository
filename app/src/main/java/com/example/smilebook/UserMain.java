@@ -5,13 +5,22 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.smilebook.api.ApiService;
+
 public class UserMain extends AppCompatActivity {
+
+    private ApiService apiService;
+
+    private ImageView allImageView1, allImageView2, allImageView3, allImageView4; //전체 ImageView
+    private ImageView eduImageView1, eduImageView2, eduImageView3, eduImageView4; //교육 ImageView
+    private ImageView ficImageView1, ficImageView2, ficImageView3, ficImageView4; //소설 ImageView
+    private ImageView toonImageView1, toonImageView2, toonImageView3, toonImageView4; //만화 ImageView
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +32,7 @@ public class UserMain extends AppCompatActivity {
         setSupportActionBar(toolbar); //툴바 사용 설정
         getSupportActionBar().setDisplayShowTitleEnabled(false); //타이틀 안 보이게
 
-        loginbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-            }
-        });
     }
-
     @Override
 //    툴바에 menu_toolbar 삽입
     public boolean onCreateOptionsMenu(Menu menu) {

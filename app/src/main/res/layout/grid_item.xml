@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/book_list1"
+    android:layout_width="170dp"
+    android:layout_height="230dp"
+    android:background="@drawable/book_list_background"
+    android:orientation="vertical"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_marginLeft="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--book_list 리사이클러뷰에 들어갈 아이템 레이아웃-->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="130dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/bookCover"
+                android:layout_width="80dp"
+                android:layout_height="120dp"
+                android:backgroundTint="@color/white"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                />
+
+            <ImageButton
+                android:id="@+id/heart"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="100dp"
+                android:background="@drawable/heart"
+                android:onClick="onHeartClicked"/>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/book_line" />
+
+        <TextView
+            android:id="@+id/book_title"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="실패에서 성공으로"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            style="@style/book_list_booktitle"/>
+
+        <TextView
+            android:id="@+id/book_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp"
+            android:text="대출 가능"
+            android:textAlignment="center"
+            android:textColor="#009000" />
+
+</LinearLayout>
