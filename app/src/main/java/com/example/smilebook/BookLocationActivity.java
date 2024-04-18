@@ -1,5 +1,6 @@
 package com.example.smilebook;
 
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -7,64 +8,55 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smilebook.api.ApiService;
 import com.example.smilebook.api.RetrofitClient;
-import com.example.smilebook.model.BookLocationResponse;
-
-import org.jetbrains.annotations.NotNull;
+import com.example.smilebook.model.BookLocationDTO;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class BookLocationActivity extends AppCompatActivity {
 
-    private TextView floorTextView;
-    private TextView categoryTextView;
-    private CustomImageView imageView;
     private ApiService apiService;
+    private CustomImageView imageView;
+    private Long bookId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_location);
 
-        floorTextView = findViewById(R.id.floor);
-        categoryTextView = findViewById(R.id.category);
         imageView = findViewById(R.id.imageView36);
 
-        // Retrofit을 사용하여 API 서비스 인스턴스 가져오기
-        Retrofit retrofit = RetrofitClient.getInstance();
-        apiService = retrofit.create(ApiService.class);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            bookId = extras.getLong("bookId");
+        }
 
-        // Intent로 전달받은 book_title 읽어오기
-        String bookTitle = getIntent().getStringExtra("book_title");
+        // Retrofit 객체 생성
+        apiService = RetrofitClient.getInstance().create(ApiService.class);
 
-        // API 호출하여 데이터 받아오기
-        getBookLocation(bookTitle);
-    }
-
-    private void getBookLocation(String bookTitle) {
-        // 서버에 책 제목으로 요청을 보내기
-        Call<BookLocationResponse> call = apiService.getBookLocation(bookTitle);
-        call.enqueue(new Callback<BookLocationResponse>() {
+        Call<BookLocationDTO> call = apiService.getBookLocationById(bookId);
+        call.enqueue(new Callback<BookLocationDTO>() {
             @Override
-            public void onResponse(@NotNull Call<BookLocationResponse> call, @NotNull Response<BookLocationResponse> response) {
-                if (response.isSuccessful()) {
-                    BookLocationResponse data = response.body();
-                    if (data != null) {
-                        // 받은 데이터로 화면 업데이트
-                        floorTextView.setText(String.valueOf(data.getFloor()));
-                        categoryTextView.setText(data.getCategory());
-                        float circleX = data.getXCoordinate();
-                        float circleY = data.getYCoordinate();
-                        imageView.setCirclePosition(circleX, circleY);
-                    }
+            public void onResponse(Call<BookLocationDTO> call, Response<BookLocationDTO> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    BookLocationDTO book = response.body();
+
+                    float circleX = book.getXCoordinate();
+                    float circleY = book.getYCoordinate();
+                    imageView.setCirclePosition(circleX, circleY);
+
+                    // 카테고리와 층 정보를 텍스트뷰에 설정
+                    TextView categoryTextView = findViewById(R.id.category);
+                    TextView floorTextView = findViewById(R.id.floor);
+                    categoryTextView.setText(book.getCategory());
+                    floorTextView.setText(book.getFloor());
                 }
             }
 
             @Override
-            public void onFailure(@NotNull Call<BookLocationResponse> call, @NotNull Throwable t) {
-                t.printStackTrace();
+            public void onFailure(Call<BookLocationDTO> call, Throwable t) {
+                // 오류 처리
             }
         });
     }

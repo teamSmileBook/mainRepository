@@ -41,9 +41,9 @@ public class BookInfo extends AppCompatActivity {
                 TextView bookTitleTextView = findViewById(R.id.book_title);
                 String bookTitle = bookTitleTextView.getText().toString();
 
-                // Intent를 통해 BookLocationActivity로 이동하고 book_title 전달
+                // Intent를 통해 BookLocationActivity로 이동하고 bookId 전달
                 Intent intent = new Intent(BookInfo.this, BookLocationActivity.class);
-                intent.putExtra("book_title", bookTitle);
+                intent.putExtra("bookId", bookId); // bookId 추가
                 startActivity(intent);
             }
         });

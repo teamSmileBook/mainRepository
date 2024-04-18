@@ -1,7 +1,7 @@
 package com.example.smilebook.api;
 import com.example.smilebook.ItemData.GridBookListData;
 import com.example.smilebook.model.BookDTO;
-import com.example.smilebook.model.BookLocationResponse;
+import com.example.smilebook.model.BookLocationDTO;
 import com.example.smilebook.model.LoginRequest;
 import com.example.smilebook.model.MemberDTO;
 import com.example.smilebook.model.ResponseDTO;
@@ -15,7 +15,6 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import retrofit2.http.Url;
 
 public interface ApiService {
     @POST("/member/join")
@@ -28,7 +27,7 @@ public interface ApiService {
     Call<String> checkAdminCode(@Query("adminCode") String adminCode);
 
     @GET("/books/bookLocation")
-    Call<BookLocationResponse> getBookLocation(@Query("title") String bookTitle);
+    Call<BookLocationDTO> getBookLocation(@Query("title") String bookTitle);
 
     @GET ("/images/{imageName}")
     Call<ResponseBody> getImage(@Path("imageName") String imageName);
@@ -39,4 +38,6 @@ public interface ApiService {
     @GET("/books")
     Call<List<GridBookListData>> getAllBooks();
 
+    @GET("/books/{bookId}/location")
+    Call<BookLocationDTO> getBookLocationById(@Path("bookId") Long bookId);
 }

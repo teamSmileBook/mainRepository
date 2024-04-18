@@ -35,8 +35,8 @@ public class CustomImageView extends AppCompatImageView {
     }
 
     public void setCirclePosition(float x, float y) {
-        circleX = x;
-        circleY = y;
+        this.circleX = x;
+        this.circleY = y;
         invalidate(); // 뷰를 다시 그리도록 요청
     }
 
