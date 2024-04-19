@@ -9,7 +9,7 @@
         android:layout_height="60dp"
         android:orientation="horizontal">
 
-        <View
+        <android.widget.Button
             android:id="@+id/back"
             android:layout_width="24dp"
             android:layout_height="24dp"

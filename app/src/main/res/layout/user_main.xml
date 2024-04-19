@@ -250,7 +250,7 @@
                     android:gravity="center_horizontal|top"
                     />
 
-                <Button
+                <android.widget.Button
                     android:id="@+id/edu_arrow_btn"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -654,7 +654,7 @@
                     android:src="@drawable/book10"
                     />
 
-                <View
+                <ImageView
                     android:id="@+id/sports_book_3"
                     android:layout_width="64dp"
                     android:layout_height="100dp"
@@ -663,9 +663,11 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
+                    android:src="@drawable/book11"
+
                     />
 
-                <View
+                <ImageView
                     android:id="@+id/sports_book_4"
                     android:layout_width="64dp"
                     android:layout_height="100dp"
@@ -674,6 +676,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
+                    android:src="@drawable/book12"
                     />
             </RelativeLayout>
 
@@ -717,7 +720,7 @@
                     android:layout_marginTop="51dp"
                     android:background="@drawable/line1" />
 
-                <View
+                <ImageView
                     android:id="@+id/travel_book_1"
                     android:layout_width="64dp"
                     android:layout_height="100dp"
@@ -726,9 +729,10 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
+                    android:src="@drawable/book13"
                     />
 
-                <View
+                <ImageView
                     android:id="@+id/travel_book_2"
                     android:layout_width="64dp"
                     android:layout_height="100dp"
@@ -737,9 +741,10 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
+                    android:src="@drawable/book14"
                     />
 
-                <View
+                <ImageView
                     android:id="@+id/travel_book_3"
                     android:layout_width="64dp"
                     android:layout_height="100dp"
@@ -748,9 +753,10 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
+                    android:src="@drawable/book15"
                     />
 
-                <View
+                <ImageView
                     android:id="@+id/travel_book_4"
                     android:layout_width="64dp"
                     android:layout_height="100dp"
@@ -759,6 +765,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
+                    android:src="@drawable/book16"
                     />
             </RelativeLayout>
         </LinearLayout>

@@ -5,14 +5,12 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.smilebook.api.ApiService;
@@ -22,6 +20,8 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import com.example.smilebook.ItemData.ImageLoader;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -75,34 +75,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Retrofit 객체 생성
-        apiService = RetrofitClient.getInstance().create(ApiService.class);
+        // 이미지 로드
+        String eduImageUrl1 = "http://3.39.9.175:8080/images/9791158742188.jpg";
+        String eduImageUrl2 = "http://3.39.9.175:8080/images/9788996100768.jpg";
+        String eduImageUrl3 = "http://3.39.9.175:8080/images/9788950968113.jpg";
+        String eduImageUrl4 = "http://3.39.9.175:8080/images/9788972995678.jpg";
+        loadImage(eduImageUrl1, eduImageView1);
+        loadImage(eduImageUrl2, eduImageView2);
+        loadImage(eduImageUrl3, eduImageView3);
+        loadImage(eduImageUrl4, eduImageView4);
 
-        // Retrofit을 사용하여 서버에서 이미지를 가져오는 API 호출
+        String ficImageUrl1 = "http://3.39.9.175:8080/images/9788998441012.jpg";
+        String ficImageUrl2 = "http://3.39.9.175:8080/images/9791130646381.jpg";
+        String ficImageUrl3 = "http://3.39.9.175:8080/images/9791161571188.jpg";
+        String ficImageUrl4 = "http://3.39.9.175:8080/images/9788937461033.jpg";
+        loadImage(ficImageUrl1, ficImageView1);
+        loadImage(ficImageUrl2, ficImageView2);
+        loadImage(ficImageUrl3, ficImageView3);
+        loadImage(ficImageUrl4, ficImageView4);
 
-        Call<ResponseBody> call = apiService.getImage("9791158742188.jpg"); // 이미지 파일 이름 지정
-        call.enqueue(new Callback<ResponseBody>() {
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.d("response","이미지 응답 완료");
-                if (response.isSuccessful() && response.body() != null) {
-                    try {
-                        // 서버에서 반환된 이미지의 경로를 변수에 저장
-                        String imageUrl = "http://3.39.9.175:8080/images/9791158742188.jpg";
-                        // 이미지를 Glide를 사용하여 로드
-                        Glide.with(MainActivity.this)
-                                .load(imageUrl)
-                                .into(eduImageView1);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                // 에러 처리
-                Toast.makeText(MainActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        String toonImageUrl1 = "http://3.39.9.175:8080/images/9791198527288.jpg";
+        String toonImageUrl2 = "http://3.39.9.175:8080/images/9791191884333.jpg";
+        String toonImageUrl3 = "http://3.39.9.175:8080/images/9791170626503.jpg";
+        String toonImageUrl4 = "http://3.39.9.175:8080/images/9791172034085.jpg";
+        loadImage(toonImageUrl1, toonImageView1);
+        loadImage(toonImageUrl2, toonImageView2);
+        loadImage(toonImageUrl3, toonImageView3);
+        loadImage(toonImageUrl4, toonImageView4);
 
         //전체 도서 book_list 이동
         Button allArrow = (Button) findViewById(R.id.all_arrow_btn); //오른쪽 더보기 버튼 book_list 이동
@@ -134,7 +133,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button toonArrow = (Button) findViewById(R.id. cartoon_arrow_btn); //오른쪽 더보기 버튼 book_list 이동
+        //만화 book_list
+        Button toonArrow = (Button) findViewById(R.id. cartoon_arrow_btn);
         toonArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -169,5 +169,12 @@ public class MainActivity extends AppCompatActivity {
         } else {
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    // 이미지 로드 메서드
+    private void loadImage(String imageUrl, ImageView imageView) {
+        Glide.with(this)
+                .load(imageUrl)
+                .into(imageView);
     }
 }

@@ -9,7 +9,7 @@
         android:layout_height="60dp"
         android:orientation="horizontal">
 
-        <View
+        <android.widget.Button
             android:id="@+id/back"
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -42,7 +42,7 @@
                 android:layout_alignLeft="@id/rectangle_1"
                 android:layout_alignRight="@id/rectangle_1"
                 android:gravity="center"
-                android:text="도서 위치"
+                android:text="도서 정보"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp" />
         </RelativeLayout>
@@ -60,7 +60,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/book_cover"
         android:layout_width="204dp"
         android:layout_height="438dp"
         android:layout_gravity="center"
@@ -77,14 +77,14 @@
 
 
     <TextView
-        android:id="@+id/textView30"
+        android:id="@+id/book_author"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
         android:text="최염순" />
 
     <TextView
-        android:id="@+id/textView31"
+        android:id="@+id/book_status"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:textAlignment="center"
@@ -128,11 +128,10 @@
         android:layout_height="138dp">
 
         <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
+            android:id="@+id/book_description"
+            android:layout_width="wrap_content"
+            android:layout_height="130dp"
+            android:layout_margin="10dp"
             android:text="책 소개\n1947년 미국에서 초판이 출간된 이후 60여 년\n의 세월 동안 끊임없이
 사랑받아 온, 명실상부한 세일즈의 최고 고전. 『실패에서 성공으로』가 세기를 뛰어넘어서도 식을 줄 모르는 관심으로 여
 ..." />

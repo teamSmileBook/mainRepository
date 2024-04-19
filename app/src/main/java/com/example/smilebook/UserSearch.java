@@ -13,8 +13,6 @@ import com.example.smilebook.databinding.ToolbarTitleBinding;
 import com.example.smilebook.databinding.UserSearchBinding;
 
 public class UserSearch extends AppCompatActivity{
-
-    private Button[] buttons;
     private UserSearchBinding binding;
     private ToolbarTitleBinding toolbarTitleBinding;
     @Override
@@ -57,27 +55,6 @@ public class UserSearch extends AppCompatActivity{
                 startActivity(intent);
             }
         });
-
-
-        //버튼 누르면 다른 색으로 변하는 효과 주려고 넣었던 코드
-//        buttons = new Button[12];
-//        buttons[0] = findViewById(R.id.tag_best);
-//        buttons[1] = findViewById(R.id.tag_all);
-//        buttons[2] = findViewById(R.id.tag_cook);
-//        buttons[3] = findViewById(R.id.tag_cartoon);
-//        buttons[4] = findViewById(R.id.tag_child);
-//        buttons[5] = findViewById(R.id.tag_sports);
-//        buttons[6] = findViewById(R.id.tag_literature);
-//        buttons[7] = findViewById(R.id.tag_humanities);
-//        buttons[8] = findViewById(R.id.tag_IT);
-//        buttons[9] = findViewById(R.id.tag_edu);
-//        buttons[10] = findViewById(R.id.tag_travel);
-//        buttons[11] = findViewById(R.id.tag_health);
-//
-//        for (int i = 0; i < buttons.length; i++)
-//        {
-//            buttons[i].setOnClickListener(this);
-//        }
 
         Button go_login = (Button) findViewById(R.id.login_pink);
         go_login.setOnClickListener(new View.OnClickListener() {

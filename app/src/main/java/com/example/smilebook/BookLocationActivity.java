@@ -2,6 +2,8 @@ package com.example.smilebook;
 
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,6 +60,13 @@ public class BookLocationActivity extends AppCompatActivity {
             public void onFailure(Call<BookLocationDTO> call, Throwable t) {
                 // 오류 처리
             }
+        });
+
+        Button back = findViewById(R.id.back);
+        //뒤로가기
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { finish(); }
         });
     }
 }
