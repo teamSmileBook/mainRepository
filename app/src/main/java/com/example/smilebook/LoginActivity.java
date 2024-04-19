@@ -19,7 +19,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText usernameEditText, passwordEditText;
-    private Button loginButton;
+    private Button loginButton, joinButton;
     private ApiService apiService;
 
     @Override
@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         usernameEditText = findViewById(R.id.input_id);
         passwordEditText = findViewById(R.id.input_password);
         loginButton = findViewById(R.id.loginButton);
+        joinButton = findViewById(R.id.joinButton); // Join 버튼 초기화
 
         loginButton.setOnClickListener(view -> {
             String username = usernameEditText.getText().toString().trim();
@@ -42,6 +43,18 @@ public class LoginActivity extends AppCompatActivity {
                 login(username, password);
             } else {
                 Toast.makeText(LoginActivity.this, "아이디와 비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // 회원가입 버튼 클릭 시 이동
+        joinButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // JoinActivity로 이동하는 Intent를 생성합니다.
+                Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
+
+                // Intent를 사용하여 JoinActivity로 이동합니다.
+                startActivity(intent);
             }
         });
     }
