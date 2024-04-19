@@ -2,8 +2,8 @@ package com.example.smilebook.model;
 
 public class BookLocationDTO {
     private String floor;
-    private float xCoordinate;
-    private float yCoordinate;
+    private float xcoordinate;
+    private float ycoordinate;
     private String category;
 
     private Long bookId;
@@ -11,10 +11,10 @@ public class BookLocationDTO {
     public BookLocationDTO() {
     }
 
-    public BookLocationDTO(String floor, float xCoordinate, float yCoordinate, String category, Long bookId) {
+    public BookLocationDTO(String floor, float xcoordinate, float ycoordinate, String category, Long bookId) {
         this.floor = floor;
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
+        this.xcoordinate = xcoordinate;
+        this.ycoordinate = ycoordinate;
         this.category = category;
         this.bookId = bookId;
     }
@@ -28,19 +28,19 @@ public class BookLocationDTO {
     }
 
     public float getXCoordinate() {
-        return xCoordinate;
+        return xcoordinate;
     }
 
     public void setXCoordinate(float xCoordinate) {
-        this.xCoordinate = xCoordinate;
+        this.xcoordinate = xCoordinate;
     }
 
     public float getYCoordinate() {
-        return yCoordinate;
+        return ycoordinate;
     }
 
     public void setYCoordinate(float yCoordinate) {
-        this.yCoordinate = yCoordinate;
+        this.ycoordinate = yCoordinate;
     }
 
     public String getCategory() {
