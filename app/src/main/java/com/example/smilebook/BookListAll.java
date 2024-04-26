@@ -109,16 +109,17 @@ public class BookListAll extends AppCompatActivity {
 //        });
     }
 
-    //하트 누르면 찜으로 변경 - 나영
+    //찜 기능
     public void onHeartClicked(View view) {
         ImageButton heartButton = (ImageButton) view;
         if (heartButton.getBackground().getConstantState().equals
-                (getResources().getDrawable(R.drawable.heart).getConstantState())) {
-            heartButton.setBackgroundResource(R.drawable.empty_heart);
-        } else {
+                (getResources().getDrawable(R.drawable.empty_heart).getConstantState())) {
             heartButton.setBackgroundResource(R.drawable.heart);
+        } else {
+            heartButton.setBackgroundResource(R.drawable.empty_heart);
         }
     }
+
 
     @Override
     //툴바에 menu_toolbar 삽입

@@ -4,6 +4,7 @@ import static android.app.ProgressDialog.show;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,10 @@ public class UserMyInfo extends AppCompatActivity {
 
         // 데이터 바인딩 설정
         UserMyInfoBinding binding = DataBindingUtil.setContentView(this, R.layout.user_my_info);
+
+        // SharedPreferences에서 id 값을 불러옴
+        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String username = prefs.getString("username", "");
 
         // TextView의 text 설정
         binding.setTitleText("정보 수정");
@@ -61,6 +66,10 @@ public class UserMyInfo extends AppCompatActivity {
             }
         });
 
+
+        //회원 정보 조회 기능 구현
+
+
         //수정 버튼 참조
         Button myInfoModifyBtn = (Button) findViewById(R.id.myInfo_modify_button);
 
@@ -69,16 +78,7 @@ public class UserMyInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                AlertDialog.Builder dlg = new AlertDialog.Builder(UserMyInfo.this);
-                dlg.setMessage("정보를 수정하시겠습니까?");
-                dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(UserMyInfo.this, "정보를 수정하였습니다.",Toast.LENGTH_SHORT).show();
-                    }
-                });
-                dlg.setNegativeButton("취소", null);
-                dlg.show();
+
             }
         });
     }
