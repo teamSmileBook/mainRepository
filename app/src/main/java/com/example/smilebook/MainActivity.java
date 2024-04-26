@@ -1,5 +1,7 @@
 package com.example.smilebook;
 
+import static com.example.smilebook.ItemData.ImageLoader.loadImage;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -14,14 +16,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.smilebook.api.ApiService;
-import com.example.smilebook.api.RetrofitClient;
 
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import com.example.smilebook.ItemData.ImageLoader;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -76,39 +71,40 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // 이미지 로드
-        String eduImageUrl1 = "http://3.39.9.175:8080/images/9791158742188.jpg";
-        String eduImageUrl2 = "http://3.39.9.175:8080/images/9788996100768.jpg";
-        String eduImageUrl3 = "http://3.39.9.175:8080/images/9788950968113.jpg";
-        String eduImageUrl4 = "http://3.39.9.175:8080/images/9788972995678.jpg";
-        loadImage(eduImageUrl1, eduImageView1);
-        loadImage(eduImageUrl2, eduImageView2);
-        loadImage(eduImageUrl3, eduImageView3);
-        loadImage(eduImageUrl4, eduImageView4);
+        String eduImageName1 = "9791158742188.jpg";
+        String eduImageName2 = "9788996100768.jpg";
+        String eduImageName3 = "9788950968113.jpg";
+        String eduImageName4 = "9788972995678.jpg";
+        loadImage(eduImageName1, eduImageView1);
+        loadImage(eduImageName2, eduImageView2);
+        loadImage(eduImageName3, eduImageView3);
+        loadImage(eduImageName4, eduImageView4);
 
-        String ficImageUrl1 = "http://3.39.9.175:8080/images/9788998441012.jpg";
-        String ficImageUrl2 = "http://3.39.9.175:8080/images/9791130646381.jpg";
-        String ficImageUrl3 = "http://3.39.9.175:8080/images/9791161571188.jpg";
-        String ficImageUrl4 = "http://3.39.9.175:8080/images/9788937461033.jpg";
-        loadImage(ficImageUrl1, ficImageView1);
-        loadImage(ficImageUrl2, ficImageView2);
-        loadImage(ficImageUrl3, ficImageView3);
-        loadImage(ficImageUrl4, ficImageView4);
+        String ficImageName1 = "9788998441012.jpg";
+        String ficImageName2 = "9791130646381.jpg";
+        String ficImageName3 = "9791161571188.jpg";
+        String ficImageName4 = "9788937461033.jpg";
+        loadImage(ficImageName1, ficImageView1);
+        loadImage(ficImageName2, ficImageView2);
+        loadImage(ficImageName3, ficImageView3);
+        loadImage(ficImageName4, ficImageView4);
 
-        String toonImageUrl1 = "http://3.39.9.175:8080/images/9791198527288.jpg";
-        String toonImageUrl2 = "http://3.39.9.175:8080/images/9791191884333.jpg";
-        String toonImageUrl3 = "http://3.39.9.175:8080/images/9791170626503.jpg";
-        String toonImageUrl4 = "http://3.39.9.175:8080/images/9791172034085.jpg";
-        loadImage(toonImageUrl1, toonImageView1);
-        loadImage(toonImageUrl2, toonImageView2);
-        loadImage(toonImageUrl3, toonImageView3);
-        loadImage(toonImageUrl4, toonImageView4);
+        String toonImageName1 = "9791198527288.jpg";
+        String toonImageName2 = "9791191884333.jpg";
+        String toonImageName3 = "9791170626503.jpg";
+        String toonImageName4 = "9791172034085.jpg";
+        loadImage(toonImageName1, toonImageView1);
+        loadImage(toonImageName2, toonImageView2);
+        loadImage(toonImageName3, toonImageView3);
+        loadImage(toonImageName4, toonImageView4);
 
         //전체 도서 book_list 이동
         Button allArrow = (Button) findViewById(R.id.all_arrow_btn); //오른쪽 더보기 버튼 book_list 이동
         allArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BookListAll.class);
+                Intent intent = new Intent(getApplicationContext(), BookListActivity.class);
+                intent.putExtra("category","전체 도서");
                 startActivity(intent);
             }
         });
@@ -118,7 +114,8 @@ public class MainActivity extends AppCompatActivity {
         eduArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BookListEdu.class);
+                Intent intent = new Intent(getApplicationContext(), BookListActivity.class);
+                intent.putExtra("category","교육");
                 startActivity(intent);
             }
         });
@@ -128,7 +125,8 @@ public class MainActivity extends AppCompatActivity {
         ficArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BookListFiction.class);
+                Intent intent = new Intent(getApplicationContext(), BookListActivity.class);
+                intent.putExtra("category","소설");
                 startActivity(intent);
             }
         });
@@ -138,7 +136,8 @@ public class MainActivity extends AppCompatActivity {
         toonArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BookListCartoon.class);
+                Intent intent = new Intent(getApplicationContext(), BookListActivity.class);
+                intent.putExtra("category","만화");
                 startActivity(intent);
             }
         });
@@ -170,11 +169,11 @@ public class MainActivity extends AppCompatActivity {
             return super.onOptionsItemSelected(item);
         }
     }
-
-    // 이미지 로드 메서드
-    private void loadImage(String imageUrl, ImageView imageView) {
-        Glide.with(this)
-                .load(imageUrl)
-                .into(imageView);
-    }
+//
+//    // 이미지 로드 메서드
+//    private void loadImage(String imageName, ImageView imageView) {
+//        Glide.with(this)
+//                .load(imageName)
+//                .into(imageView);
+//    }
 }

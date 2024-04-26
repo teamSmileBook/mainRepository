@@ -1,7 +1,6 @@
 package com.example.smilebook;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,23 +9,15 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smilebook.ItemData.GridAdapter;
-import com.example.smilebook.ItemData.GridBookListData;
-import com.example.smilebook.api.ApiService;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-public class BookListCartoon extends AppCompatActivity {
+public class SearchResult extends AppCompatActivity {
 
     private static final String BASE_URL = "http://3.39.9.175:8080/";
     private RecyclerView recyclerView;
     private GridAdapter gridAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,29 +45,5 @@ public class BookListCartoon extends AppCompatActivity {
         recyclerView.setAdapter(gridAdapter); //리사이클러뷰랑 어댑터 연결
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); //사용할 LayoutManager (그리드레이아웃 2열로 정렬)
 
-        // Retrofit을 사용하여 서버에서 카테고리별 도서 목록을 가져옴
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://3.39.9.175:8080/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        ApiService apiService = retrofit.create(ApiService.class);
-        Call<List<GridBookListData>> call = apiService.getBooksByCategory(category); //서버에게 카테고리 전달하여 도서 목록 요청
-        call.enqueue(new Callback<List<GridBookListData>>() {
-            @Override
-            public void onResponse(Call<List<GridBookListData>> call, Response<List<GridBookListData>> response) {
-                if (response.isSuccessful()) {
-                    List<GridBookListData> bookList = response.body();
-                    gridAdapter.setData(bookList);
-                } else {
-                    Log.e("BookListCartoon","서버 응답 실패");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<GridBookListData>> call, Throwable t) {
-                Log.e("BookListCartoon","네트워크 요청 실패");
-            }
-        });
     }
 }

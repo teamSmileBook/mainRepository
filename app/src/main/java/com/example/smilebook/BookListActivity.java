@@ -1,11 +1,17 @@
 package com.example.smilebook;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,15 +28,17 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class BookListCartoon extends AppCompatActivity {
+public class BookListActivity extends AppCompatActivity {
 
     private static final String BASE_URL = "http://3.39.9.175:8080/";
     private RecyclerView recyclerView;
     private GridAdapter gridAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_list);
+
         //툴바 설정
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -41,7 +49,7 @@ public class BookListCartoon extends AppCompatActivity {
         TextView categoryTextView = findViewById(R.id.categoryTextView);
         categoryTextView.setText(category);
 
-//        //스피너 설정 - 나영 (레이아웃 파일에 simple_spinner_item이 없어서 튕기길래 잠깐 주석)
+       //스피너 설정 - 나영 (레이아웃 파일에 simple_spinner_item이 없어서 튕기길래 잠깐 주석)
 //        String[] items = {"전체", "가나다순", "대출가능순"};
 //        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
 //        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -56,7 +64,7 @@ public class BookListCartoon extends AppCompatActivity {
 
         // Retrofit을 사용하여 서버에서 카테고리별 도서 목록을 가져옴
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://3.39.9.175:8080/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -66,17 +74,56 @@ public class BookListCartoon extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<GridBookListData>> call, Response<List<GridBookListData>> response) {
                 if (response.isSuccessful()) {
+                    Log.d("BookListActivity","서버 응답 성공");
                     List<GridBookListData> bookList = response.body();
                     gridAdapter.setData(bookList);
                 } else {
-                    Log.e("BookListCartoon","서버 응답 실패");
+                    Log.e("BookListActivity","서버 응답 실패");
                 }
             }
 
             @Override
             public void onFailure(Call<List<GridBookListData>> call, Throwable t) {
-                Log.e("BookListCartoon","네트워크 요청 실패");
+                Log.e("BookListActivity","네트워크 요청 실패");
             }
         });
+    }
+
+    //찜 기능
+    public void onHeartClicked(View view) {
+        ImageButton heartButton = (ImageButton) view;
+        if (heartButton.getBackground().getConstantState().equals
+                (getResources().getDrawable(R.drawable.empty_heart).getConstantState())) {
+            heartButton.setBackgroundResource(R.drawable.heart);
+        } else {
+            heartButton.setBackgroundResource(R.drawable.empty_heart);
+        }
+    }
+
+    @Override
+    //툴바에 menu_toolbar 삽입
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_toolbar, menu);
+        return true;
+    }
+
+    //툴바 아이템 선택 시 실행되는 메서드
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.item_search) {
+            Intent searchIntent = new Intent(getApplicationContext(), UserSearch.class);
+            startActivity(searchIntent);
+            return true;
+        } else if (itemId == R.id.item_more) {
+            Intent moreIntent = new Intent(getApplicationContext(), UserMore.class);
+            startActivity(moreIntent);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 }
