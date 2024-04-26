@@ -44,6 +44,11 @@ public class BookListAll extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false); //타이틀 안 보이게
 
+        // 카테고리 이름을 인텐트에서 받아와 텍스트뷰에 표시
+        String category = getIntent().getStringExtra("category");
+        TextView categoryTextView = findViewById(R.id.categoryTextView);
+        categoryTextView.setText(category);
+
 //        //스피너 설정 - 나영 (레이아웃 파일에 simple_spinner_item이 없어서 튕기길래 잠깐 주석)
 //        String[] items = {"전체", "가나다순", "대출가능순"};
 //        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);

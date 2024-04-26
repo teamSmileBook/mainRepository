@@ -40,4 +40,7 @@ public interface ApiService {
 
     @GET("/books/{bookId}/location")
     Call<BookLocationDTO> getBookLocationById(@Path("bookId") Long bookId);
+
+    @GET("books/category/{category}")
+    Call<List<GridBookListData>> getBooksByCategory(@Path("category") String category);
 }
