@@ -96,17 +96,6 @@ public class BookListAll extends AppCompatActivity {
                 Log.e("BookListAll", "네트워크 요청 실패", t);
             }
         });
-
-
-//        ImageButton bookCover = (ImageButton) findViewById(R.id.bookCover);
-//
-//        bookCover.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(BookListAll.this, BookInfo.class);
-//                startActivity(intent);
-//            }
-//        });
     }
 
     //찜 기능

@@ -43,18 +43,6 @@ public class UserSearch extends AppCompatActivity {
         binding.setTitleText("검색");
         toolbarTitleBinding = binding.toolbar;
 
-        //홈(main_b.xml)으로
-//        toolbarTitleBinding.icons8Smile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // main_b 화면으로 이동하는 인텐트 생성
-//                Intent intent = new Intent(search.this, main_b.class);
-//                startActivity(intent);
-//                // 현재 액티비티 종료
-//                finish();
-//            }
-//        });
-
         //뒤로가기
         toolbarTitleBinding.ReturnBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,9 +76,9 @@ public class UserSearch extends AppCompatActivity {
         //검색 버튼 클릭 시 호출되는 리스너
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) { //검색 버튼을 눌렀을 때
-                if (!query.isEmpty()) {
-                    searchBooks(query);
+            public boolean onQueryTextSubmit(String query) { //검색 버튼을 눌렀을 때;
+                if (!query.isEmpty()) { //검색창이 비어있지 않으면
+                    searchBooks(query); //메서드 실행
                 } else {
                     Toast.makeText(UserSearch.this, "검색어를 입력하세요.", Toast.LENGTH_SHORT).show();
                 }
@@ -111,6 +99,7 @@ public class UserSearch extends AppCompatActivity {
             @Override
             public void run() {
                 try {
+                    Log.d("UserSearch","searchBooks() 요청 보냄");
                     URL url = new URL("http://3.39.9.175:8080/books/search?query=" + query); //검색 요청
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
@@ -133,7 +122,7 @@ public class UserSearch extends AppCompatActivity {
                         }
                     });
                 } catch (IOException e) {
-                    Log.e("UserSearch","서버 요청 실패");
+                    Log.e("UserSearch","네트워크 연결 없음");
                     e.printStackTrace();
                 }
             }
@@ -144,19 +133,20 @@ public class UserSearch extends AppCompatActivity {
     // 추출한 데이터를 GridBookListData 객체로 생성 후 리스트에 추가햐는 역할
     private List<GridBookListData> parseJsonArray(JSONArray jsonArray) {
         List<GridBookListData> bookList = new ArrayList<>();
-
         try {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 Long bookId = jsonObject.getLong("bookId");
                 String coverUrl = jsonObject.getString("coverUrl");
                 String bookTitle = jsonObject.getString("bookTitle");
-                String author = jsonObject.getString("author");
+                String bookStatus = jsonObject.getString("bookStatus");
                 // 도서 정보를 GridBookListData 객체로 생성하여 리스트에 추가
-                GridBookListData bookData = new GridBookListData(bookId, coverUrl, bookTitle, author);
+                GridBookListData bookData = new GridBookListData(bookId, coverUrl, bookTitle, bookStatus);
                 bookList.add(bookData);
             }
+            Log.d("UserSearch", "parseJsonArray() 데이터 파싱 성공");
         } catch (JSONException e) {
+            Log.e("UserSearch", "parseJsonArray() 데이터 파싱 실패");
             e.printStackTrace();
         }
 
@@ -173,8 +163,8 @@ public class UserSearch extends AppCompatActivity {
             if (bookList.isEmpty()) {
                 Toast.makeText(UserSearch.this, "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
             } else {
-                // BookListActivity로 전환하고 검색 결과를 전달하는 Intent 생성
-                Intent intent = new Intent(UserSearch.this, BookListActivity.class);
+                // SearchResult 액티비티로 전환하고 검색 결과를 전달하는 Intent 생성
+                Intent intent = new Intent(UserSearch.this, SearchResult.class);
                 intent.putExtra("bookList", (Serializable) bookList);
                 startActivity(intent);
             }

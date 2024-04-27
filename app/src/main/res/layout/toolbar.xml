@@ -11,6 +11,7 @@
     app:menu="@menu/menu_toolbar">
 
     <android.widget.Button
+        android:id="@+id/icons8_smile"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/icons8_smile_32"/>

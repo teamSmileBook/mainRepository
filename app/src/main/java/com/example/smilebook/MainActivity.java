@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         allArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BookListActivity.class);
+                Intent intent = new Intent(getApplicationContext(), BookListAll.class);
                 intent.putExtra("category","전체 도서");
                 startActivity(intent);
             }
