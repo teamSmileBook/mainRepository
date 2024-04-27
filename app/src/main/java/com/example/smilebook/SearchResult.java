@@ -1,7 +1,15 @@
 package com.example.smilebook;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,8 +17,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smilebook.ItemData.GridAdapter;
+import com.example.smilebook.ItemData.GridBookListData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchResult extends AppCompatActivity {
 
@@ -27,23 +37,68 @@ public class SearchResult extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false); //타이틀 안 보이게
 
-        // 카테고리 이름을 인텐트에서 받아와 텍스트뷰에 표시 및 카테고리 값 저장
-        String category = getIntent().getStringExtra("category");
+        //메인으로
+        Button home_btn = (Button) findViewById(R.id.icons8_smile);
+        home_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SearchResult.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         TextView categoryTextView = findViewById(R.id.categoryTextView);
-        categoryTextView.setText(category);
+        categoryTextView.setText("검색 결과");
 
 //        //스피너 설정 - 나영 (레이아웃 파일에 simple_spinner_item이 없어서 튕기길래 잠깐 주석)
-//        String[] items = {"전체", "가나다순", "대출가능순"};
+//        String[] items = {"전체", "가나다순", "대출가능순"};s
 //        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
 //        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //        Spinner spinner = findViewById(R.id.filter);
 //        spinner.setAdapter(spinnerAdapter);
 
-        //리사이클러뷰 설정
-        recyclerView = findViewById(R.id.recycler_view); //사용할 리사이클러뷰 id(=book_list 내 리사이클러뷰 id)
-        gridAdapter = new GridAdapter(new ArrayList<>(), this); //사용할 어댑터
-        recyclerView.setAdapter(gridAdapter); //리사이클러뷰랑 어댑터 연결
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); //사용할 LayoutManager (그리드레이아웃 2열로 정렬)
+        // 리사이클러뷰 설정
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
+        // 검색 결과 데이터를 가져옴
+        List <GridBookListData> bookList = (List <GridBookListData>) getIntent().getSerializableExtra("bookList");
+
+        // 어댑터 설정
+        if (bookList != null) { //검색 결과가 비어있지 않으면 데이터 표시
+            Log.d("SearchResult","검색 결과 불러오기 성공");
+            gridAdapter = new GridAdapter(bookList, this);
+            recyclerView.setAdapter(gridAdapter);
+        } else {
+            Log.e("SearchResult","검색 결과 불러오기 실패");
+            Toast.makeText(SearchResult.this, "검색 결과를 불러오지 못했습니다.", Toast.LENGTH_SHORT).show();
+        }
+    }
+    @Override
+    //툴바에 menu_toolbar 삽입
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_toolbar, menu);
+        return true;
+    }
+
+    //툴바 아이템 선택 시 실행되는 메서드
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.item_search) {
+            Intent searchIntent = new Intent(getApplicationContext(), UserSearch.class);
+            startActivity(searchIntent);
+            return true;
+        } else if (itemId == R.id.item_more) {
+            Intent moreIntent = new Intent(getApplicationContext(), UserMore.class);
+            startActivity(moreIntent);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 }

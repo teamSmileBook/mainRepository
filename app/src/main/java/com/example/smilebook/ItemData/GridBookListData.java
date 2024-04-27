@@ -1,6 +1,10 @@
 package com.example.smilebook.ItemData;
 
-public class GridBookListData {
+import java.io.Serializable;
+
+//Serializable : 객체를 직렬화함. 객체의 상태를 외부에서 저장하거나 전송할 수 있는 방법을 제공하는 인터페이스
+//주로 객체를 파일로 저장하거나 네트워크를 통해 전달하는 경우 활용
+public class GridBookListData implements Serializable {
 
     private Long bookId;
     private String coverUrl;
