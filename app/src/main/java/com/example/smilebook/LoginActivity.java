@@ -42,8 +42,9 @@ public class LoginActivity extends AppCompatActivity {
 
             if (!username.isEmpty() && !password.isEmpty()) {
                 // SharedPreferences를 사용하여 username 값을 저장
-                SharedPreferences.Editor editor = getSharedPreferences("MyPrefs", MODE_PRIVATE).edit();
-                editor.putString("username", username);
+                SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("memberId", username);
                 editor.apply();
 
                 login(username, password);

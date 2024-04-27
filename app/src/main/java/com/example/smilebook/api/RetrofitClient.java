@@ -31,6 +31,12 @@ public class RetrofitClient {
                     .build();
             return retrofit;
         }
+
+
+    }
+
+    public static ApiService getApiService() {
+        return getInstance().create(ApiService.class);
     }
 
 }

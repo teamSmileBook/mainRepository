@@ -60,28 +60,7 @@
         (identical to box height)
         -->
 
-        <ImageView
-            android:id="@+id/my_info_profile"
-            android:layout_width="108dp"
-            android:layout_height="100dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="152dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="80dp"
-            android:src="@drawable/user_profile_img"
-            />
-
-        <ImageButton
-            android:id="@+id/modify_profile_img"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="224dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="150dp"
-            android:src="@drawable/profile_change"/>
-
-<!--        <TextView-->
+        <!--        <TextView-->
 <!--            android:id="@+id/modify_guide_nickname"-->
 <!--            android:layout_width="66dp"-->
 <!--            android:layout_height="22dp"-->
@@ -142,37 +121,39 @@
                     android:layout_height="39dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="27dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="9dp"
+                    android:layout_marginTop="28dp"
                     android:background="@null"
-                    android:hint="닉네임"
                     android:gravity="center_vertical"
-                    android:textAppearance="@style/login_join"
-                    />
+                    android:hint="닉네임"
+                    android:textAppearance="@style/login_join" />
             </RelativeLayout>
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="15dp"
+                >
 
                 <TextView
-                    android:id="@+id/modify_guide_id"
+                    android:id="@+id/Email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:text="이메일"
                     android:textAppearance="@style/guide" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="5dp"/>
+                <View
+                    android:id="@+id/rectangle_modify_email"
+                    android:layout_width="344dp"
+                    android:layout_height="39dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="27dp"
+                    android:background="@drawable/rectangle_modify_info"
+                    />
 
                 <EditText
                     android:id="@+id/editEmail"
@@ -180,14 +161,13 @@
                     android:layout_height="39dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="27dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="9dp"
+                    android:layout_marginTop="28dp"
                     android:background="@null"
-                    android:hint="닉네임"
                     android:gravity="center_vertical"
-                    android:textAppearance="@style/login_join"
-                    />
-            </LinearLayout>
+                    android:hint="이메일"
+                    android:textAppearance="@style/login_join" />
+            </RelativeLayout>
 
 
             <RelativeLayout
@@ -202,7 +182,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:text="비밀번호"
+                    android:text="새로운 비밀번호"
                     android:textAppearance="@style/guide"
                     />
 
@@ -223,7 +203,7 @@
                     android:layout_marginTop="27dp"
                     android:layout_marginLeft="10dp"
                     android:textAppearance="@style/login_join"
-                    android:hint="*********"
+                    android:hint="비밀번호"
                     android:background="@null" />
             </RelativeLayout>
 
@@ -262,7 +242,7 @@
                     android:layout_marginTop="27dp"
                     android:layout_marginLeft="10dp"
                     android:textAppearance="@style/login_join"
-                    android:hint="010-XXXX-XXXX"
+                    android:hint="전화번호"
                     android:background="@null"
                     />
 

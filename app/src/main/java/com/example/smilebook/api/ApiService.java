@@ -43,4 +43,10 @@ public interface ApiService {
 
     @GET("books/category/{category}")
     Call<List<GridBookListData>> getBooksByCategory(@Path("category") String category);
+
+    @POST("/api/member/details")
+    Call<MemberDTO> getMemberDetails(@Body MemberDTO request);
+
+    @POST("/api/member/update")
+    Call<Void> updateMemberInfo(@Body MemberDTO memberDTO);
 }
