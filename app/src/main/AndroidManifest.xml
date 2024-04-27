@@ -25,12 +25,6 @@
         <activity android:name=".BookInfo"
             android:exported="true"/>
 
-        <activity android:name=".BookListFiction"
-            android:exported="true"/>
-
-        <activity android:name=".BookListCartoon"
-            android:exported="true"/>
-
         <activity android:name=".BookListAll"
             android:exported="true"/>
 
@@ -63,15 +57,6 @@
         <activity
             android:name=".UserAlarm"
             android:exported="true" />
-        <activity
-            android:name=".UserMain"
-            android:exported="true">
-
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
         <activity
             android:name=".LoginActivity"
             android:exported="true"/>
