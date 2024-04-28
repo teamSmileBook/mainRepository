@@ -7,8 +7,10 @@ import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 
 import com.example.smilebook.databinding.ToolbarTitleBinding;
 import com.example.smilebook.databinding.UserAlarmBinding;
@@ -27,9 +29,18 @@ public class UserAlarm extends AppCompatActivity {
         // 데이터 바인딩 설정
         binding = DataBindingUtil.setContentView(this, R.layout.user_alarm);
 
+        //item_more 클릭 이벤트 처리
+        findViewById(R.id.item_more).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopup(view);
+            }
+        });
+
+
         // TextView의 text 설정
-        binding.setTitleText("알림");
-        toolbarTitleBinding = binding.toolbar;
+        //binding.setTitleText("알림");
+        //toolbarTitleBinding = binding.toolbar;
 
         //홈(main_b.xml)으로
 //        toolbarTitleBinding.icons8Smile.setOnClickListener(new View.OnClickListener() {
@@ -52,13 +63,13 @@ public class UserAlarm extends AppCompatActivity {
         });
 
         //더보기
-        toolbarTitleBinding.more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserAlarm.this, UserMore.class);
-                startActivity(intent);
-            }
-        });
+        //toolbarTitleBinding.more.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            //public void onClick(View view) {
+                //Intent intent = new Intent(UserAlarm.this, UserMore.class);
+                //startActivity(intent);
+            //}
+        //});
 
         // 스위치 on/off에 대한 코드
         alarmSwitch = binding.pushAlarmSwitch; //스위치 초기화
@@ -107,5 +118,39 @@ public class UserAlarm extends AppCompatActivity {
 
         //listview에 adapter 설정
         listView.setAdapter(adapter);
+    }
+    //상단에 있는 메뉴바
+    private void showPopup(View v) {
+        PopupMenu popupMenu = new PopupMenu(this, v);
+        popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.user_alarmBtn) {
+                    startActivity(new Intent(UserAlarm.this, UserAlarm.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
+                    startActivity(new Intent(UserAlarm.this, UserMyInfo.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
+                    startActivity(new Intent(UserAlarm.this, user_book.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
+                    startActivity(new Intent(UserAlarm.this, book_list.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
+                    startActivity(new Intent(UserAlarm.this, UserAdminModeSwitch.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_logOutBtn) {
+                    // 로그아웃은 동작 해줘야함
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+
+        popupMenu.show();
+
     }
 }

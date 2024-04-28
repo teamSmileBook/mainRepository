@@ -3,9 +3,11 @@ package com.example.smilebook;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,12 +56,11 @@ public class UserAdminModeSwitch extends AppCompatActivity {
             }
         });
 
-        //more.xml
-        toolbarTitleBinding.more.setOnClickListener(new View.OnClickListener() {
+        //more 클릭 이벤트 처리
+        findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UserAdminModeSwitch.this, UserMore.class);
-                startActivity(intent);
+                showPopup(view);
             }
         });
 
@@ -90,5 +91,40 @@ public class UserAdminModeSwitch extends AppCompatActivity {
         Intent adminSwitchIntent = new Intent(UserAdminModeSwitch.this, AdminMainActivity.class);
         startActivity(adminSwitchIntent);
         finish(); // 현재 액티비티 종료
+    }
+
+    //상단에 있는 메뉴바
+    private void showPopup(View v) {
+        PopupMenu popupMenu = new PopupMenu(this, v);
+        popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.user_alarmBtn) {
+                    startActivity(new Intent(UserAdminModeSwitch.this, UserAlarm.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
+                    startActivity(new Intent(UserAdminModeSwitch.this, UserMyInfo.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
+                    startActivity(new Intent(UserAdminModeSwitch.this, user_book.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
+                    startActivity(new Intent(UserAdminModeSwitch.this, book_list.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
+                    startActivity(new Intent(UserAdminModeSwitch.this, UserAdminModeSwitch.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_logOutBtn) {
+                    // 로그아웃은 동작 해줘야함
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+
+        popupMenu.show();
+
     }
 }

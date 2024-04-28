@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_main_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipToOutline="true"
-    android:background="#EFEFEF"
-    android:orientation="vertical"
+    android:background="#FFFFFF"
     tools:context=".MainActivity">
 
     <include
@@ -18,6 +21,7 @@
         android:layout_height="36dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
         android:background="@drawable/rectangle_warning"
         android:elevation="15dp"
         android:text="@string/warning_login"
@@ -25,15 +29,20 @@
         />
 
     <ScrollView
+        android:id="@+id/mainScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="89dp"
+        android:background="#EFEFEF">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
+            >
 
             <RelativeLayout
                 android:layout_width="360dp"
@@ -42,8 +51,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_gravity="center"
                 android:layout_marginTop="35dp"
-                android:clickable="true"
-                android:background="@drawable/rectangle_scroll" >
+                android:background="@drawable/rectangle_scroll">
 
                 <TextView
                     android:id="@+id/main_list_best"
@@ -53,7 +61,7 @@
                     android:layout_marginStart="22dp"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="20dp"
-                    android:text="전체 도서"
+                    android:text="@string/alllist"
                     android:textAppearance="@style/mainScrollTitle"
                     android:gravity="center_horizontal|top"
                     />
@@ -91,7 +99,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
-                    android:background="@drawable/book1"
+                    android:src="@drawable/book1"
                     />
 
                 <ImageView
@@ -132,99 +140,97 @@
 
             </RelativeLayout>
 
-<!--            <RelativeLayout-->
-<!--                android:layout_width="360dp"-->
-<!--                android:layout_height="178dp"-->
-<!--                android:layout_alignParentStart="true"-->
-<!--                android:layout_alignParentTop="true"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginTop="35dp"-->
-<!--                android:background="@drawable/rectangle_scroll">-->
+            <RelativeLayout
+                android:layout_width="360dp"
+                android:layout_height="178dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/rectangle_scroll">
 
-<!--                <TextView-->
-<!--                    android:id="@+id/main_list_new"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_alignParentStart="true"-->
-<!--                    android:layout_marginStart="22dp"-->
-<!--                    android:layout_alignParentTop="true"-->
-<!--                    android:layout_marginTop="20dp"-->
-<!--                    android:text="@string/newlist"-->
-<!--                    android:textAppearance="@style/mainScrollTitle"-->
-<!--                    android:gravity="center_horizontal|top"-->
-<!--                    />-->
+                <TextView
+                    android:id="@+id/main_list_new"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="22dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/newlist"
+                    android:textAppearance="@style/mainScrollTitle"
+                    android:gravity="center_horizontal|top"
+                    />
 
-<!--                <android.widget.Button-->
-<!--                    android:id="@+id/new_arrow_btn"-->
-<!--                    android:layout_width="20dp"-->
-<!--                    android:layout_height="20dp"-->
-<!--                    android:layout_alignParentLeft="true"-->
-<!--                    android:layout_marginLeft="321dp"-->
-<!--                    android:layout_alignParentTop="true"-->
-<!--                    android:layout_marginTop="16dp"-->
-<!--                    android:clickable="true"-->
-<!--                    android:focusable="true"-->
-<!--                    android:background="@drawable/icons8_arrow_50"-->
-<!--                    />-->
+                <android.widget.Button
+                    android:id="@+id/new_arrow_btn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="321dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/icons8_arrow_50"
+                    />
 
-<!--                <ImageView-->
-<!--                    android:layout_width="306dp"-->
-<!--                    android:layout_height="1dp"-->
-<!--                    android:layout_alignParentLeft="true"-->
-<!--                    android:layout_marginLeft="24dp"-->
-<!--                    android:layout_alignParentTop="true"-->
-<!--                    android:layout_marginTop="51dp"-->
-<!--                    android:background="@drawable/line1"-->
-<!--                    />-->
+                <ImageView
+                    android:layout_width="306dp"
+                    android:layout_height="1dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="24dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="51dp"
+                    android:background="@drawable/line1"
+                    />
 
-<!--                <ImageView-->
-<!--                    android:id="@+id/new_book_1"-->
-<!--                    android:layout_width="64dp"-->
-<!--                    android:layout_height="100dp"-->
-<!--                    android:layout_alignParentLeft="true"-->
-<!--                    android:layout_marginLeft="20dp"-->
-<!--                    android:layout_alignParentTop="true"-->
-<!--                    android:layout_marginTop="65dp"-->
-<!--                    android:elevation="4dp"-->
-<!--                    android:src="@drawable/book5"-->
-<!--                    />-->
+                <ImageView
+                    android:id="@+id/new_book_1"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    android:src="@drawable/book5"
+                    />
 
-<!--                <ImageView-->
-<!--                    android:id="@+id/new_book_2"-->
-<!--                    android:layout_width="64dp"-->
-<!--                    android:layout_height="100dp"-->
-<!--                    android:layout_alignParentLeft="true"-->
-<!--                    android:layout_marginLeft="104dp"-->
-<!--                    android:layout_alignParentTop="true"-->
-<!--                    android:layout_marginTop="65dp"-->
-<!--                    android:elevation="4dp"-->
-<!--                    android:src="@drawable/book6"-->
-<!--                    />-->
+                <ImageView
+                    android:id="@+id/new_book_2"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="104dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    android:src="@drawable/book6"
+                    />
 
-<!--                <ImageView-->
-<!--                    android:id="@+id/new_book_3"-->
-<!--                    android:layout_width="64dp"-->
-<!--                    android:layout_height="100dp"-->
-<!--                    android:layout_alignParentLeft="true"-->
-<!--                    android:layout_marginLeft="188dp"-->
-<!--                    android:layout_alignParentTop="true"-->
-<!--                    android:layout_marginTop="65dp"-->
-<!--                    android:elevation="4dp"-->
-<!--                    android:src="@drawable/book7"-->
-<!--                    />-->
+                <ImageView
+                    android:id="@+id/new_book_3"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="188dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    android:src="@drawable/book7"
+                    />
 
-<!--                <ImageView-->
-<!--                    android:id="@+id/new_book_4"-->
-<!--                    android:layout_width="64dp"-->
-<!--                    android:layout_height="100dp"-->
-<!--                    android:layout_alignParentLeft="true"-->
-<!--                    android:layout_marginLeft="272dp"-->
-<!--                    android:layout_alignParentTop="true"-->
-<!--                    android:layout_marginTop="65dp"-->
-<!--                    android:elevation="4dp"-->
-<!--                    android:src="@drawable/book8"-->
-<!--                    />-->
-<!--            </RelativeLayout>-->
+                <ImageView
+                    android:id="@+id/new_book_4"
+                    android:layout_width="64dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="272dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="65dp"
+                    android:elevation="4dp"
+                    android:src="@drawable/book8"
+                    />
+            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/edu_layout"
@@ -676,7 +682,6 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
-                    android:src="@drawable/book12"
                     />
             </RelativeLayout>
 
@@ -768,6 +773,9 @@
                     android:src="@drawable/book16"
                     />
             </RelativeLayout>
+
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+
+</RelativeLayout>
+

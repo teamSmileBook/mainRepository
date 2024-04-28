@@ -2,48 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
-
-        <View
-            android:id="@+id/back"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="31dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/back" />
-
-        <TextView
-            android:id="@+id/rectangle_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="20dp"
-            android:text="도서 등록"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:background="@drawable/rectangle"/>
-
-        <View
-            android:id="@+id/more"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/more" />
-
-    </LinearLayout>
+    <include
+        layout="@layout/toolbar_title"
+        android:id="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,7 +31,7 @@
             android:src="@drawable/picture_background" />
 
         <Button
-            android:id="@+id/button14"
+            android:id="@+id/photo"
             android:layout_width="200dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
@@ -137,7 +102,7 @@
                 android:orientation="horizontal">
 
                 <android.widget.Button
-                    android:id="@+id/button4"
+                    android:id="@+id/available"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_weight="1"
@@ -147,7 +112,7 @@
                     android:textColor="#FFFFFF"/>
 
                 <android.widget.Button
-                    android:id="@+id/button5"
+                    android:id="@+id/impossible"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_weight="1"
@@ -165,7 +130,7 @@
                 android:layout_weight="1" />
 
             <android.widget.Button
-                android:id="@+id/button26"
+                android:id="@+id/registration"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_gravity="center"

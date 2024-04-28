@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -39,10 +40,27 @@ public class BookListAll extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_list);
 
+        //검색 아이템 화면인텐트
+        findViewById(R.id.item_search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(BookListAll.this, AdminSearch.class));
+            }
+        });
+
+        //item_more 클릭 이벤트 처리
+        findViewById(R.id.item_more).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopup(view);
+            }
+        });
+
+
         //툴바 설정
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false); //타이틀 안 보이게
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+        //getSupportActionBar().setDisplayShowTitleEnabled(false); //타이틀 안 보이게
 
         // 카테고리 이름을 인텐트에서 받아와 텍스트뷰에 표시
         String category = getIntent().getStringExtra("category");
@@ -96,6 +114,41 @@ public class BookListAll extends AppCompatActivity {
                 Log.e("BookListAll", "네트워크 요청 실패", t);
             }
         });
+    }
+
+    //상단에 있는 메뉴바
+    private void showPopup(View v) {
+        PopupMenu popupMenu = new PopupMenu(this, v);
+        popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.user_alarmBtn) {
+                    startActivity(new Intent(BookListAll.this, UserAlarm.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
+                    startActivity(new Intent(BookListAll.this, UserMyInfo.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
+                    startActivity(new Intent(BookListAll.this, user_book.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
+                    startActivity(new Intent(BookListAll.this, book_list.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
+                    startActivity(new Intent(BookListAll.this, UserAdminModeSwitch.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_logOutBtn) {
+                    // 로그아웃은 동작 해줘야함
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+
+        popupMenu.show();
+
     }
 
     //찜 기능

@@ -4,16 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class user_data extends AppCompatActivity {
-
+public class my_book extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_data);
+        setContentView(R.layout.my_book);
+
+        Button location = findViewById(R.id.location);
 
         //more 클릭 이벤트 처리
         findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
@@ -22,8 +25,21 @@ public class user_data extends AppCompatActivity {
                 showPopup(view);
             }
         });
-    }
 
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // book_title TextView에서 텍스트 가져오기
+                TextView bookTitleTextView = findViewById(R.id.book_title);
+                String bookTitle = bookTitleTextView.getText().toString();
+
+                // Intent를 통해 BookLocationActivity로 이동하고 book_title 전달
+                Intent intent = new Intent(my_book.this, BookLocationActivity.class);
+                intent.putExtra("book_title", bookTitle);
+                startActivity(intent);
+            }
+        });
+    }
     //상단에 있는 메뉴바
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
@@ -32,19 +48,19 @@ public class user_data extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.user_alarmBtn) {
-                    startActivity(new Intent(user_data.this, UserAlarm.class));
+                    startActivity(new Intent(my_book.this, UserAlarm.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
-                    startActivity(new Intent(user_data.this, UserMyInfo.class));
+                    startActivity(new Intent(my_book.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(user_data.this, user_book.class));
+                    startActivity(new Intent(my_book.this, user_book.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(user_data.this, book_list.class));
+                    startActivity(new Intent(my_book.this, book_list.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
-                    startActivity(new Intent(user_data.this, UserAdminModeSwitch.class));
+                    startActivity(new Intent(my_book.this, UserAdminModeSwitch.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_logOutBtn) {
                     // 로그아웃은 동작 해줘야함
@@ -58,4 +74,6 @@ public class user_data extends AppCompatActivity {
         popupMenu.show();
 
     }
+
+
 }

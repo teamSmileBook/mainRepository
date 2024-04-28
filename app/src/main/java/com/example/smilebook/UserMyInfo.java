@@ -6,9 +6,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -39,6 +41,14 @@ public class UserMyInfo extends AppCompatActivity {
 
         // 데이터 바인딩 설정
         UserMyInfoBinding binding = DataBindingUtil.setContentView(this, R.layout.user_my_info);
+
+        //more 클릭 이벤트 처리
+        findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopup(view);
+            }
+        });
 
         // EditText 초기화
         editNickname = findViewById(R.id.editNickname);
@@ -81,14 +91,6 @@ public class UserMyInfo extends AppCompatActivity {
             }
         });
 
-        //more.xml
-        toolbarTitleBinding.more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserMyInfo.this, UserMore.class);
-                startActivity(intent);
-            }
-        });
 
         // 수정 버튼 클릭 시
        editButton.setOnClickListener(new View.OnClickListener() {
@@ -173,6 +175,41 @@ public class UserMyInfo extends AppCompatActivity {
                 Toast.makeText(UserMyInfo.this, "서버 연결 오류", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    //상단에 있는 메뉴바
+    private void showPopup(View v) {
+        PopupMenu popupMenu = new PopupMenu(this, v);
+        popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.user_alarmBtn) {
+                    startActivity(new Intent(UserMyInfo.this, UserAlarm.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
+                    startActivity(new Intent(UserMyInfo.this, UserMyInfo.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
+                    startActivity(new Intent(UserMyInfo.this, user_book.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
+                    startActivity(new Intent(UserMyInfo.this, book_list.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
+                    startActivity(new Intent(UserMyInfo.this, UserAdminModeSwitch.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_logOutBtn) {
+                    // 로그아웃은 동작 해줘야함
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+
+        popupMenu.show();
+
     }
 }
 

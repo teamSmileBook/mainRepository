@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/user_alarmBtn"
+        android:title="알림"/>
+
+    <item
+        android:id="@+id/user_myInfoBtn"
+        android:title="MY"/>
+
+    <item
+        android:id="@+id/user_myBookBtn"
+        android:title="내도서"/>
+
+    <item
+        android:id="@+id/user_wishBookBtn"
+        android:title="찜도서"/>
+
+    <item
+        android:id="@+id/user_adminTransBtn"
+        android:title="관리자인증"/>
+
+    <item
+        android:id="@+id/user_logOutBtn"
+        android:title="로그아웃"/>
+</menu>
