@@ -99,7 +99,7 @@ public class BookLocationActivity extends AppCompatActivity {
                     startActivity(new Intent(BookLocationActivity.this, user_book.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(BookLocationActivity.this, book_list.class));
+                    startActivity(new Intent(BookLocationActivity.this, WishListActivity.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(BookLocationActivity.this, UserAdminModeSwitch.class));

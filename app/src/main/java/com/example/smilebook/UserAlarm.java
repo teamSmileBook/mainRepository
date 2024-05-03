@@ -55,7 +55,7 @@ public class UserAlarm extends AppCompatActivity {
 //        });
 
         //뒤로가기
-        toolbarTitleBinding.ReturnBtn.setOnClickListener(new View.OnClickListener() {
+        toolbarTitleBinding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
@@ -136,7 +136,7 @@ public class UserAlarm extends AppCompatActivity {
                     startActivity(new Intent(UserAlarm.this, user_book.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(UserAlarm.this, book_list.class));
+                    startActivity(new Intent(UserAlarm.this, WishListActivity.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(UserAlarm.this, UserAdminModeSwitch.class));

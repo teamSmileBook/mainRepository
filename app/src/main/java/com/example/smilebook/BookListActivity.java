@@ -7,10 +7,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import androidx.appcompat.widget.Toolbar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -105,6 +106,7 @@ public class BookListActivity extends AppCompatActivity {
                 Log.e("BookListActivity","네트워크 요청 실패");
             }
         });
+
     }
 
     //상단에 있는 메뉴바
@@ -124,7 +126,7 @@ public class BookListActivity extends AppCompatActivity {
                     startActivity(new Intent(BookListActivity.this, user_book.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(BookListActivity.this, book_list.class));
+                    startActivity(new Intent(BookListActivity.this, WishlistClient.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(BookListActivity.this, UserAdminModeSwitch.class));
@@ -142,17 +144,6 @@ public class BookListActivity extends AppCompatActivity {
 
     }
 
-    //찜 기능
-    public void onHeartClicked(View view) {
-        ImageButton heartButton = (ImageButton) view;
-        if (heartButton.getBackground().getConstantState().equals
-                (getResources().getDrawable(R.drawable.empty_heart).getConstantState())) {
-            heartButton.setBackgroundResource(R.drawable.heart);
-        } else {
-            heartButton.setBackgroundResource(R.drawable.empty_heart);
-        }
-    }
-
     @Override
     //툴바에 menu_toolbar 삽입
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -168,7 +159,7 @@ public class BookListActivity extends AppCompatActivity {
         int itemId = item.getItemId();
 
         if (itemId == R.id.item_search) {
-            Intent searchIntent = new Intent(getApplicationContext(), UserSearch.class);
+            Intent searchIntent = new Intent(getApplicationContext(), SearchActivity.class);
             startActivity(searchIntent);
             return true;
         } else if (itemId == R.id.item_more) {

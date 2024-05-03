@@ -64,7 +64,7 @@
             android:name=".JoinActivity"
             android:exported="true"/>
         <activity
-            android:name=".UserSearch"
+            android:name=".SearchActivity"
             android:exported="true" />
         <activity
             android:name=".UserMore"

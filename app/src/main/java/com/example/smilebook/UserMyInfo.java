@@ -84,7 +84,7 @@ public class UserMyInfo extends AppCompatActivity {
 //        });
 
         //뒤로가기(more.xml)
-        toolbarTitleBinding.ReturnBtn.setOnClickListener(new View.OnClickListener() {
+        toolbarTitleBinding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
@@ -194,7 +194,7 @@ public class UserMyInfo extends AppCompatActivity {
                     startActivity(new Intent(UserMyInfo.this, user_book.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(UserMyInfo.this, book_list.class));
+                    startActivity(new Intent(UserMyInfo.this, WishListActivity.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(UserMyInfo.this, UserAdminModeSwitch.class));

@@ -3,12 +3,9 @@ package com.example.smilebook;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.widget.SearchView;
-
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +29,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserSearch extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity {
     private UserSearchBinding binding;
     private ToolbarTitleBinding toolbarTitleBinding;
 
@@ -47,21 +44,21 @@ public class UserSearch extends AppCompatActivity {
         toolbarTitleBinding = binding.toolbar;
 
         //뒤로가기
-        toolbarTitleBinding.ReturnBtn.setOnClickListener(new View.OnClickListener() {
+        toolbarTitleBinding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
 
-        //more 클릭 이벤트 처리
-        findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
+        //more.xml
+        toolbarTitleBinding.more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopup(view);
+                Intent intent = new Intent(SearchActivity.this, UserMore.class);
+                startActivity(intent);
             }
         });
-
 
         //로그인 유도 버튼
         Button go_login = (Button) findViewById(R.id.login_pink);
@@ -80,10 +77,10 @@ public class UserSearch extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) { //검색 버튼을 눌렀을 때;
-                if (!query.isEmpty()) { //검색창이 비어있지 않으면
-                    searchBooks(query); //메서드 실행
+                if (!query.isEmpty()) {
+                    searchBooks(query);
                 } else {
-                    Toast.makeText(UserSearch.this, "검색어를 입력하세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchActivity.this, "검색어를 입력하세요.", Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }
@@ -98,17 +95,20 @@ public class UserSearch extends AppCompatActivity {
 
     //사용자가 입력한 검색어를 서버로 전송하고, 서버로부터 받은 검색 결과를 처리
     private void searchBooks(final String query){
+        //새로운 Thread 생성하여 백그라운드에서 네트워크 요청 처리
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     Log.d("UserSearch","searchBooks() 요청 보냄");
                     URL url = new URL("http://3.39.9.175:8080/books/search?query=" + query); //검색 요청
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("GET");
-                    conn.setRequestProperty("Content-Type", "application/json");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection(); //서버와의 연결 설정
+                    conn.setRequestMethod("GET"); //GET 요청 사용
+                    conn.setRequestProperty("Content-Type", "application/json"); //Content-Type 헤더를 apllication/jsen으로 설정
 
+                    //서버로부터 응답 받기 위해 BufferReader 생성
                     BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    //응답 데이터를 문자열로 읽어옴 (StringBuilder : 응답 데이터 누적)
                     StringBuilder response = new StringBuilder();
                     String line;
                     while ((line = reader.readLine()) != null) {
@@ -118,6 +118,7 @@ public class UserSearch extends AppCompatActivity {
 
                     final String jsonResponse = response.toString();
 
+                    //응답 데이터 반환 후 UI Thread 전환 하여 검색 결과 처리
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -132,8 +133,8 @@ public class UserSearch extends AppCompatActivity {
         }).start();
     }
 
-    // 서버로부터 받은 JSON 데이터를 파싱하여 도서 정보를 추출하는 메서드
-    // 추출한 데이터를 GridBookListData 객체로 생성 후 리스트에 추가햐는 역할
+    // 서버로 부터 받은 JSON 데이터를 파싱하여 도서 정보를 추출하는 메서드
+    // 추출한 데이터를 GridBookListData 객체로 생성 후 리스트에 추가 하는 역할
     private List<GridBookListData> parseJsonArray(JSONArray jsonArray) {
         List<GridBookListData> bookList = new ArrayList<>();
         try {
@@ -156,7 +157,7 @@ public class UserSearch extends AppCompatActivity {
         return bookList;
     }
 
-    //서버로 부터 받은 검색 결과 파싱
+    //서버로 부터 받은 검색 결과 파싱, SearchResult 액티비티로 검색 결과 전달
     private void handleSearchResponse (String jsonResponse) {
         try {
             JSONArray jsonArray = new JSONArray(jsonResponse);
@@ -164,50 +165,15 @@ public class UserSearch extends AppCompatActivity {
 
             // 검색 결과가 비어 있는지 확인
             if (bookList.isEmpty()) {
-                Toast.makeText(UserSearch.this, "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SearchActivity.this, "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
             } else {
                 // SearchResult 액티비티로 전환하고 검색 결과를 전달하는 Intent 생성
-                Intent intent = new Intent(UserSearch.this, SearchResult.class);
+                Intent intent = new Intent(SearchActivity.this, SearchResult.class);
                 intent.putExtra("bookList", (Serializable) bookList);
                 startActivity(intent);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    //상단에 있는 메뉴바
-    private void showPopup(View v) {
-        PopupMenu popupMenu = new PopupMenu(this, v);
-        popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
-
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                if (menuItem.getItemId() == R.id.user_alarmBtn) {
-                    startActivity(new Intent(UserSearch.this, UserAlarm.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
-                    startActivity(new Intent(UserSearch.this, UserMyInfo.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(UserSearch.this, user_book.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(UserSearch.this, book_list.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
-                    startActivity(new Intent(UserSearch.this, UserAdminModeSwitch.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_logOutBtn) {
-                    // 로그아웃은 동작 해줘야함
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        });
-
-        popupMenu.show();
-
     }
 }

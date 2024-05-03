@@ -10,12 +10,14 @@ public class GridBookListData implements Serializable {
     private String coverUrl;
     private String bookTitle;
     private String bookStatus;
+    private boolean bookWished;
 
     public GridBookListData(Long bookId, String coverUrl, String bookTitle, String bookStatus) {
         this.bookId = bookId;
         this.coverUrl = coverUrl;
         this.bookTitle = bookTitle;
         this.bookStatus = bookStatus;
+        this.bookWished = false;
     }
 
     public Long getBookId() {
@@ -48,5 +50,13 @@ public class GridBookListData implements Serializable {
 
     public void setStatus(String status) {
         this.bookStatus = status;
+    }
+
+    public boolean isBookWished() {
+        return bookWished;
+    }
+
+    public void setBookWished(boolean bookWished) {
+        this.bookWished = bookWished;
     }
 }

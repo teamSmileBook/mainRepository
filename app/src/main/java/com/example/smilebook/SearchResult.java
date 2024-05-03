@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.smilebook.ItemData.GridAdapter;
 import com.example.smilebook.ItemData.GridBookListData;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SearchResult extends AppCompatActivity {
@@ -90,7 +89,7 @@ public class SearchResult extends AppCompatActivity {
         int itemId = item.getItemId();
 
         if (itemId == R.id.item_search) {
-            Intent searchIntent = new Intent(getApplicationContext(), UserSearch.class);
+            Intent searchIntent = new Intent(getApplicationContext(), SearchActivity.class);
             startActivity(searchIntent);
             return true;
         } else if (itemId == R.id.item_more) {

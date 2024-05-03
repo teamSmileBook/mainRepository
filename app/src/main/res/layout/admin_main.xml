@@ -57,7 +57,7 @@
                     android:layout_marginStart="22dp"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="20dp"
-                    android:text="@string/alllist"
+                    android:text="전체 도서"
                     android:textAppearance="@style/mainScrollTitle"
                     android:gravity="center_horizontal|top"
                     />

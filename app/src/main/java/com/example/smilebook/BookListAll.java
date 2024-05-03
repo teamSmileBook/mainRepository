@@ -7,14 +7,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -133,7 +130,7 @@ public class BookListAll extends AppCompatActivity {
                     startActivity(new Intent(BookListAll.this, user_book.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(BookListAll.this, book_list.class));
+                    startActivity(new Intent(BookListAll.this, BookListAll.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(BookListAll.this, UserAdminModeSwitch.class));
@@ -151,16 +148,16 @@ public class BookListAll extends AppCompatActivity {
 
     }
 
-    //찜 기능
-    public void onHeartClicked(View view) {
-        ImageButton heartButton = (ImageButton) view;
-        if (heartButton.getBackground().getConstantState().equals
-                (getResources().getDrawable(R.drawable.empty_heart).getConstantState())) {
-            heartButton.setBackgroundResource(R.drawable.heart);
-        } else {
-            heartButton.setBackgroundResource(R.drawable.empty_heart);
-        }
-    }
+//    //찜 기능
+//    public void onHeartClicked(View view) {
+//        ImageButton heartButton = (ImageButton) view;
+//        if (heartButton.getBackground().getConstantState().equals
+//                (getResources().getDrawable(R.drawable.empty_heart).getConstantState())) {
+//            heartButton.setBackgroundResource(R.drawable.heart);
+//        } else {
+//            heartButton.setBackgroundResource(R.drawable.empty_heart);
+//        }
+//    }
 
 
     @Override
@@ -178,7 +175,7 @@ public class BookListAll extends AppCompatActivity {
         int itemId = item.getItemId();
 
         if (itemId == R.id.item_search) {
-            Intent searchIntent = new Intent(getApplicationContext(), UserSearch.class);
+            Intent searchIntent = new Intent(getApplicationContext(), SearchActivity.class);
             startActivity(searchIntent);
             return true;
         } else if (itemId == R.id.item_more) {

@@ -5,12 +5,15 @@ import com.example.smilebook.model.BookLocationDTO;
 import com.example.smilebook.model.LoginRequest;
 import com.example.smilebook.model.MemberDTO;
 import com.example.smilebook.model.ResponseDTO;
+import com.example.smilebook.model.WishlistDTO;
 
 import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -41,7 +44,7 @@ public interface ApiService {
     @GET("/books/{bookId}/location")
     Call<BookLocationDTO> getBookLocationById(@Path("bookId") Long bookId);
 
-    @GET("books/category/{category}")
+    @GET("/books/category/{category}")
     Call<List<GridBookListData>> getBooksByCategory(@Path("category") String category);
 
     @POST("/api/member/details")
@@ -49,4 +52,8 @@ public interface ApiService {
 
     @POST("/api/member/update")
     Call<Void> updateMemberInfo(@Body MemberDTO memberDTO);
+
+    @POST("/wishlist/add")
+    Call<Void> addToWishlist(@Body WishlistDTO wishlistDTO);
+
 }

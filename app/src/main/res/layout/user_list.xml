@@ -13,10 +13,11 @@
         android:layout_marginTop="10dp"
         android:layout_below="@+id/toolbar_user">
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/user_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:listSelector="@drawable/user_background"/>
+            android:layout_height="match_parent" />
+
     </RelativeLayout>
 
 

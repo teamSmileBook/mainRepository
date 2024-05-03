@@ -55,7 +55,7 @@ public class AdminMainActivity extends AppCompatActivity {
                     startActivity(new Intent(AdminMainActivity.this, user_book.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(AdminMainActivity.this, book_list.class));
+                    startActivity(new Intent(AdminMainActivity.this, WishListActivity.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(AdminMainActivity.this, UserAdminModeSwitch.class));

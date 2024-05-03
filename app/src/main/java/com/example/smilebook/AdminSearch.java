@@ -44,7 +44,7 @@ public class AdminSearch extends AppCompatActivity{
 //        });
 
         //뒤로가기
-        toolbarTitleBinding.ReturnBtn.setOnClickListener(new View.OnClickListener() {
+        toolbarTitleBinding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
@@ -101,7 +101,7 @@ public class AdminSearch extends AppCompatActivity{
                     startActivity(new Intent(AdminSearch.this, user_book.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(AdminSearch.this, book_list.class));
+                    startActivity(new Intent(AdminSearch.this, WishListActivity.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(AdminSearch.this, UserAdminModeSwitch.class));

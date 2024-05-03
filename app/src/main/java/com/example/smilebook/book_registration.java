@@ -124,7 +124,7 @@ public class book_registration extends AppCompatActivity {
                     startActivity(new Intent(book_registration.this, user_book.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(book_registration.this, book_list.class));
+                    startActivity(new Intent(book_registration.this, WishListActivity.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(book_registration.this, UserAdminModeSwitch.class));

@@ -41,7 +41,7 @@ public class user_data extends AppCompatActivity {
                     startActivity(new Intent(user_data.this, user_book.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(user_data.this, book_list.class));
+                    startActivity(new Intent(user_data.this, WishListActivity.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(user_data.this, UserAdminModeSwitch.class));

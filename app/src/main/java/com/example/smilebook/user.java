@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +16,7 @@ public class user extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user);
+        setContentView(R.layout.user_list);
 
         //검색 아이템 화면인텐트
         findViewById(R.id.item_search).setOnClickListener(new View.OnClickListener() {
@@ -86,7 +85,7 @@ public class user extends AppCompatActivity {
                     startActivity(new Intent(user.this, user_book.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(user.this, book_list.class));
+                    startActivity(new Intent(user.this, WishListActivity.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(user.this, UserAdminModeSwitch.class));

@@ -57,7 +57,7 @@ public class my_book extends AppCompatActivity {
                     startActivity(new Intent(my_book.this, user_book.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(my_book.this, book_list.class));
+                    startActivity(new Intent(my_book.this, WishListActivity.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(my_book.this, UserAdminModeSwitch.class));

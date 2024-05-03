@@ -14,7 +14,7 @@
         >
 
         <android.widget.Button
-            android:id="@+id/ReturnBtn"
+            android:id="@+id/back"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginLeft="31dp"

@@ -48,7 +48,7 @@ public class AdminCodeEditActivity extends AppCompatActivity {
                     startActivity(new Intent(AdminCodeEditActivity.this, user_book.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(AdminCodeEditActivity.this, book_list.class));
+                    startActivity(new Intent(AdminCodeEditActivity.this, WishListActivity.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(AdminCodeEditActivity.this, UserAdminModeSwitch.class));
