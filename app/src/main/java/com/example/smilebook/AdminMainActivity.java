@@ -41,27 +41,21 @@ public class AdminMainActivity extends AppCompatActivity {
     //상단에 있는 메뉴바
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
-        popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
+        popupMenu.getMenuInflater().inflate(R.menu.menu_more_admin, popupMenu.getMenu());
 
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
-                if (menuItem.getItemId() == R.id.user_alarmBtn) {
-                    startActivity(new Intent(AdminMainActivity.this, UserAlarm.class));
+                if (menuItem.getItemId() == R.id.admin_registrationBtn) {
+                    startActivity(new Intent(AdminMainActivity.this, book_registration.class));
                     return true;
-                } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
-                    startActivity(new Intent(AdminMainActivity.this, UserMyInfo.class));
+                } else if (menuItem.getItemId() == R.id.admin_userBtn) {
+                    startActivity(new Intent(AdminMainActivity.this, user.class));
                     return true;
-                } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(AdminMainActivity.this, user_book.class));
+                } else if (menuItem.getItemId() == R.id.admin_modifyBtn) {
+                    startActivity(new Intent(AdminMainActivity.this, AdminCodeEditActivity.class));
                     return true;
-                } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(AdminMainActivity.this, WishListActivity.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
-                    startActivity(new Intent(AdminMainActivity.this, UserAdminModeSwitch.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_logOutBtn) {
-                    // 로그아웃은 동작 해줘야함
+                } else if (menuItem.getItemId() == R.id.admin_transformBtn) {
+                    startActivity(new Intent(AdminMainActivity.this, MainActivity.class));
                     return true;
                 } else {
                     return false;

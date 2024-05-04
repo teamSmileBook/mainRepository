@@ -46,8 +46,19 @@
         <activity android:name=".AdminMore"
             android:exported="true" />
 
-        <activity android:name=".AdminMainActivity"
-            android:exported="true" />
+        <activity
+            android:name=".book_registration"
+            android:exported="true"/>
+
+        <activity
+            android:name=".AdminCodeEditActivity"
+            android:exported="true"/>
+
+
+
+
+
+
         <activity
             android:name=".UserAdminModeSwitch"
             android:exported="true" />
@@ -65,13 +76,19 @@
             android:exported="true"/>
         <activity
             android:name=".SearchActivity"
-            android:exported="true" />
+            android:exported="true"/>
+
         <activity
             android:name=".UserMore"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"/>
+
+
+        <activity android:name=".AdminMainActivity"
+            android:exported="true" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
