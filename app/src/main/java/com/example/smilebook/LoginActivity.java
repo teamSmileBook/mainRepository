@@ -75,9 +75,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
 
-                    //로그인 성공 시 메인으로 이동, 로그인 요청 버튼 숨김
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class)
-                            .putExtra("hideButton", true));
+                    //로그인 성공 시 메인으로 이동
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();

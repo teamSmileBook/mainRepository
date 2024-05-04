@@ -3,6 +3,7 @@ package com.example.smilebook.ItemData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +44,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -60,7 +61,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 long bookId = data.getBookId();
-                Log.d("GridAdapter","setonClickListener : " + bookId);
+                Log.d("GridAdapter", "setonClickListener : " + bookId);
                 addToWishlist(bookId);
                 // 아이템의 찜 상태 업데이트
                 data.setBookWished(!isBookWished);
@@ -75,7 +76,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     private void addToWishlist(long bookId) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String memberId = sharedPreferences.getString("memberId", "");
-        Log.d("GridAdapter","addToWishlist() memberId:" + memberId + " bookId: " +bookId);
+        Log.d("GridAdapter", "addToWishlist() memberId:" + memberId + " bookId: " + bookId);
         wishListClient.addToWishlist(memberId, bookId);
     }
 
@@ -134,7 +135,14 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
             //제목
             bookTitle.setText(data.getTitle());
             //도서 상태
-            bookStatus.setText(data.getStatus());
+            String status = data.getStatus();
+            bookStatus.setText(status);
+
+            // 대출 가능 여부에 따라 텍스트 색상을 변경
+            if (!"대출가능".equals(status)) {
+                bookStatus.setTextColor(Color.RED);
+                bookStatus.setText("대출 불가능");
+            }
         }
     }
 }

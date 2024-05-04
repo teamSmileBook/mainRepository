@@ -4,6 +4,8 @@ import com.example.smilebook.model.BookDTO;
 import com.example.smilebook.model.BookLocationDTO;
 import com.example.smilebook.model.LoginRequest;
 import com.example.smilebook.model.MemberDTO;
+import com.example.smilebook.model.ReservationDTO;
+import com.example.smilebook.model.ReservationResponseDTO;
 import com.example.smilebook.model.ResponseDTO;
 import com.example.smilebook.model.WishlistDTO;
 
@@ -55,5 +57,8 @@ public interface ApiService {
 
     @POST("/wishlist/add")
     Call<Void> addToWishlist(@Body WishlistDTO wishlistDTO);
+
+    @POST("/book/reserve")
+    Call<ReservationResponseDTO> reserveBook(@Body ReservationDTO reservationDTO);
 
 }

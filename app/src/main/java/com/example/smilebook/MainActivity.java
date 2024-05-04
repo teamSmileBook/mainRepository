@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,9 +14,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.example.smilebook.api.ApiService;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private ApiService apiService;
 
     private ImageView allImageView1, allImageView2, allImageView3, allImageView4; //전체 ImageView
     private ImageView eduImageView1, eduImageView2, eduImageView3, eduImageView4; //교육 ImageView
@@ -27,10 +35,39 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_main);
 
-        Button loginbtn = (Button) findViewById(R.id.rectangle_login);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar); //툴바 사용 설정
-        getSupportActionBar().setDisplayShowTitleEnabled(false); //타이틀 안 보이게
+        // SharedPreferences를 사용하여 "memberId" 값을 가져옴
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String memberId = sharedPreferences.getString("memberId", "");
+
+        Button loginbtn = findViewById(R.id.rectangle_login);
+
+        // memberId가 null 값이 아닐 시 로그인 요청 버튼 숨김
+        if (!memberId.isEmpty()) {
+            loginbtn.setVisibility(View.GONE);
+        } else {
+            loginbtn.setVisibility(View.VISIBLE);
+        }
+
+        //검색 아이템 화면인텐트
+        findViewById(R.id.item_search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, SearchActivity.class));
+            }
+        });
+
+        //item_more 클릭 이벤트 처리
+        findViewById(R.id.item_more).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopup(view);
+            }
+        });
+
+
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar); //툴바 사용 설정
+        //getSupportActionBar().setDisplayShowTitleEnabled(false); //타이틀 안 보이게
 
         //메인화면 카테고리별 도서 ImageView
         allImageView1 = findViewById(R.id.all_book_1);
@@ -52,10 +89,6 @@ public class MainActivity extends AppCompatActivity {
         toonImageView2 = findViewById(R.id.cartoon_book_2);
         toonImageView3 = findViewById(R.id.cartoon_book_3);
         toonImageView4 = findViewById(R.id.cartoon_book_4);
-
-        // 로그인 성공 시 rectangle_login 숨김
-        boolean hideButton = getIntent().getBooleanExtra("hideButton", false);
-        if (hideButton) { loginbtn.setVisibility(View.GONE);}
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,29 +172,88 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
+    //@Override
 //    툴바에 menu_toolbar 삽입
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_toolbar, menu);
-        return true;
-    }
+    //public boolean onCreateOptionsMenu(Menu menu) {
+    //MenuInflater menuInflater = getMenuInflater();
+    //menuInflater.inflate(R.menu.menu_toolbar, menu);
+    //return true;
+    //}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    //상단에 있는 메뉴바
+    private void showPopup(View v) {
+        PopupMenu popupMenu = new PopupMenu(this, v);
+        popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
 
-        int itemId = item.getItemId();
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.user_alarmBtn) {
+                    startActivity(new Intent(MainActivity.this, UserAlarm.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
+                    startActivity(new Intent(MainActivity.this, UserMyInfo.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
+                    startActivity(new Intent(MainActivity.this, user_book.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
+                    startActivity(new Intent(MainActivity.this, BookListAll.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
+                    startActivity(new Intent(MainActivity.this, UserAdminModeSwitch.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.user_logOutBtn) {
+                    // SharedPreferences를 사용하여 "memberId" 값을 가져오기
+                    SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                    String memberId = sharedPreferences.getString("memberId", null);
 
-        if (itemId == R.id.item_search) {
-            Intent searchIntent = new Intent(getApplicationContext(), SearchActivity.class);
-            startActivity(searchIntent);
-            return true;
-        } else if (itemId == R.id.item_more) {
-            Intent moreIntent = new Intent(getApplicationContext(), UserMore.class);
-            startActivity(moreIntent);
-            return true;
+                    if (memberId == null) {
+                        // "로그인" 버튼을 눌렀을 때 로그인 액티비티로 이동
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    } else {
+                        // SharedPreferences에서 "memberId" 값을 null로 변경
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("memberId", null);
+                        editor.apply();
+
+                        Toast.makeText(MainActivity.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
+
+                        // MainActivity 새로고침
+                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+
+// SharedPreferences를 사용하여 "memberId" 값을 가져오기
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String memberId = sharedPreferences.getString("memberId", null);
+
+// memberId가 null이면 로그인 버튼 텍스트 설정
+        MenuItem logOutMenuItem = popupMenu.getMenu().findItem(R.id.user_logOutBtn);
+        if (memberId == null) {
+            logOutMenuItem.setTitle("로그인");
         } else {
-            return super.onOptionsItemSelected(item);
+            logOutMenuItem.setTitle("로그아웃");
         }
+
+        popupMenu.show();
     }
+
+
+
+
+
+//
+//    // 이미지 로드 메서드
+//    private void loadImage(String imageName, ImageView imageView) {
+//        Glide.with(this)
+//                .load(imageName)
+//                .into(imageView);
+//    }
 }

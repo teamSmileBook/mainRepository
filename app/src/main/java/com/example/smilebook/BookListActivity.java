@@ -1,6 +1,7 @@
 package com.example.smilebook;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -132,13 +133,39 @@ public class BookListActivity extends AppCompatActivity {
                     startActivity(new Intent(BookListActivity.this, UserAdminModeSwitch.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_logOutBtn) {
-                    // 로그아웃은 동작 해줘야함
+                    // SharedPreferences를 사용하여 "memberId" 값을 가져오기
+                    SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                    String memberId = sharedPreferences.getString("memberId", null);
+
+                    if (memberId == null) {
+                        // "로그인" 버튼을 눌렀을 때 로그인 액티비티로 이동
+                        startActivity(new Intent(BookListActivity.this, LoginActivity.class));
+                    } else {
+                        // SharedPreferences에서 "memberId" 값을 null로 변경
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("memberId", null);
+                        editor.apply();
+
+                        Toast.makeText(BookListActivity.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
+                    }
                     return true;
                 } else {
                     return false;
                 }
             }
         });
+
+// SharedPreferences를 사용하여 "memberId" 값을 가져오기
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String memberId = sharedPreferences.getString("memberId", null);
+
+// memberId가 null이면 로그인 버튼 텍스트 설정
+        MenuItem logOutMenuItem = popupMenu.getMenu().findItem(R.id.user_logOutBtn);
+        if (memberId == null) {
+            logOutMenuItem.setTitle("로그인");
+        } else {
+            logOutMenuItem.setTitle("로그아웃");
+        }
 
         popupMenu.show();
 

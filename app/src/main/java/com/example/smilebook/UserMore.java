@@ -2,10 +2,12 @@ package com.example.smilebook;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -70,21 +72,8 @@ public class UserMore extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(UserMore.this);
-
-                builder.setMessage("로그아웃 하시겠습니까?");
-                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                        Intent logoutIntent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(logoutIntent);
-                    }
-                });
-
-                builder.setNegativeButton("취소", null);
-                builder.show();
             }
         });
+
     }
 }
