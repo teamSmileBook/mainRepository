@@ -38,13 +38,13 @@
             <TextView
                 android:id="@+id/user_nickname_view"
                 android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
+                android:layout_height="31dp"
                 android:layout_gravity="center"
-                android:text="닉네임"
-                android:textColor="#FFFFFF"
+                android:layout_weight="1"
+                android:background="@drawable/user_data_btn"
+                android:text="아이디"
                 android:textAlignment="center"
-                android:background="@drawable/user_data_btn" />
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/view11"

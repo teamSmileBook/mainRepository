@@ -17,6 +17,22 @@ public class user_data extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_data);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //more 클릭 이벤트 처리
         findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
             @Override

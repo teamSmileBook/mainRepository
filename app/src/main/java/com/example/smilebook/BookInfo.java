@@ -178,16 +178,15 @@ public class BookInfo extends AppCompatActivity {
     // 예약 버튼 상태 업데이트 메소드
     private void updateReservationButton() {
         if (isReserved) {
-            reservation.setText("도서 예약");
-            reservation.setTextColor(Color.BLACK);
-            bookStatus.setText("대출 가능");
-            bookStatus.setTextColor(Color.parseColor("#009000"));
-
-        } else {
-            reservation.setText("예약 취소");
+            reservation.setText("예약 취소"); // 이 부분이 수정되었습니다.
             reservation.setTextColor(Color.RED);
             bookStatus.setText("대출 불가능");
             bookStatus.setTextColor(Color.RED);
+        } else {
+            reservation.setText("도서 예약"); // 이 부분이 수정되었습니다.
+            reservation.setTextColor(Color.BLACK);
+            bookStatus.setText("대출 가능");
+            bookStatus.setTextColor(Color.parseColor("#009000"));
         }
     }
 

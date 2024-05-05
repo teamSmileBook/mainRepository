@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "661406168843",
+    "project_id": "smilebook-567dc",
+    "storage_bucket": "smilebook-567dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661406168843:android:63a68d2ce634b53fc0540e",
+        "android_client_info": {
+          "package_name": "com.example.smilebook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_rb7i_wQjO29s4DX32dyj_K_mYnr7dX0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
