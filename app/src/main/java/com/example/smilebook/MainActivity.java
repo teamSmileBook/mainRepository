@@ -93,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), user_data.class);
+                //원래 로그인으로 가는건데 임시로 회원관리로 연결
                 startActivity(intent);
             }
         });

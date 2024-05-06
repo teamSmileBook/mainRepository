@@ -7,6 +7,8 @@ import com.example.smilebook.model.MemberDTO;
 import com.example.smilebook.model.ReservationDTO;
 import com.example.smilebook.model.ReservationResponseDTO;
 import com.example.smilebook.model.ResponseDTO;
+import com.example.smilebook.model.SuspensionReasonDTO;
+import com.example.smilebook.model.UserDataDTO;
 import com.example.smilebook.model.WishlistDTO;
 import com.example.smilebook.model.WishlistItemDTO;
 
@@ -72,5 +74,14 @@ public interface ApiService {
     @DELETE("/wishlist/delete/{memberId}/{bookId}")
     Call<Void> deleteFromWishlist(@Path("memberId") String memberId, @Path("bookId") Long bookId);
 
+
+    @GET("/member/{memberId}")
+    Call<UserDataDTO> getMemberInfo(@Path("memberId") String memberId);
+
+    @POST("/member/updateSuspensionReason")
+    Call<Void> updateSuspensionReason(@Body SuspensionReasonDTO suspensionReasonDTO);
+
+    @POST("/member/updateWarning")
+    Call<Void> updateWarning(@Body SuspensionReasonDTO suspensionReasonDTO);
 
 }

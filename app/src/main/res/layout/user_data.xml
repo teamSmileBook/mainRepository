@@ -57,46 +57,7 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/user_nickname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:text="TextView" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp">
-
-            <TextView
-                android:id="@+id/user_joindate_view"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:text="가입 날짜"
-                android:textColor="#FFFFFF"
-                android:textAlignment="center"
-                android:background="@drawable/user_data_btn" />
-
-            <TextView
-                android:id="@+id/view9"
-                android:layout_width="5dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text=":"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/user_joindate"
+                android:id="@+id/userId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -148,8 +109,8 @@
             android:id="@+id/suspended_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="이용 정지 대상자"
-            android:textColor="#FF0000"
+            android:text="이용 가능한 사용자"
+            android:textColor="#009000"
             android:textAlignment="center"
             android:layout_marginTop="50dp"
             android:layout_marginLeft="30dp"
@@ -172,7 +133,7 @@
             android:layout_height="100dp"
             android:ems="10"
             android:inputType="text"
-            android:text=" 경고 사유 : "
+            android:text=" 사유 : "
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:background="@drawable/memo_border"/>
@@ -190,14 +151,14 @@
         android:orientation="horizontal">
 
         <android.widget.Button
-            android:id="@+id/user_stop_btn"
+            android:id="@+id/userStopButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="45dp"
             android:layout_weight="1"
             android:background="@drawable/user_button"
             android:textColor="#FFFFFF"
-            android:text="이용정지" />
+            android:text="이용 정지" />
 
         <View
             android:id="@+id/view41"
@@ -206,14 +167,14 @@
             android:layout_weight="1" />
 
         <android.widget.Button
-            android:id="@+id/user_warning_btn"
+            android:id="@+id/userWarningButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="45dp"
             android:layout_weight="1"
             android:background="@drawable/user_button"
             android:textColor="#FFFFFF"
-            android:text="이용경고" />
+            android:text="이용 경고" />
     </LinearLayout>
 
 </LinearLayout>
