@@ -15,9 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import com.bumptech.glide.Glide;
 import com.example.smilebook.api.ApiService;
+import com.example.smilebook.databinding.BookInfoBinding;
+import com.example.smilebook.databinding.SearchBinding;
+import com.example.smilebook.databinding.ToolbarTitleBinding;
 import com.example.smilebook.model.BookDTO;
 import com.example.smilebook.model.ReservationDTO;
 import com.example.smilebook.model.ReservationResponseDTO;
@@ -32,20 +36,25 @@ public class BookInfo extends AppCompatActivity {
 
     private static final String BASE_URL = "http://3.39.9.175:8080/";
     private ApiService apiService;
-
     private ImageView bookCover;
     private TextView bookTitle;
     private TextView bookAuthor;
     private TextView bookStatus;
     private TextView bookDescription;
     private Button reservation;
-
     private boolean isReserved = false; // 예약 상태를 저장할 변수
+    private BookInfoBinding binding;
+    private ToolbarTitleBinding toolbarTitleBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.book_info);
+
+        // 데이터 바인딩 설정
+        binding = DataBindingUtil.setContentView(this, R.layout.book_info);
+        // TextView의 text 설정
+        binding.setTitleText("도서 정보");
+        toolbarTitleBinding = binding.toolbar;
 
         bookCover = findViewById(R.id.book_cover);
         bookTitle = findViewById(R.id.book_title);
@@ -55,6 +64,7 @@ public class BookInfo extends AppCompatActivity {
         Button location = findViewById(R.id.location);
         Button back = findViewById(R.id.back);
         reservation = findViewById(R.id.reservation);
+
 
         //more 클릭 이벤트 처리
         findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
@@ -234,11 +244,11 @@ public class BookInfo extends AppCompatActivity {
             }
         });
 
-// SharedPreferences를 사용하여 "memberId" 값을 가져오기
+        // SharedPreferences를 사용하여 "memberId" 값을 가져오기
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         String memberId = sharedPreferences.getString("memberId", null);
 
-// memberId가 null이면 로그인 버튼 텍스트 설정
+        // memberId가 null이면 로그인 버튼 텍스트 설정
         MenuItem logOutMenuItem = popupMenu.getMenu().findItem(R.id.user_logOutBtn);
         if (memberId == null) {
             logOutMenuItem.setTitle("로그인");
@@ -249,6 +259,4 @@ public class BookInfo extends AppCompatActivity {
         popupMenu.show();
 
     }
-
-
 }

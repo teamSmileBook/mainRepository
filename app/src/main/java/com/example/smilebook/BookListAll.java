@@ -1,5 +1,6 @@
 package com.example.smilebook;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,8 +9,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,11 +31,15 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class BookListAll extends AppCompatActivity {
+public class BookListAll extends AppCompatActivity implements WishlistClient.WishlistListener {
 
     private static final String BASE_URL = "http://3.39.9.175:8080/";
     private RecyclerView recyclerView;
     private GridAdapter gridAdapter;
+    private WishlistClient wishlistClient;
+    private List<GridBookListData> bookList = new ArrayList<>();
+    private String memberId; // memberId를 저장할 변수 추가
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_list);
@@ -43,7 +48,7 @@ public class BookListAll extends AppCompatActivity {
         findViewById(R.id.item_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(BookListAll.this, AdminSearch.class));
+                startActivity(new Intent(BookListAll.this, SearchActivity.class));
             }
         });
 
@@ -54,12 +59,6 @@ public class BookListAll extends AppCompatActivity {
                 showPopup(view);
             }
         });
-
-
-        //툴바 설정
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayShowTitleEnabled(false); //타이틀 안 보이게
 
         // 카테고리 이름을 인텐트에서 받아와 텍스트뷰에 표시
         String category = getIntent().getStringExtra("category");
@@ -91,16 +90,29 @@ public class BookListAll extends AppCompatActivity {
         //전체 도서 정보 가져오기 요청
         Call<List<GridBookListData>> call = apiService.getAllBooks();
 
+        // WishlistClient 인스턴스 생성
+        wishlistClient = new WishlistClient(this, gridAdapter);
+        wishlistClient.getWishlistByMemberId(memberId, null);
+
+        // SharedPreferences를 사용하여 memberId 값을 가져옴
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        memberId = sharedPreferences.getString("memberId", null);
+
         call.enqueue(new Callback<List<GridBookListData>>() {
             @Override
             public void onResponse(Call<List<GridBookListData>> call, Response<List<GridBookListData>> response) {
                 if (response.isSuccessful()) {
-                    Log.d("BookListAll", "서버 응답 성공");
+                    Log.d("BookListAll", "전체 도서 불러오기 성공");
 
                     //응답 받은 데이터들을 GridBookListData 형태로 bookList 리스트 생성
                     List<GridBookListData> bookList = response.body();
                     //어댑터에 bookList 전송
                     gridAdapter.setData(bookList);
+                    // 사용자가 로그인한 후에 찜 목록을 가져옴
+                    // memberId가 null이 아닌 경우에만 찜 목록을 가져오도록 함
+                    if (memberId != null) {
+                        wishlistClient.getWishlistByMemberId(memberId, bookList);
+                    }
                 } else {
                     // 서버 응답에 실패한 경우
                     Log.e("BookListAll", "서버 응답 실패");
@@ -113,6 +125,17 @@ public class BookListAll extends AppCompatActivity {
                 Log.e("BookListAll", "네트워크 요청 실패", t);
             }
         });
+    }
+
+    // WishlistListener 인터페이스 구현
+    @Override
+    public void onWishlistReceived(List<Long> wishlist) {
+        // wishlist 데이터를 받아서 처리하는 작업 수행
+    }
+
+    @Override
+    public void onWishlistFailed(String errorMessage) {
+        // 실패 시 처리
     }
 
     //상단에 있는 메뉴바
@@ -160,6 +183,7 @@ public class BookListAll extends AppCompatActivity {
             }
         });
 
+
 // SharedPreferences를 사용하여 "memberId" 값을 가져오기
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         String memberId = sharedPreferences.getString("memberId", null);
@@ -175,18 +199,6 @@ public class BookListAll extends AppCompatActivity {
         popupMenu.show();
 
     }
-
-//    //찜 기능
-//    public void onHeartClicked(View view) {
-//        ImageButton heartButton = (ImageButton) view;
-//        if (heartButton.getBackground().getConstantState().equals
-//                (getResources().getDrawable(R.drawable.empty_heart).getConstantState())) {
-//            heartButton.setBackgroundResource(R.drawable.heart);
-//        } else {
-//            heartButton.setBackgroundResource(R.drawable.empty_heart);
-//        }
-//    }
-
 
     @Override
     //툴바에 menu_toolbar 삽입

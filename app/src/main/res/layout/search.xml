@@ -12,7 +12,7 @@
 
     <RelativeLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/admin_search_xml"
+        android:id="@+id/search_xml"
         android:layout_width="411dp"
         android:layout_height="732dp"
         android:clipToOutline="true"
@@ -25,6 +25,7 @@
             app:titleText="@{titleText}" />
 
         <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
             android:layout_width="379dp"
             android:layout_height="45dp"
             android:layout_marginTop="65dp"
@@ -190,34 +191,5 @@
                 android:text="건강"
                 />
         </LinearLayout>
-
-
-        <!--        이전 디자인(태그 박스)-->
-        <!--        <android.widget.Button-->
-        <!--            android:id="@+id/search_all"-->
-        <!--            android:layout_width="110dp"-->
-        <!--            android:layout_height="40dp"-->
-        <!--            android:layout_alignParentLeft="true"-->
-        <!--            android:layout_marginLeft="64dp"-->
-        <!--            android:layout_alignParentTop="true"-->
-        <!--            android:layout_marginTop="260dp"-->
-        <!--            android:background="@drawable/rectangle_search_category"-->
-        <!--            android:text="전체"-->
-        <!--            android:gravity="center"-->
-        <!--            android:elevation="4dp"-->
-        <!--            />-->
-
-        <!--        <View-->
-        <!--            android:id="@+id/search_best"-->
-        <!--            android:layout_width="110dp"-->
-        <!--            android:layout_height="40dp"-->
-        <!--            android:layout_alignParentLeft="true"-->
-        <!--            android:layout_marginLeft="236dp"-->
-        <!--            android:layout_alignParentTop="true"-->
-        <!--            android:layout_marginTop="260dp"-->
-        <!--            android:background="@drawable/rectangle_search_category"-->
-        <!--            android:elevation="4dp"-->
-        <!--            />-->
-
     </RelativeLayout>
 </layout>

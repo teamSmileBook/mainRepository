@@ -1,5 +1,6 @@
 package com.example.smilebook;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -31,11 +32,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class BookListActivity extends AppCompatActivity {
+public class BookListActivity extends AppCompatActivity implements WishlistClient.WishlistListener{
 
     private static final String BASE_URL = "http://3.39.9.175:8080/";
     private RecyclerView recyclerView;
     private GridAdapter gridAdapter;
+    private WishlistClient wishlistClient;
+    private List<GridBookListData> bookList = new ArrayList<>();
+    private String memberId; // memberId를 저장할 변수 추가
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +61,6 @@ public class BookListActivity extends AppCompatActivity {
                 showPopup(view);
             }
         });
-
-
-        //툴바 설정
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayShowTitleEnabled(false); //타이틀 안 보이게
 
         // 카테고리 이름을 인텐트에서 받아와 텍스트뷰에 표시 및 카테고리 값 저장
         String category = getIntent().getStringExtra("category");
@@ -90,13 +88,25 @@ public class BookListActivity extends AppCompatActivity {
 
         ApiService apiService = retrofit.create(ApiService.class);
         Call<List<GridBookListData>> call = apiService.getBooksByCategory(category); //서버에게 카테고리 전달하여 도서 목록 요청
+
+        // WishlistClient 인스턴스 생성
+        wishlistClient = new WishlistClient(this, gridAdapter);
+        wishlistClient.getWishlistByMemberId(memberId, null);
+
+        // SharedPreferences를 사용하여 memberId 값을 가져옴
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        memberId = sharedPreferences.getString("memberId", null);
+
         call.enqueue(new Callback<List<GridBookListData>>() {
             @Override
             public void onResponse(Call<List<GridBookListData>> call, Response<List<GridBookListData>> response) {
                 if (response.isSuccessful()) {
-                    Log.d("BookListActivity","서버 응답 성공");
+                    Log.d("BookListActivity","도서 불러오기 성공 category : "+category);
                     List<GridBookListData> bookList = response.body();
                     gridAdapter.setData(bookList);
+                    if (memberId != null) {
+                        wishlistClient.getWishlistByMemberId(memberId, bookList);
+                    }
                 } else {
                     Log.e("BookListActivity","서버 응답 실패");
                 }
@@ -109,7 +119,16 @@ public class BookListActivity extends AppCompatActivity {
         });
 
     }
+    // WishlistListener 인터페이스 구현
+    @Override
+    public void onWishlistReceived(List<Long> wishlist) {
+        // wishlist 데이터를 받아서 처리하는 작업 수행
+    }
 
+    @Override
+    public void onWishlistFailed(String errorMessage) {
+        // 실패 시 처리
+    }
     //상단에 있는 메뉴바
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);

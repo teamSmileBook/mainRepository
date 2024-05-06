@@ -10,21 +10,20 @@ import android.widget.PopupMenu;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import com.example.smilebook.databinding.AdminSearchBinding;
-import com.example.smilebook.databinding.UserSearchBinding;
+import com.example.smilebook.databinding.SearchBinding;
 import com.example.smilebook.databinding.ToolbarTitleBinding;
 
 public class AdminSearch extends AppCompatActivity{
 
     private Button[] buttons;
-    private AdminSearchBinding binding;
+    private SearchBinding binding;
     private ToolbarTitleBinding toolbarTitleBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // 데이터 바인딩 설정
-        binding = DataBindingUtil.setContentView(this, R.layout.admin_search);
+        binding = DataBindingUtil.setContentView(this, R.layout.search);
 
         // TextView의 text 설정
         binding.setTitleText("검색");
@@ -52,9 +51,9 @@ public class AdminSearch extends AppCompatActivity{
         });
 
 
-        //more 클릭 이벤트 처리
-        findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
-        @Override
+        //item_more 클릭 이벤트 처리
+        findViewById(R.id.item_more).setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 showPopup(view);
             }

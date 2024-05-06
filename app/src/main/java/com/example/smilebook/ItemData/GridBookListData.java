@@ -12,12 +12,12 @@ public class GridBookListData implements Serializable {
     private String bookStatus;
     private boolean bookWished;
 
-    public GridBookListData(Long bookId, String coverUrl, String bookTitle, String bookStatus) {
+    public GridBookListData(Long bookId, String coverUrl, String bookTitle, String bookStatus, boolean bookWished) {
         this.bookId = bookId;
         this.coverUrl = coverUrl;
         this.bookTitle = bookTitle;
         this.bookStatus = bookStatus;
-        this.bookWished = false;
+        this.bookWished = bookWished;
     }
 
     public Long getBookId() {

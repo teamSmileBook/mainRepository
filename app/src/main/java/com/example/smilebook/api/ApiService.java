@@ -8,12 +8,14 @@ import com.example.smilebook.model.ReservationDTO;
 import com.example.smilebook.model.ReservationResponseDTO;
 import com.example.smilebook.model.ResponseDTO;
 import com.example.smilebook.model.WishlistDTO;
+import com.example.smilebook.model.WishlistItemDTO;
 
 import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -60,5 +62,15 @@ public interface ApiService {
 
     @POST("/book/reserve")
     Call<ReservationResponseDTO> reserveBook(@Body ReservationDTO reservationDTO);
+
+    @POST("/wishlist/check")
+    Call<WishlistDTO> getWishlist(@Body WishlistDTO wishlistDTO);
+
+    @POST("/wishlist/{memberId}")
+    Call<WishlistItemDTO> getWishlistByMemberId(@Path("memberId") String memberId);
+
+    @DELETE("/wishlist/delete/{memberId}/{bookId}")
+    Call<Void> deleteFromWishlist(@Path("memberId") String memberId, @Path("bookId") Long bookId);
+
 
 }

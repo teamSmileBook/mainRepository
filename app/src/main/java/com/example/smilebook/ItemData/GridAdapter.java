@@ -17,27 +17,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.smilebook.BookInfo;
-import com.example.smilebook.BookListActivity;
 import com.example.smilebook.R;
 import com.example.smilebook.WishlistClient;
-import com.example.smilebook.model.BookDTO;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     private List<GridBookListData> dataList;
+    private List<Long> wishlist; // 찜 목록 데이터
     private Context context;
+    private boolean isLoggedIn; // 로그인 여부 확인 변수
     private WishlistClient wishListClient;
 
     //생성자
     public GridAdapter(List<GridBookListData> dataList, Context context) {
         this.dataList = dataList;
         this.context = context;
-        this.wishListClient = new WishlistClient(); // WishlistClient 초기화
+        //로그인 여부 확인
+        SharedPreferences prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        isLoggedIn = prefs.getBoolean("isLoggedIn", false); // true: 로그인o ,false: 로그인x
+        // WishlistClient 초기화
+        wishListClient = new WishlistClient(context, this);
     }
 
     //리사이클러뷰의 각 아이템 뷰 생성(XML 레이아웃 파일에서 아이템 뷰를 inflate하여 ViewHolder 객체를 생성 및 반환)
@@ -53,31 +53,6 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         GridBookListData data = dataList.get(position);
         holder.bind(data);
-
-        //찜 기능
-        boolean isBookWished = data.isBookWished(); // 아이템의 찜 상태 가져오기
-        holder.heart.setBackgroundResource(isBookWished ? R.drawable.heart : R.drawable.empty_heart);
-        holder.heart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                long bookId = data.getBookId();
-                Log.d("GridAdapter", "setonClickListener : " + bookId);
-                addToWishlist(bookId);
-                // 아이템의 찜 상태 업데이트
-                data.setBookWished(!isBookWished);
-                // 리사이클러뷰 갱신
-                notifyDataSetChanged();
-
-            }
-        });
-    }
-
-    //서버로 요청 보내기
-    private void addToWishlist(long bookId) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        String memberId = sharedPreferences.getString("memberId", "");
-        Log.d("GridAdapter", "addToWishlist() memberId:" + memberId + " bookId: " + bookId);
-        wishListClient.addToWishlist(memberId, bookId);
     }
 
     //데이터 리스트의 크기 반환
@@ -106,8 +81,9 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
             bookTitle = itemView.findViewById(R.id.book_title);
             bookStatus = itemView.findViewById(R.id.book_status);
 
-            // ImageButton에 클릭 리스너 설정
+            // 클릭 리스너 설정
             bookCover.setOnClickListener(this);
+            heart.setOnClickListener(this);
         }
 
         @Override
@@ -115,14 +91,33 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
 
             // 클릭된 아이템의 position을 가져옴
             int position = getAdapterPosition();
-            // 해당 position의 데이터를 가져옴
-            GridBookListData clickedItem = dataList.get(position);
+            if (position != RecyclerView.NO_POSITION) {
+                GridBookListData clickedItem = dataList.get(position);
 
-            // BookInfo 액티비티를 시작하고 클릭된 아이템의 정보를 전달
-            Intent intent = new Intent(context, BookInfo.class);
-            // 클릭된 아이템의 정보를 intent에 추가(도서ID)
-            intent.putExtra("bookId", clickedItem.getBookId());
-            context.startActivity(intent);
+                if (v.getId() == R.id.bookCover) {
+                    // BookInfo 액티비티를 시작하고 클릭된 아이템의 정보를 전달
+                    Intent intent = new Intent(context, BookInfo.class);
+                    // 클릭된 아이템의 정보를 intent에 추가(도서ID)
+                    intent.putExtra("bookId", clickedItem.getBookId());
+                    context.startActivity(intent);
+                } else if (v.getId() == R.id.heart) {
+                    // SharedPreferences를 사용하여 "memberId" 값을 가져오기
+                    SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                    String memberId = sharedPreferences.getString("memberId", null);
+                    // memberId가 null이면 로그인되지 않은 상태이므로 토스트 메시지를 표시하고 함수를 종료
+                    if (memberId == null) {
+                        Toast.makeText(context, "로그인 후 이용해보세요!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    // 로그인된 상태이므로 찜 상태 변경
+                    clickedItem.setBookWished(!clickedItem.isBookWished());
+                    // UI 갱신
+                    heart.setBackgroundResource(clickedItem.isBookWished() ? R.drawable.heart : R.drawable.empty_heart);
+                    // 찜 기능 서버 처리
+                    addToWishlist(clickedItem.getBookId());
+                }
+            }
         }
 
         //데이터 바인딩(도서 표지, 제목, 도서 상태 설정)
@@ -143,6 +138,27 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
                 bookStatus.setTextColor(Color.RED);
                 bookStatus.setText("대출 불가능");
             }
+
+            // 찜 상태에 따라 하트 이미지 설정
+            heart.setBackgroundResource(data.isBookWished() ? R.drawable.heart : R.drawable.empty_heart);
+        }
+        //찜 기능 서버 처리
+        private void addToWishlist(long bookId) {
+            SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            String memberId = sharedPreferences.getString("memberId", ""); //memberId 불러오기
+            wishListClient.addToWishlist(memberId, bookId);
+            Log.d("GridAdapter", "addToWishlist() memberId:" + memberId + " bookId: " + bookId);
+        }
+    }
+    // 찜 목록 데이터 업데이트 메서드
+    public void updateWishlistData(List<Long> wishlist) {
+        this.wishlist = wishlist;
+        notifyDataSetChanged();
+
+        // 각 아이템에 대해 찜 여부를 업데이트
+        for (GridBookListData book : dataList) {
+            book.setBookWished(wishlist.contains(book.getBookId()));
+            Log.d("GridAdapter","updateWishlistData() datalist : "+dataList);
         }
     }
 }

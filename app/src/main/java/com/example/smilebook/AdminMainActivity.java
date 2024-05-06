@@ -2,13 +2,9 @@ package com.example.smilebook;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
-
-import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,7 +20,7 @@ public class AdminMainActivity extends AppCompatActivity {
         findViewById(R.id.item_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AdminMainActivity.this, AdminSearch.class));
+                startActivity(new Intent(AdminMainActivity.this, SearchActivity.class));
             }
         });
 
