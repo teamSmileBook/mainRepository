@@ -1,22 +1,10 @@
 package com.example.smilebook;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.Nullable;
-import android.graphics.Color;
 import android.widget.PopupMenu;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -47,7 +35,7 @@ public class book_registration extends AppCompatActivity {
                     // 아무 동작 하지않음
                     return true;
                 } else if (menuItem.getItemId() == R.id.admin_userBtn) {
-                    startActivity(new Intent(book_registration.this, user.class));
+                    startActivity(new Intent(book_registration.this, UserListActivity.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.admin_modifyBtn) {
                     startActivity(new Intent(book_registration.this, AdminCodeEditActivity.class));

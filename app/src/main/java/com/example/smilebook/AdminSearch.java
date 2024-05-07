@@ -94,7 +94,7 @@ public class AdminSearch extends AppCompatActivity{
                     startActivity(new Intent(AdminSearch.this, book_registration.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.admin_userBtn) {
-                    startActivity(new Intent(AdminSearch.this, user.class));
+                    startActivity(new Intent(AdminSearch.this, UserListActivity.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.admin_modifyBtn) {
                     startActivity(new Intent(AdminSearch.this, AdminCodeEditActivity.class));

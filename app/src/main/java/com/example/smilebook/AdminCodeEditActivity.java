@@ -4,15 +4,11 @@ import static androidx.databinding.DataBindingUtil.setContentView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.PopupMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 public class AdminCodeEditActivity extends AppCompatActivity {
 
@@ -42,7 +38,7 @@ public class AdminCodeEditActivity extends AppCompatActivity {
                     startActivity(new Intent(AdminCodeEditActivity.this, book_registration.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.admin_userBtn) {
-                    startActivity(new Intent(AdminCodeEditActivity.this, user.class));
+                    startActivity(new Intent(AdminCodeEditActivity.this, UserListActivity.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.admin_modifyBtn) {
                     startActivity(new Intent(AdminCodeEditActivity.this, AdminCodeEditActivity.class));

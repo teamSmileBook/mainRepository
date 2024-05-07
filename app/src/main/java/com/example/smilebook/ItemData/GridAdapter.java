@@ -1,5 +1,6 @@
 package com.example.smilebook.ItemData;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.example.smilebook.BookInfo;
 import com.example.smilebook.R;
 import com.example.smilebook.WishlistClient;
+import com.example.smilebook.user_data;
 
 import java.util.List;
 

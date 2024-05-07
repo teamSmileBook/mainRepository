@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="310dp"
+        android:layout_marginLeft="290dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
         android:text="회원 상태"
@@ -32,14 +32,14 @@
         />
 
     <TextView
-        android:id="@+id/signup_date"
+        android:id="@+id/member_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="49dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="32dp"
-        android:text="xxxx/xx/xx"
+        android:text="member_id"
         android:textAppearance="@style/signup_date"
         android:gravity="top"
         />

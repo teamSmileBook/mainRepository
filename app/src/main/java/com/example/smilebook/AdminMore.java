@@ -54,7 +54,7 @@ public class AdminMore extends AppCompatActivity {
         admin_user_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminMore.this, user.class);
+                Intent intent = new Intent(AdminMore.this, UserListActivity.class);
                 startActivity(intent);
             }
         });

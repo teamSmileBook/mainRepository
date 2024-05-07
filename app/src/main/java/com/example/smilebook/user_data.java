@@ -14,9 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import com.example.smilebook.api.ApiService;
 import com.example.smilebook.api.RetrofitClient;
+import com.example.smilebook.databinding.ToolbarTitleBinding;
+import com.example.smilebook.databinding.UserDataBinding;
 import com.example.smilebook.model.MemberDTO;
 import com.example.smilebook.model.ResponseDTO;
 import com.example.smilebook.model.SuspensionReasonDTO;
@@ -32,11 +35,19 @@ public class user_data extends AppCompatActivity {
     private TextView userIdTextView, userCardNumberTextView, suspendedUserTextView, warningTextView;
     private Button userStopButton, userWarningButton;
     private EditText warningReasonEditText;
+    private UserDataBinding binding;
+    private ToolbarTitleBinding toolbarTitleBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_data);
+//        setContentView(R.layout.user_data);
+
+        // 데이터 바인딩 설정
+        binding = DataBindingUtil.setContentView(this, R.layout.user_data);
+        // TextView의 text 설정
+        binding.setTitleText("회원 정보");
+        toolbarTitleBinding = binding.toolbar;
 
         userIdTextView = findViewById(R.id.userId);
         userCardNumberTextView = findViewById(R.id.user_cardnumber);
@@ -45,6 +56,22 @@ public class user_data extends AppCompatActivity {
         userStopButton = findViewById(R.id.userStopButton);
         userWarningButton = findViewById(R.id.userWarningButton);
         warningReasonEditText = findViewById(R.id.warning_reason);
+
+        //뒤로가기
+        toolbarTitleBinding.back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        //more 클릭 이벤트 처리
+        findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopup(view);
+            }
+        });
 
         ApiService apiService = RetrofitClient.getApiService();
         Call<UserDataDTO> call = apiService.getMemberInfo("test");

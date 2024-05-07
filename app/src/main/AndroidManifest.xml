@@ -39,7 +39,7 @@
         <activity android:name=".BookLocationActivity"
             android:exported="true" />
 
-        <activity android:name=".user"
+        <activity android:name=".UserListActivity"
             android:exported="true" />
 
         <activity android:name=".AdminSearch"

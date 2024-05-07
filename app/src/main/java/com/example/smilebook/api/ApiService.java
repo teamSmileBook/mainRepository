@@ -1,5 +1,6 @@
 package com.example.smilebook.api;
 import com.example.smilebook.ItemData.GridBookListData;
+import com.example.smilebook.ItemData.UserListData;
 import com.example.smilebook.model.BookDTO;
 import com.example.smilebook.model.BookLocationDTO;
 import com.example.smilebook.model.LoginRequest;
@@ -9,6 +10,7 @@ import com.example.smilebook.model.ReservationResponseDTO;
 import com.example.smilebook.model.ResponseDTO;
 import com.example.smilebook.model.SuspensionReasonDTO;
 import com.example.smilebook.model.UserDataDTO;
+import com.example.smilebook.model.UserListDTO;
 import com.example.smilebook.model.WishlistDTO;
 import com.example.smilebook.model.WishlistItemDTO;
 
@@ -84,4 +86,6 @@ public interface ApiService {
     @POST("/member/updateWarning")
     Call<Void> updateWarning(@Body SuspensionReasonDTO suspensionReasonDTO);
 
+    @GET("/admin/users")
+    Call<List<UserListDTO>> getAllUsers();
 }

@@ -1,18 +1,16 @@
-package com.example.smilebook.ItemData;
+package com.example.smilebook.model;
 
-import java.io.Serializable;
-
-public class UserListData implements Serializable {
-
+public class UserListDTO {
     private String memberId;
     private String nickname;
     private String memberStatus;
 
-    public UserListData(String memberId, String nickname, String memberStatus){
+    public UserListDTO(String memberId, String nickname, String memberStatus) {
         this.memberId = memberId;
         this.nickname = nickname;
         this.memberStatus = memberStatus;
     }
+
     public String getMemberId() {
         return memberId;
     }
