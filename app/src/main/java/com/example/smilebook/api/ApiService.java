@@ -9,6 +9,7 @@ import com.example.smilebook.model.ReservationDTO;
 import com.example.smilebook.model.ReservationResponseDTO;
 import com.example.smilebook.model.ResponseDTO;
 import com.example.smilebook.model.SuspensionReasonDTO;
+import com.example.smilebook.model.TokenDTO;
 import com.example.smilebook.model.UserDataDTO;
 import com.example.smilebook.model.UserListDTO;
 import com.example.smilebook.model.WishlistDTO;
@@ -88,4 +89,8 @@ public interface ApiService {
 
     @GET("/admin/users")
     Call<List<UserListDTO>> getAllUsers();
+
+    @POST("/firebase/token")
+    Call<Void> sendFirebaseToken(@Body TokenDTO tokenDTO);
+
 }

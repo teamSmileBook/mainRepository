@@ -103,21 +103,6 @@ public class UserAlarm extends AppCompatActivity {
         //adapter 초기화
         adapter = new AlarmListViewItemAdapter(this);
 
-        //adapter 참조
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.circle_green), "반납완료");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.circle_yellow), "반납 기간까지 7일 남았습니다.");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.circle_green), "대출완료");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.circle_green), "반납완료");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.circle_yellow), "반납 기간까지 0일 남았습니다");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.circle_yellow), "반납 기간까지 1일 남았습니다");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.circle_yellow), "반납 기간까지 7일 남았습니다");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.circle_green), "대출완료");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.circle_green), "반납완료");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.circle_yellow), "반납기간까지 0일 남았습니다.");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.circle_yellow), "반납 기간까지 1일 남았습니다");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.circle_yellow), "반납 기간까지 7일 남았습니다");
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.circle_green), "대출완료");
-
         //listview에 adapter 설정
         listView.setAdapter(adapter);
     }

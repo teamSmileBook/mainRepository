@@ -36,47 +36,41 @@ public class user_data extends AppCompatActivity {
     private Button userStopButton, userWarningButton;
     private EditText warningReasonEditText;
     private UserDataBinding binding;
-    private ToolbarTitleBinding toolbarTitleBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.user_data);
-
-        // 데이터 바인딩 설정
         binding = DataBindingUtil.setContentView(this, R.layout.user_data);
-        // TextView의 text 설정
         binding.setTitleText("회원 정보");
-        toolbarTitleBinding = binding.toolbar;
 
-        userIdTextView = findViewById(R.id.userId);
-        userCardNumberTextView = findViewById(R.id.user_cardnumber);
-        suspendedUserTextView = findViewById(R.id.suspended_user);
-        warningTextView = findViewById(R.id.warning);
-        userStopButton = findViewById(R.id.userStopButton);
-        userWarningButton = findViewById(R.id.userWarningButton);
-        warningReasonEditText = findViewById(R.id.warning_reason);
+        userIdTextView = binding.userId;
+        userCardNumberTextView = binding.userCardnumber;
+        suspendedUserTextView = binding.suspendedUser;
+        warningTextView = binding.warning;
+        userStopButton = binding.userStopButton;
+        userWarningButton = binding.userWarningButton;
+        warningReasonEditText = binding.warningReason;
 
-        //뒤로가기
-        toolbarTitleBinding.back.setOnClickListener(new View.OnClickListener() {
+        loadUserData(); // 회원 정보 초기 로딩
+
+        userStopButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                finish();
+            public void onClick(View v) {
+                updateUserStatus();
             }
         });
 
-        //more 클릭 이벤트 처리
-        findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
+        userWarningButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                showPopup(view);
+            public void onClick(View v) {
+                giveUserWarning();
             }
         });
+    }
 
+    private void loadUserData() {
         ApiService apiService = RetrofitClient.getApiService();
         Call<UserDataDTO> call = apiService.getMemberInfo("test");
-
-        //회원 정보 조회 기능
         call.enqueue(new Callback<UserDataDTO>() {
             @Override
             public void onResponse(Call<UserDataDTO> call, Response<UserDataDTO> response) {
@@ -86,7 +80,7 @@ public class user_data extends AppCompatActivity {
                     userCardNumberTextView.setText(userDataDTO.getRfidCardId());
 
                     if ("이용 정지 대상자".equals(userDataDTO.getMemberStatus())) {
-                        suspendedUserTextView.setTextColor(Color.RED);
+                        suspendedUserTextView.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
                     }
                     suspendedUserTextView.setText(userDataDTO.getMemberStatus());
 
@@ -110,88 +104,67 @@ public class user_data extends AppCompatActivity {
             public void onFailure(Call<UserDataDTO> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "네트워크 오류", Toast.LENGTH_SHORT).show();
             }
-
         });
+    }
 
-        //회원 정지 기능
-        userStopButton.setOnClickListener(new View.OnClickListener() {
+    private void updateUserStatus() {
+        String suspensionReasonText = warningReasonEditText.getText().toString();
+        String memberId = "test";
+
+        SuspensionReasonDTO suspensionReasonDTO = new SuspensionReasonDTO(memberId, suspensionReasonText);
+
+        ApiService apiService = RetrofitClient.getApiService();
+        Call<Void> call = apiService.updateSuspensionReason(suspensionReasonDTO);
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onClick(View v) {
-                String suspensionReasonText = warningReasonEditText.getText().toString();
-                String memberId = "test";
-
-                SuspensionReasonDTO suspensionReasonDTO = new SuspensionReasonDTO(memberId, suspensionReasonText);
-
-                ApiService apiService = RetrofitClient.getApiService();
-                Call<Void> call = apiService.updateSuspensionReason(suspensionReasonDTO);
-                call.enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        if (response.isSuccessful()) {
-                            if (userStopButton.getText().toString().equals("회원 정지")) {
-                                Toast.makeText(getApplicationContext(), "회원 정지 완료", Toast.LENGTH_SHORT).show();
-                                userStopButton.setText("정지 취소");
-                            } else {
-                                Toast.makeText(getApplicationContext(), "정지 취소 완료", Toast.LENGTH_SHORT).show();
-                                userStopButton.setText("이용 정지");
-                            }
-                        } else {
-                            if (userStopButton.getText().toString().equals("회원 정지")) {
-                                Toast.makeText(getApplicationContext(), "회원 정지 실패", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(getApplicationContext(), "정지 취소 실패", Toast.LENGTH_SHORT).show();
-                            }
-                        }
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    if (userStopButton.getText().toString().equals("회원 정지")) {
+                        Toast.makeText(getApplicationContext(), "회원 정지 완료", Toast.LENGTH_SHORT).show();
+                        userStopButton.setText("정지 취소");
+                    } else {
+                        Toast.makeText(getApplicationContext(), "정지 취소 완료", Toast.LENGTH_SHORT).show();
+                        userStopButton.setText("이용 정지");
                     }
-
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "네트워크 오류", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (userStopButton.getText().toString().equals("회원 정지")) {
+                        Toast.makeText(getApplicationContext(), "회원 정지 실패", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "정지 취소 실패", Toast.LENGTH_SHORT).show();
                     }
-                });
-
-                //새로고침
-                Intent intent = new Intent(user_data.this, user_data.class);
-                startActivity(intent);
-                finish();
+                }
             }
 
-        });
-
-        //회원 경고 기능
-        userWarningButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                String memberId = "test";
-                String suspensionReason = warningReasonEditText.getText().toString().trim();
-
-                SuspensionReasonDTO suspensionReasonDTO = new SuspensionReasonDTO(memberId, suspensionReason);
-
-                ApiService apiService = RetrofitClient.getApiService();
-                Call<Void> call = apiService.updateWarning(suspensionReasonDTO);
-                call.enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        if (response.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "회원 경고 부여 완료", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getApplicationContext(), "회원 경고 부여 실패", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "네트워크 오류", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                //새로고침
-                Intent intent = new Intent(user_data.this, user_data.class);
-                startActivity(intent);
-                finish();
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "네트워크 오류", Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
+    private void giveUserWarning() {
+        String memberId = "test";
+        String suspensionReason = warningReasonEditText.getText().toString().trim();
+
+        SuspensionReasonDTO suspensionReasonDTO = new SuspensionReasonDTO(memberId, suspensionReason);
+
+        ApiService apiService = RetrofitClient.getApiService();
+        Call<Void> call = apiService.updateWarning(suspensionReasonDTO);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "회원 경고 부여 완료", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "회원 경고 부여 실패", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "네트워크 오류", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     //상단에 있는 메뉴바

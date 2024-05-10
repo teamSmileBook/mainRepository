@@ -42,7 +42,6 @@ public class AlarmListViewItemAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.alarm_listview_item, viewGroup, false);
 
             viewHolder = new ViewHolder();
-            viewHolder.alarmCircle = convertView.findViewById(R.id.alarm_circle);
             viewHolder.alarmText = convertView.findViewById(R.id.alarm_text);
 
             convertView.setTag(viewHolder);
