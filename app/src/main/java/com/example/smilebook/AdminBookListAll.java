@@ -14,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -33,7 +32,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class BookListAll extends AppCompatActivity {
+public class AdminBookListAll extends AppCompatActivity{
 
     private static final String BASE_URL = "http://3.39.9.175:8080/";
     private RecyclerView recyclerView;
@@ -50,7 +49,7 @@ public class BookListAll extends AppCompatActivity {
         findViewById(R.id.item_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(BookListAll.this, SearchActivity.class));
+                startActivity(new Intent(AdminBookListAll.this, SearchActivity.class));
             }
         });
 
@@ -73,15 +72,19 @@ public class BookListAll extends AppCompatActivity {
         recyclerView.setAdapter(gridAdapter); //리사이클러뷰랑 어댑터 연결
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); //사용할 LayoutManager (그리드레이아웃 2열로 정렬)
 
-        // SharedPreferences를 사용하여 memberId 값을 가져옴
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        memberId = sharedPreferences.getString("memberId", null);
-
-        // WishlistClient 인스턴스 생성
-        wishlistClient = new WishlistClient(this, gridAdapter);
+        // GridAdapter 생성 후 관리자 여부 설정
+        gridAdapter.setAdmin(true); // 관리자이므로 true로 설정
 
         // 전체 도서 목록 불러오기
         loadAllBooks();
+
+        // WishlistClient 인스턴스 생성
+        wishlistClient = new WishlistClient(this, gridAdapter);
+        wishlistClient.getWishlistByMemberId(memberId, bookList);
+
+        // SharedPreferences를 사용하여 memberId 값을 가져옴
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        memberId = sharedPreferences.getString("memberId", null);
 
         //스피너 설정
         String[] items = {"전체", "가나다순", "대출 가능 도서", "찜 도서"};
@@ -165,7 +168,6 @@ public class BookListAll extends AppCompatActivity {
         });
     }
 
-    //대출 가능 도서 목록 불러오는 메서드
     private void filterAvailableBooks() {
         Log.d("BookListAll","filterAvailableBooks 호출됨");
         Log.d("filterAvilableBooks","booklist " +bookList);
@@ -184,55 +186,24 @@ public class BookListAll extends AppCompatActivity {
     //상단에 있는 메뉴바
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
-        popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
+        popupMenu.getMenuInflater().inflate(R.menu.menu_more_admin, popupMenu.getMenu());
 
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
-                if (menuItem.getItemId() == R.id.user_alarmBtn) {
-                    startActivity(new Intent(BookListAll.this, UserAlarm.class));
+                if (menuItem.getItemId() == R.id.admin_registrationBtn) {
+                    startActivity(new Intent(AdminBookListAll.this, book_registration.class));
                     return true;
-                } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
-                    startActivity(new Intent(BookListAll.this, UserMyInfo.class));
+                } else if (menuItem.getItemId() == R.id.admin_userBtn) {
+                    startActivity(new Intent(AdminBookListAll.this, UserList.class));
                     return true;
-                } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(BookListAll.this, user_book.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
-                    startActivity(new Intent(BookListAll.this, UserAdminModeSwitch.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_logOutBtn) {
-                    // SharedPreferences를 사용하여 "memberId" 값을 가져오기
-                    SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                    String memberId = sharedPreferences.getString("memberId", null);
-
-                    if (memberId == null) {
-                        // "로그인" 버튼을 눌렀을 때 로그인 액티비티로 이동
-                        startActivity(new Intent(BookListAll.this, LoginActivity.class));
-                    } else {
-                        // SharedPreferences에서 "memberId" 값을 null로 변경
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("memberId", null);
-                        editor.apply();
-
-                        Toast.makeText(BookListAll.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
-                    }
+                } else if (menuItem.getItemId() == R.id.admin_transformBtn) {
+                    startActivity(new Intent(AdminBookListAll.this, MainActivity.class));
                     return true;
                 } else {
                     return false;
                 }
             }
         });
-        // SharedPreferences를 사용하여 "memberId" 값을 가져오기
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        String memberId = sharedPreferences.getString("memberId", null);
-
-        // memberId가 null이면 로그인 버튼 텍스트 설정
-        MenuItem logOutMenuItem = popupMenu.getMenu().findItem(R.id.user_logOutBtn);
-        if (memberId == null) {
-            logOutMenuItem.setTitle("로그인");
-        } else {
-            logOutMenuItem.setTitle("로그아웃");
-        }
 
         popupMenu.show();
 
@@ -246,3 +217,4 @@ public class BookListAll extends AppCompatActivity {
         return true;
     }
 }
+

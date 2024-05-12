@@ -36,4 +36,7 @@ public class WishlistDTO {
         this.wishlist = wishlist;
     }
 
+    public List<Long> getBookIds() {
+        return wishlist;
+    }
 }

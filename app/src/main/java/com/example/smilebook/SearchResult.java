@@ -81,23 +81,4 @@ public class SearchResult extends AppCompatActivity {
         menuInflater.inflate(R.menu.menu_toolbar, menu);
         return true;
     }
-
-    //툴바 아이템 선택 시 실행되는 메서드
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int itemId = item.getItemId();
-
-        if (itemId == R.id.item_search) {
-            Intent searchIntent = new Intent(getApplicationContext(), SearchActivity.class);
-            startActivity(searchIntent);
-            return true;
-        } else if (itemId == R.id.item_more) {
-            Intent moreIntent = new Intent(getApplicationContext(), UserMore.class);
-            startActivity(moreIntent);
-            return true;
-        } else {
-            return super.onOptionsItemSelected(item);
-        }
-    }
 }

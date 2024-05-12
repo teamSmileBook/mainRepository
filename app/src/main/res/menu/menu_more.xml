@@ -12,10 +12,6 @@
         android:title="내도서"/>
 
     <item
-        android:id="@+id/user_wishBookBtn"
-        android:title="찜도서"/>
-
-    <item
         android:id="@+id/user_adminTransBtn"
         android:title="관리자인증"/>
 

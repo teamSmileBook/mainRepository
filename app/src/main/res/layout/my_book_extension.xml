@@ -20,7 +20,7 @@
             android:background="@drawable/back" />
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
             <View
@@ -42,7 +42,7 @@
                 android:layout_alignLeft="@id/rectangle_1"
                 android:layout_alignRight="@id/rectangle_1"
                 android:gravity="center"
-                android:text="도서 위치"
+                android:text="도서 정보"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp" />
         </RelativeLayout>

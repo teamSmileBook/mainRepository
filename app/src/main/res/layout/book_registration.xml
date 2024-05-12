@@ -1,146 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
-
-    <include
-        layout="@layout/toolbar_title"
-        android:id="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="parent" />
-
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="titleText"
+            type="String" />
+    </data>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="630dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/registration"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_marginTop="10dp"
-            android:layout_width="200dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            android:maxWidth="200dp"
-            android:maxHeight="150dp"
-            android:onClick="onClick"
-            android:src="@drawable/picture_background" />
-
-        <Button
-            android:id="@+id/photo"
-            android:layout_width="200dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="PHOTO"
-            android:backgroundTint="@color/black"
-            android:textSize="15sp"
-            android:onClick="onClick" />
-
-        <EditText
-            android:id="@+id/editTextText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text"
-            android:text="책 제목 :"
-            android:layout_gravity="center"/>
-
-        <EditText
-            android:id="@+id/editTextText2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text"
-            android:text="저자 : "
-            android:layout_gravity="center"/>
-
-        <EditText
-            android:id="@+id/editTextText3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text"
-            android:text="출판사 : "
-            android:layout_gravity="center"/>
-
-        <EditText
-            android:id="@+id/editTextText4"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text"
-            android:text=" 메모 : "
-            android:layout_gravity="center"
-            android:background="@drawable/memo_border"/>
-
-        <View
-            android:id="@+id/view23"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
+        <include
+            layout="@layout/toolbar_title"
+            android:id="@+id/toolbar"
+            app:titleText="@{titleText}" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="91dp"
-            android:layout_weight="1"
+            android:layout_height="600dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/registration"
             android:orientation="vertical">
 
-            <LinearLayout
+            <EditText
+                android:id="@+id/ISBN"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:ems="15"
+                android:inputType="text"
+                android:text="ISBN : "
+                android:textSize="14sp"
+                android:layout_gravity="center"/>
 
-                <android.widget.Button
-                    android:id="@+id/available"
+            <EditText
+                android:id="@+id/book_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="15"
+                android:inputType="text"
+                android:text="책 제목 : "
+                android:textSize="14sp"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:id="@+id/author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="15"
+                android:inputType="text"
+                android:text="저자 : "
+                android:textSize="14sp"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:id="@+id/publisher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="15"
+                android:inputType="text"
+                android:text="출판사 : "
+                android:textSize="14sp"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:id="@+id/descripsion"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:ems="15"
+                android:inputType="text"
+                android:text=" 목차 : "
+                android:textSize="14sp"
+                android:layout_gravity="center"
+                android:background="@drawable/memo_border"/>
+
+            <EditText
+                android:id="@+id/contents"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:ems="15"
+                android:inputType="text"
+                android:text=" 책 소개 : "
+                android:textSize="14sp"
+                android:layout_gravity="center"
+                android:background="@drawable/memo_border"
+                android:layout_marginTop="5dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="91dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:layout_weight="1"
                     android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <android.widget.Button
+                        android:id="@+id/available"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:background="@drawable/user_button"
+                        android:text="대출 가능"
+                        android:textColor="#FFFFFF"/>
+
+                    <android.widget.Button
+                        android:id="@+id/impossible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:background="@drawable/user_button2"
+                        android:layout_marginLeft="5dp"
+                        android:text="대출 불가능"
+                        android:textColor="#8F8F8F"/>
+
+                </LinearLayout>
+
+                <android.widget.Button
+                    android:id="@+id/registration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="10dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/user_button"
-                    android:text="대출 가능"
+                    android:text="등록"
                     android:textColor="#FFFFFF"/>
 
-                <android.widget.Button
-                    android:id="@+id/impossible"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:background="@drawable/user_button2"
-                    android:text="대출 불가능"
-                    android:textColor="#8F8F8F"/>
-
             </LinearLayout>
-
-            <View
-                android:id="@+id/view27"
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_weight="1" />
-
-            <android.widget.Button
-                android:id="@+id/registration"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/user_button"
-                android:text="등록"
-                android:textColor="#FFFFFF"/>
-
         </LinearLayout>
-
     </LinearLayout>
-</LinearLayout>
+</layout>

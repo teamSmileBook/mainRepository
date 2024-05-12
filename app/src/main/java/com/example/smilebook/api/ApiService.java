@@ -77,6 +77,8 @@ public interface ApiService {
     @DELETE("/wishlist/delete/{memberId}/{bookId}")
     Call<Void> deleteFromWishlist(@Path("memberId") String memberId, @Path("bookId") Long bookId);
 
+    @GET("/wishlist/{memberId}/{category}")
+    Call<WishlistDTO> getWishlistByMemberIdAndCategory(@Path("memberId") String memberId, @Path("category") String category);
 
     @GET("/member/{memberId}")
     Call<UserDataDTO> getMemberInfo(@Path("memberId") String memberId);

@@ -23,7 +23,6 @@
 <!--        app:layout_constraintEnd_toEndOf="parent"/>-->
 
     <LinearLayout
-        android:id="@id/filter"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal">
@@ -46,7 +45,7 @@
 
         <Spinner
             android:id="@+id/filter"
-            android:layout_width="10dp"
+            android:layout_width="20dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_marginRight="30dp"

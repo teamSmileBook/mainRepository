@@ -71,18 +71,6 @@ public class UserMyInfo extends AppCompatActivity {
 
         toolbarTitleBinding = binding.toolbar;
 
-        //홈(main_b.xml)으로
-//        toolbarTitleBinding.icons8Smile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // main_b 화면으로 이동하는 인텐트 생성
-//                Intent intent = new Intent(user_my_info.this, main_b.class);
-//                startActivity(intent);
-//                // 현재 액티비티 종료
-//                finish();
-//            }
-//        });
-
         //뒤로가기(more.xml)
         toolbarTitleBinding.back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,9 +180,6 @@ public class UserMyInfo extends AppCompatActivity {
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
                     startActivity(new Intent(UserMyInfo.this, user_book.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(UserMyInfo.this, WishListActivity.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(UserMyInfo.this, UserAdminModeSwitch.class));

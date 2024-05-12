@@ -168,6 +168,7 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
+    //상단에 있는 메뉴바
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
         popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
@@ -182,9 +183,6 @@ public class SearchActivity extends AppCompatActivity {
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
                     startActivity(new Intent(SearchActivity.this, user_book.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(SearchActivity.this, BookListAll.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(SearchActivity.this, UserAdminModeSwitch.class));
@@ -222,6 +220,8 @@ public class SearchActivity extends AppCompatActivity {
         } else {
             logOutMenuItem.setTitle("로그아웃");
         }
+
         popupMenu.show();
+
     }
 }

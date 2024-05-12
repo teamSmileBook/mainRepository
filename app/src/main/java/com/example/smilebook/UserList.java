@@ -1,7 +1,6 @@
 package com.example.smilebook;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -28,7 +27,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class UserListActivity extends AppCompatActivity {
+public class UserList extends AppCompatActivity {
     private View allUserView;
     private View stopUserView;
     private boolean  isAllUserVisible  = true;
@@ -45,7 +44,7 @@ public class UserListActivity extends AppCompatActivity {
         findViewById(R.id.item_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserListActivity.this, SearchActivity.class));
+                startActivity(new Intent(UserList.this, SearchActivity.class));
             }
         });
 
@@ -81,41 +80,20 @@ public class UserListActivity extends AppCompatActivity {
                     List<UserListDTO> userList = response.body();
                     Log.d("UserListActivity", "회원 목록 불러오기 성공");
                     List<UserListData> userListData = convertToUserListData(userList);
-                    adapter = new UserAdapter(UserListActivity.this, userListData);
+                    adapter = new UserAdapter(UserList.this, userListData);
                     recyclerView.setAdapter(adapter);
                 } else {
                     Log.d("UserListActivity", "서버 응답 실패");
-                    Toast.makeText(UserListActivity.this, "회원 목록을 불러오는 데 실패했습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserList.this, "회원 목록을 불러오는 데 실패했습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<UserListDTO>> call, Throwable t) {
                 Log.d("UserListActivity","네트워크 오류: " + t.getMessage());
-                Toast.makeText(UserListActivity.this, "네트워크 오류", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserList.this, "네트워크 오류", Toast.LENGTH_SHORT).show();
             }
         });
-
-//        call.enqueue(new Callback<List<UserListData>>() {
-//            @Override
-//            public void onResponse(Call<List<UserListData>> call, Response<List<UserListData>> response) {
-//                if (response.isSuccessful()) {
-//                    Log.d("UserListActivity", "회원 목록 불러오기 성공");
-//                    List<UserListData> userList = response.body();
-//                    adapter = new UserAdapter(UserListActivity.this, userList);
-//                    recyclerView.setAdapter(adapter);
-//                } else {
-//                    Log.d("UserListActivity", "서버 응답 실패");
-//                    Toast.makeText(UserListActivity.this, "회원 목록을 불러오는 데 실패했습니다.", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<UserListData>> call, Throwable t) {
-//                Log.d("UserListActivity","네트워크 오류: " + t.getMessage());
-//                Toast.makeText(UserListActivity.this, "네트워크 오류", Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
         //버튼 및 뷰 초기화
         Button allUserBtn = findViewById(R.id.all_user_btn);
@@ -153,59 +131,24 @@ public class UserListActivity extends AppCompatActivity {
     //상단에 있는 메뉴바
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
-        popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
+        popupMenu.getMenuInflater().inflate(R.menu.menu_more_admin, popupMenu.getMenu());
 
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
-                if (menuItem.getItemId() == R.id.user_alarmBtn) {
-                    startActivity(new Intent(UserListActivity.this, UserAlarm.class));
+                if (menuItem.getItemId() == R.id.admin_registrationBtn) {
+                    startActivity(new Intent(UserList.this, book_registration.class));
                     return true;
-                } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
-                    startActivity(new Intent(UserListActivity.this, UserMyInfo.class));
+                } else if (menuItem.getItemId() == R.id.admin_userBtn) {
+                    startActivity(new Intent(UserList.this, UserList.class));
                     return true;
-                } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(UserListActivity.this, user_book.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(UserListActivity.this, WishListActivity.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
-                    startActivity(new Intent(UserListActivity.this, UserAdminModeSwitch.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_logOutBtn) {
-                    // SharedPreferences를 사용하여 "memberId" 값을 가져오기
-                    SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                    String memberId = sharedPreferences.getString("memberId", null);
-
-                    if (memberId == null) {
-                        // "로그인" 버튼을 눌렀을 때 로그인 액티비티로 이동
-                        startActivity(new Intent(UserListActivity.this, LoginActivity.class));
-                    } else {
-                        // SharedPreferences에서 "memberId" 값을 null로 변경
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("memberId", null);
-                        editor.apply();
-
-                        Toast.makeText(UserListActivity.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
-                    }
+                } else if (menuItem.getItemId() == R.id.admin_transformBtn) {
+                    startActivity(new Intent(UserList.this, MainActivity.class));
                     return true;
                 } else {
                     return false;
                 }
             }
         });
-
-// SharedPreferences를 사용하여 "memberId" 값을 가져오기
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        String memberId = sharedPreferences.getString("memberId", null);
-
-// memberId가 null이면 로그인 버튼 텍스트 설정
-        MenuItem logOutMenuItem = popupMenu.getMenu().findItem(R.id.user_logOutBtn);
-        if (memberId == null) {
-            logOutMenuItem.setTitle("로그인");
-        } else {
-            logOutMenuItem.setTitle("로그아웃");
-        }
 
         popupMenu.show();
 

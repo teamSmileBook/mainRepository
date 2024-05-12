@@ -20,34 +20,56 @@
         android:icon="@drawable/icons8_smile_32"
         >
 
-        <activity android:name=".SearchResult"
+        <activity
+            android:name=".user_book"
             android:exported="true"/>
 
-        <activity android:name=".BookListActivity"
+        <activity
+            android:name=".AdminBookListAll"
             android:exported="true"/>
 
-        <activity android:name=".BookInfo"
+        <activity
+            android:name=".AdminBookEdit"
             android:exported="true"/>
 
-        <activity android:name=".BookListAll"
+        <activity
+            android:name=".SearchResult"
             android:exported="true"/>
 
-        <activity android:name=".AdminmodeSwitchActivity"
+        <activity
+            android:name=".BookListActivity"
+            android:exported="true"/>
+
+        <activity
+            android:name=".BookInfo"
+            android:exported="true"/>
+
+        <activity
+            android:name=".BookListAll"
+            android:exported="true"/>
+
+        <activity
+            android:name=".AdminmodeSwitchActivity"
             android:exported="true" />
 
-        <activity android:name=".user_data"
+        <activity
+            android:name=".UserData"
             android:exported="true" />
 
-        <activity android:name=".BookLocationActivity"
+        <activity
+            android:name=".BookLocationActivity"
             android:exported="true" />
 
-        <activity android:name=".UserListActivity"
+        <activity
+            android:name=".UserList"
             android:exported="true" />
 
-        <activity android:name=".AdminSearch"
+        <activity
+            android:name=".AdminSearch"
             android:exported="true" />
 
-        <activity android:name=".AdminMore"
+        <activity
+            android:name=".AdminMore"
             android:exported="true" />
 
         <activity
@@ -57,8 +79,6 @@
         <activity
             android:name=".AdminCodeEditActivity"
             android:exported="true"/>
-
-
         <activity
             android:name=".UserAdminModeSwitch"
             android:exported="true" />

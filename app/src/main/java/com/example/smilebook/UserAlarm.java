@@ -122,9 +122,6 @@ public class UserAlarm extends AppCompatActivity {
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
                     startActivity(new Intent(UserAlarm.this, user_book.class));
                     return true;
-                } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(UserAlarm.this, WishListActivity.class));
-                    return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(UserAlarm.this, UserAdminModeSwitch.class));
                     return true;

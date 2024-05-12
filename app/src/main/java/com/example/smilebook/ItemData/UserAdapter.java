@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smilebook.R;
-import com.example.smilebook.user_data;
+import com.example.smilebook.UserData;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                 String memberId = user.getMemberId();
 
                 // memberId를 인텐트에 담아 user_data 액티비티 실행
-                Intent intent = new Intent(context, user_data.class);
+                Intent intent = new Intent(context, UserData.class);
                 intent.putExtra("memberId", memberId);
                 context.startActivity(intent);
             }

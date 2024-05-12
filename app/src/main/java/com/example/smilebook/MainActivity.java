@@ -3,13 +3,10 @@ package com.example.smilebook;
 import static com.example.smilebook.ItemData.ImageLoader.loadImage;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.smilebook.api.ApiService;
 
 
@@ -93,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), user_data.class);
+                Intent intent = new Intent(getApplicationContext(), UserData.class);
                 //원래 로그인으로 가는건데 임시로 회원관리로 연결
                 startActivity(intent);
             }
@@ -196,9 +192,6 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
                     startActivity(new Intent(MainActivity.this, user_book.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(MainActivity.this, BookListAll.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(MainActivity.this, UserAdminModeSwitch.class));

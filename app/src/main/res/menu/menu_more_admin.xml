@@ -8,10 +8,6 @@
         android:title="회원 관리"/>
 
     <item
-        android:id="@+id/admin_modifyBtn"
-        android:title="인증번호 수정"/>
-
-    <item
         android:id="@+id/admin_transformBtn"
         android:title="일반회원 전환"/>
 

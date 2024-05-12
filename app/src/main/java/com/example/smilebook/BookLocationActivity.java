@@ -12,9 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import com.example.smilebook.api.ApiService;
 import com.example.smilebook.api.RetrofitClient;
+import com.example.smilebook.databinding.BookLocationBinding;
+import com.example.smilebook.databinding.ToolbarTitleBinding;
 import com.example.smilebook.model.BookLocationDTO;
 
 import retrofit2.Call;
@@ -26,11 +29,19 @@ public class BookLocationActivity extends AppCompatActivity {
     private ApiService apiService;
     private CustomImageView imageView;
     private Long bookId;
+    private BookLocationBinding binding;
+    private ToolbarTitleBinding toolbarTitleBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_location);
+
+        // 데이터 바인딩 설정
+        binding = DataBindingUtil.setContentView(this, R.layout.book_location);
+        // TextView의 text 설정
+        binding.setTitleText("도서 정보");
+        toolbarTitleBinding = binding.toolbar;
 
         //more 클릭 이벤트 처리
         findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
@@ -40,6 +51,12 @@ public class BookLocationActivity extends AppCompatActivity {
             }
         });
 
+        Button back = findViewById(R.id.back);
+        //뒤로가기
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { finish(); }
+        });
 
         imageView = findViewById(R.id.imageView36);
 
@@ -75,13 +92,6 @@ public class BookLocationActivity extends AppCompatActivity {
                 // 오류 처리
             }
         });
-
-        //Button back = findViewById(R.id.back);
-        //뒤로가기
-        //back.setOnClickListener(new View.OnClickListener() {
-            //@Override
-            //public void onClick(View view) { finish(); }
-        //});
     }
 
     //상단에 있는 메뉴바
@@ -99,9 +109,6 @@ public class BookLocationActivity extends AppCompatActivity {
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
                     startActivity(new Intent(BookLocationActivity.this, user_book.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(BookLocationActivity.this, WishListActivity.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(BookLocationActivity.this, UserAdminModeSwitch.class));

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -86,54 +87,15 @@ public class BookInfo extends AppCompatActivity {
         Intent intent = getIntent();
         Long bookId = intent.getLongExtra("bookId", -1L);
 
+        // 도서 정보 불러오기
+        fetchBookInfo();
+
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(BookInfo.this, BookLocationActivity.class);
                 intent.putExtra("bookId", bookId);
                 startActivity(intent);
-            }
-        });
-
-        // Retrofit 객체 생성
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        apiService = retrofit.create(ApiService.class);
-
-        // bookId에 해당하는 도서 정보 가져오기 요청
-        Call<BookDTO> call = apiService.getBookById(bookId);
-        call.enqueue(new Callback<BookDTO>() {
-            @Override
-            public void onResponse(Call<BookDTO> call, Response<BookDTO> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    BookDTO book = response.body();
-                    Log.d("BookInfo", "서버 응답 성공");
-
-                    Glide.with(BookInfo.this)
-                            .load(book.getCoverUrl())
-                            .into(bookCover);
-                    bookTitle.setText(book.getBookTitle());
-                    bookAuthor.setText(book.getAuthor());
-                    bookStatus.setText(book.getBookStatus());
-                    bookDescription.setText(book.getDescription());
-
-                    // 저장된 예약 상태 가져오기
-                    SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                    isReserved = prefs.getBoolean("isReserved", false);
-                    updateReservationButton(); // 버튼 상태 업데이트
-
-                } else {
-                    Log.e("BookInfo", "서버 응답 실패");
-                    Toast.makeText(BookInfo.this, "도서 정보를 불러 오는데 실패했습니다.", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BookDTO> call, Throwable t) {
-                Log.e("error", "네트워크 요청 실패", t);
             }
         });
 
@@ -184,6 +146,54 @@ public class BookInfo extends AppCompatActivity {
         });
     }
 
+    // 도서 정보 불러오기
+    public void fetchBookInfo() {
+        // 인텐트로부터 bookId 전달 받음
+        Intent intent = getIntent();
+        Long bookId = intent.getLongExtra("bookId", -1L);
+
+        // Retrofit 객체 생성
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        apiService = retrofit.create(ApiService.class);
+
+        // bookId에 해당하는 도서 정보 가져오기 요청
+        Call<BookDTO> call = apiService.getBookById(bookId);
+        call.enqueue(new Callback<BookDTO>() {
+            @Override
+            public void onResponse(Call<BookDTO> call, Response<BookDTO> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    BookDTO book = response.body();
+                    Log.d("BookInfo", "서버 응답 성공");
+
+                    Glide.with(BookInfo.this)
+                            .load(book.getCoverUrl())
+                            .into(bookCover);
+                    bookTitle.setText(book.getBookTitle());
+                    bookAuthor.setText(book.getAuthor());
+                    bookStatus.setText(book.getBookStatus());
+                    bookDescription.setText(book.getDescription());
+
+                    // 저장된 예약 상태 가져오기
+                    SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                    isReserved = prefs.getBoolean("isReserved", false);
+                    updateReservationButton(); // 버튼 상태 업데이트
+
+                } else {
+                    Log.e("BookInfo", "서버 응답 실패");
+                    Toast.makeText(BookInfo.this, "도서 정보를 불러 오는데 실패했습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BookDTO> call, Throwable t) {
+                Log.e("error", "네트워크 요청 실패", t);
+            }
+        });
+    }
 
     // 예약 버튼 상태 업데이트 메소드
     private void updateReservationButton() {
@@ -200,6 +210,7 @@ public class BookInfo extends AppCompatActivity {
         }
     }
 
+    //상단에 있는 메뉴바
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
         popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
@@ -214,9 +225,6 @@ public class BookInfo extends AppCompatActivity {
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
                     startActivity(new Intent(BookInfo.this, user_book.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(BookInfo.this, WishListActivity.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(BookInfo.this, UserAdminModeSwitch.class));
@@ -243,7 +251,6 @@ public class BookInfo extends AppCompatActivity {
                 }
             }
         });
-
         // SharedPreferences를 사용하여 "memberId" 값을 가져오기
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         String memberId = sharedPreferences.getString("memberId", null);

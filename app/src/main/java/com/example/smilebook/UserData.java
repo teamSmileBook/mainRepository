@@ -1,8 +1,6 @@
 package com.example.smilebook;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.MenuItem;
@@ -20,8 +18,6 @@ import com.example.smilebook.api.ApiService;
 import com.example.smilebook.api.RetrofitClient;
 import com.example.smilebook.databinding.ToolbarTitleBinding;
 import com.example.smilebook.databinding.UserDataBinding;
-import com.example.smilebook.model.MemberDTO;
-import com.example.smilebook.model.ResponseDTO;
 import com.example.smilebook.model.SuspensionReasonDTO;
 import com.example.smilebook.model.UserDataDTO;
 
@@ -30,18 +26,21 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class user_data extends AppCompatActivity {
+public class UserData extends AppCompatActivity {
 
     private TextView userIdTextView, userCardNumberTextView, suspendedUserTextView, warningTextView;
     private Button userStopButton, userWarningButton;
     private EditText warningReasonEditText;
     private UserDataBinding binding;
+    private ToolbarTitleBinding toolbarTitleBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = DataBindingUtil.setContentView(this, R.layout.user_data);
         binding.setTitleText("회원 정보");
+        toolbarTitleBinding = binding.toolbar;
 
         userIdTextView = binding.userId;
         userCardNumberTextView = binding.userCardnumber;
@@ -50,6 +49,22 @@ public class user_data extends AppCompatActivity {
         userStopButton = binding.userStopButton;
         userWarningButton = binding.userWarningButton;
         warningReasonEditText = binding.warningReason;
+
+        //more 클릭 이벤트 처리
+        findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopup(view);
+            }
+        });
+
+        //뒤로가기
+        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         loadUserData(); // 회원 정보 초기 로딩
 
@@ -170,41 +185,18 @@ public class user_data extends AppCompatActivity {
     //상단에 있는 메뉴바
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
-        popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
+        popupMenu.getMenuInflater().inflate(R.menu.menu_more_admin, popupMenu.getMenu());
 
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
-                if (menuItem.getItemId() == R.id.user_alarmBtn) {
-                    startActivity(new Intent(user_data.this, UserAlarm.class));
+                if (menuItem.getItemId() == R.id.admin_registrationBtn) {
+                    startActivity(new Intent(UserData.this, book_registration.class));
                     return true;
-                } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
-                    startActivity(new Intent(user_data.this, UserMyInfo.class));
+                } else if (menuItem.getItemId() == R.id.admin_userBtn) {
+                    startActivity(new Intent(UserData.this, UserList.class));
                     return true;
-                } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(user_data.this, user_book.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(user_data.this, WishListActivity.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
-                    startActivity(new Intent(user_data.this, UserAdminModeSwitch.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_logOutBtn) {
-                    // SharedPreferences를 사용하여 "memberId" 값을 가져오기
-                    SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                    String memberId = sharedPreferences.getString("memberId", null);
-
-                    if (memberId == null) {
-                        // "로그인" 버튼을 눌렀을 때 로그인 액티비티로 이동
-                        startActivity(new Intent(user_data.this, LoginActivity.class));
-                    } else {
-                        // SharedPreferences에서 "memberId" 값을 null로 변경
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("memberId", null);
-                        editor.apply();
-
-                        Toast.makeText(user_data.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
-                    }
+                } else if (menuItem.getItemId() == R.id.admin_transformBtn) {
+                    startActivity(new Intent(UserData.this, MainActivity.class));
                     return true;
                 } else {
                     return false;
@@ -212,18 +204,7 @@ public class user_data extends AppCompatActivity {
             }
         });
 
-// SharedPreferences를 사용하여 "memberId" 값을 가져오기
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        String memberId = sharedPreferences.getString("memberId", null);
-
-// memberId가 null이면 로그인 버튼 텍스트 설정
-        MenuItem logOutMenuItem = popupMenu.getMenu().findItem(R.id.user_logOutBtn);
-        if (memberId == null) {
-            logOutMenuItem.setTitle("로그인");
-        } else {
-            logOutMenuItem.setTitle("로그아웃");
-        }
-
         popupMenu.show();
+
     }
 }

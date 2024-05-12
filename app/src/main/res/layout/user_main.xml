@@ -99,7 +99,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
-                    android:src="@drawable/book1"
+                    android:src="@drawable/book15"
                     />
 
                 <ImageView
@@ -590,6 +590,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="65dp"
                     android:elevation="4dp"
+                    android:src="@drawable/book12"
                     />
             </RelativeLayout>
 

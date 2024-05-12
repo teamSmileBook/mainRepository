@@ -78,9 +78,6 @@ public class AdminmodeSwitchActivity extends AppCompatActivity {
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
                     startActivity(new Intent(AdminmodeSwitchActivity.this, user_book.class));
                     return true;
-                } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(AdminmodeSwitchActivity.this, WishListActivity.class));
-                    return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(AdminmodeSwitchActivity.this, UserAdminModeSwitch.class));
                     return true;

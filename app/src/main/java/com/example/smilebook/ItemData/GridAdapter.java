@@ -17,10 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.smilebook.AdminBookEdit;
 import com.example.smilebook.BookInfo;
 import com.example.smilebook.R;
 import com.example.smilebook.WishlistClient;
-import com.example.smilebook.user_data;
 
 import java.util.List;
 
@@ -30,6 +30,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     private Context context;
     private boolean isLoggedIn; // 로그인 여부 확인 변수
     private WishlistClient wishListClient;
+    private boolean isAdmin = false; // 기본적으로는 일반 사용자로 설정
 
     //생성자
     public GridAdapter(List<GridBookListData> dataList, Context context) {
@@ -55,6 +56,12 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         GridBookListData data = dataList.get(position);
         holder.bind(data);
+        // 관리자인 경우 heart 버튼을 숨김
+        if (isAdmin) {
+            holder.heart.setVisibility(View.GONE); // 또는 View.INVISIBLE
+        } else {
+            holder.heart.setVisibility(View.VISIBLE);
+        }
     }
 
     //데이터 리스트의 크기 반환
@@ -97,11 +104,17 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
                 GridBookListData clickedItem = dataList.get(position);
 
                 if (v.getId() == R.id.bookCover) {
-                    // BookInfo 액티비티를 시작하고 클릭된 아이템의 정보를 전달
-                    Intent intent = new Intent(context, BookInfo.class);
-                    // 클릭된 아이템의 정보를 intent에 추가(도서ID)
-                    intent.putExtra("bookId", clickedItem.getBookId());
-                    context.startActivity(intent);
+                    if (isAdmin) {
+                        Intent intent = new Intent(context, AdminBookEdit.class);
+                        intent.putExtra("bookId", clickedItem.getBookId());
+                        context.startActivity(intent);
+                    } else if (!isAdmin) {
+                        // 일반 사용자: BookInfo 액티비티를 시작하고 클릭된 아이템의 정보를 전달
+                        Intent intent = new Intent(context, BookInfo.class);
+                        // 클릭된 아이템의 정보를 intent에 추가(도서ID)
+                        intent.putExtra("bookId", clickedItem.getBookId());
+                        context.startActivity(intent);
+                    }
                 } else if (v.getId() == R.id.heart) {
                     // SharedPreferences를 사용하여 "memberId" 값을 가져오기
                     SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
@@ -162,5 +175,9 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
             book.setBookWished(wishlist.contains(book.getBookId()));
             Log.d("GridAdapter","updateWishlistData() datalist : "+dataList);
         }
+    }
+    // 관리자 여부 설정하는 메서드
+    public void setAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }

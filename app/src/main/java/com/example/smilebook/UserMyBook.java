@@ -12,11 +12,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class my_book extends AppCompatActivity {
+public class UserMyBook extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.my_book);
+        setContentView(R.layout.book_edit);
 
         Button location = findViewById(R.id.location);
 
@@ -36,7 +36,7 @@ public class my_book extends AppCompatActivity {
                 String bookTitle = bookTitleTextView.getText().toString();
 
                 // Intent를 통해 BookLocationActivity로 이동하고 book_title 전달
-                Intent intent = new Intent(my_book.this, BookLocationActivity.class);
+                Intent intent = new Intent(UserMyBook.this, BookLocationActivity.class);
                 intent.putExtra("book_title", bookTitle);
                 startActivity(intent);
             }
@@ -50,19 +50,16 @@ public class my_book extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.user_alarmBtn) {
-                    startActivity(new Intent(my_book.this, UserAlarm.class));
+                    startActivity(new Intent(UserMyBook.this, UserAlarm.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
-                    startActivity(new Intent(my_book.this, UserMyInfo.class));
+                    startActivity(new Intent(UserMyBook.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(my_book.this, user_book.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_wishBookBtn) {
-                    startActivity(new Intent(my_book.this, WishListActivity.class));
+                    startActivity(new Intent(UserMyBook.this, user_book.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
-                    startActivity(new Intent(my_book.this, UserAdminModeSwitch.class));
+                    startActivity(new Intent(UserMyBook.this, UserAdminModeSwitch.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_logOutBtn) {
                     // SharedPreferences를 사용하여 "memberId" 값을 가져오기
@@ -71,14 +68,14 @@ public class my_book extends AppCompatActivity {
 
                     if (memberId == null) {
                         // "로그인" 버튼을 눌렀을 때 로그인 액티비티로 이동
-                        startActivity(new Intent(my_book.this, LoginActivity.class));
+                        startActivity(new Intent(UserMyBook.this, LoginActivity.class));
                     } else {
                         // SharedPreferences에서 "memberId" 값을 null로 변경
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("memberId", null);
                         editor.apply();
 
-                        Toast.makeText(my_book.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserMyBook.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
                     }
                     return true;
                 } else {

@@ -18,9 +18,10 @@
             android:orientation="horizontal">
 
             <include
-                android:id="@+id/toolbar"
                 layout="@layout/toolbar_title"
+                android:id="@+id/toolbar"
                 app:titleText="@{titleText}" />
+
         </LinearLayout>
 
         <ImageView
@@ -29,6 +30,7 @@
             android:layout_height="438dp"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:layout_marginTop="30dp"
             android:src="@drawable/book2" />
 
         <TextView
@@ -68,17 +70,8 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
                 android:textColor="@color/black"
-                android:text="위치 확인" />
+                android:text="위치 수정" />
 
-            <Button
-                android:id="@+id/reservation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/white"
-                android:textColor="@color/black"
-                android:layout_weight="1"
-                android:text="도서 예약"/>
         </LinearLayout>
 
         <View
@@ -93,13 +86,11 @@
 
             <TextView
                 android:id="@+id/book_description"
-                android:layout_width="wrap_content"
-                android:layout_height="130dp"
-                android:layout_margin="10dp"
-                android:text="책 소개\n1947년 미국에서 초판이 출간된 이후 60여 년\n의 세월 동안 끊임없이
-사랑받아 온, 명실상부한 세일즈의 최고 고전. 『실패에서 성공으로』가 세기를 뛰어넘어서도 식을 줄 모르는 관심으로 여
-..." />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="책 소개" />
         </ScrollView>
-
     </LinearLayout>
 </layout>
