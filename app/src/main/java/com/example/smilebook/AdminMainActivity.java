@@ -90,7 +90,7 @@ public class AdminMainActivity extends AppCompatActivity {
         eduArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BookListActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AdminBookListActivity.class);
                 intent.putExtra("category","교육");
                 startActivity(intent);
             }
@@ -101,7 +101,7 @@ public class AdminMainActivity extends AppCompatActivity {
         ficArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BookListActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AdminBookListActivity.class);
                 intent.putExtra("category","소설");
                 startActivity(intent);
             }
@@ -112,7 +112,7 @@ public class AdminMainActivity extends AppCompatActivity {
         toonArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BookListActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AdminBookListActivity.class);
                 intent.putExtra("category","만화");
                 startActivity(intent);
             }

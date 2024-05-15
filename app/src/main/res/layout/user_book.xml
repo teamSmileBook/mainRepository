@@ -80,7 +80,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="3">
+        app:spanCount="2">
     </androidx.recyclerview.widget.RecyclerView>
 
 

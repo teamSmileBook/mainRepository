@@ -1,4 +1,5 @@
 package com.example.smilebook.api;
+import com.example.smilebook.ItemData.BookItemData;
 import com.example.smilebook.ItemData.GridBookListData;
 import com.example.smilebook.ItemData.UserListData;
 import com.example.smilebook.model.BookDTO;
@@ -15,6 +16,7 @@ import com.example.smilebook.model.UserListDTO;
 import com.example.smilebook.model.WishlistDTO;
 import com.example.smilebook.model.WishlistItemDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -77,9 +79,6 @@ public interface ApiService {
     @DELETE("/wishlist/delete/{memberId}/{bookId}")
     Call<Void> deleteFromWishlist(@Path("memberId") String memberId, @Path("bookId") Long bookId);
 
-    @GET("/wishlist/{memberId}/{category}")
-    Call<WishlistDTO> getWishlistByMemberIdAndCategory(@Path("memberId") String memberId, @Path("category") String category);
-
     @GET("/member/{memberId}")
     Call<UserDataDTO> getMemberInfo(@Path("memberId") String memberId);
 
@@ -95,4 +94,6 @@ public interface ApiService {
     @POST("/firebase/token")
     Call<Void> sendFirebaseToken(@Body TokenDTO tokenDTO);
 
+    @GET("/member/{memberId}/borrowed-books")
+    Call<List<BookItemData>> getBorrowedBooksForMember(@Path("memberId") String memberId);
 }

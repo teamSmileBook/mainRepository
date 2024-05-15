@@ -224,42 +224,6 @@ public class WishlistClient {
         });
     }
 
-    //특정 사용자 특정 카테고리의 찜 목록 불러오기
-
-    public void getWishlistByMemberIdAndCategory(String memberId, String category) {
-        // API 서비스를 통해 사용자의 특정 카테고리에 속하는 찜 목록을 가져오기 위한 요청
-        Call<WishlistDTO> call = apiService.getWishlistByMemberIdAndCategory(memberId, category);
-        Log.d("WishlistClient", "특정 사용자 특정 카테고리의 찜 목록 가져오기 요청 memberId: " + memberId + ", category: " + category);
-        // 비동기적으로 API 요청 수행
-        call.enqueue(new Callback<WishlistDTO>() {
-            @Override
-            public void onResponse(Call<WishlistDTO> call, Response<WishlistDTO> response) {
-                if (response.isSuccessful()) {
-                    WishlistDTO wishlistDTO = response.body();
-                    if (wishlistDTO != null) {
-                        // 찜 목록 가져오기 성공한 경우
-                        List<Long> wishlist = wishlistDTO.getBookIds();
-                        Log.d("WishlistClient", "getWishlistByMemberIdAndCategory() wishlist: " + wishlist);
-                        if (adapter != null) {
-                            adapter.updateWishlistData(wishlist);
-                        } else {
-                            Log.e("WishlistClient", "getWishlistByMemberIdAndCategory: Failed to fetch wishlist");
-                        }
-                    }
-                } else {
-                    // 찜 목록을 가져오는데 실패한 경우
-                    Log.e("WishlistClient", "Failed to fetch wishlist for memberId: " + memberId + " and category: " + category);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<WishlistDTO> call, Throwable t) {
-                // 네트워크 오류 등으로 찜 목록을 가져오는데 실패한 경우
-                Log.e("WishlistClient", "Failed to fetch wishlist: " + t.getMessage());
-            }
-        });
-    }
-
     // WishlistListener 인터페이스를 구현하여 찜 목록을 받아올 경우의 동작 정의
     private WishlistListener wishlistListener = new WishlistListener() {
         @Override

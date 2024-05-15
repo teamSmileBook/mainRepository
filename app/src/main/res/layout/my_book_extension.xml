@@ -47,20 +47,20 @@
                 android:textSize="14sp" />
         </RelativeLayout>
 
-        <View
-            android:id="@+id/heart"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="80dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/heart"
-            />
+<!--        <View-->
+<!--            android:id="@+id/heart"-->
+<!--            android:layout_width="26dp"-->
+<!--            android:layout_height="26dp"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:layout_marginLeft="80dp"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:background="@drawable/heart"-->
+<!--            />-->
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/book_cover"
         android:layout_width="204dp"
         android:layout_height="438dp"
         android:layout_gravity="center"
@@ -68,28 +68,35 @@
         android:src="@drawable/book2" />
 
     <TextView
-        android:id="@+id/book_content"
+        android:id="@+id/book_title"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:gravity="center"
         android:textStyle="bold"
         android:text="실패에서 성공으로" />
 
 
     <TextView
-        android:id="@+id/textView30"
+        android:id="@+id/author"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
         android:text="최염순" />
 
     <TextView
-        android:id="@+id/textView31"
+        android:id="@+id/loan_status"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:textAlignment="center"
-        android:text="대출 불가능"
+        android:text="대출 상태"
         android:textColor="#FF0000"/>
+
+    <TextView
+        android:id="@+id/loan_date"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:textAlignment="center"
+        android:text="xxxx-xx-xx" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -104,7 +111,7 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/extension"
+            android:id="@+id/extension_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -132,7 +139,7 @@
         android:layout_height="138dp">
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/book_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"

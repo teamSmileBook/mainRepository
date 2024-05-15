@@ -46,6 +46,7 @@ public class BookInfo extends AppCompatActivity {
     private boolean isReserved = false; // 예약 상태를 저장할 변수
     private BookInfoBinding binding;
     private ToolbarTitleBinding toolbarTitleBinding;
+    private String currentBookStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +100,7 @@ public class BookInfo extends AppCompatActivity {
             }
         });
 
-        reservation.setOnClickListener(new View.OnClickListener() {
+        binding.reservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
@@ -168,14 +169,15 @@ public class BookInfo extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     BookDTO book = response.body();
                     Log.d("BookInfo", "서버 응답 성공");
-
                     Glide.with(BookInfo.this)
                             .load(book.getCoverUrl())
                             .into(bookCover);
                     bookTitle.setText(book.getBookTitle());
                     bookAuthor.setText(book.getAuthor());
-                    bookStatus.setText(book.getBookStatus());
+                    currentBookStatus = book.getBookStatus(); // 현재 도서 상태 저장
                     bookDescription.setText(book.getDescription());
+
+                    updateBookStatus(); // 도서 상태 업데이트
 
                     // 저장된 예약 상태 가져오기
                     SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
@@ -195,18 +197,27 @@ public class BookInfo extends AppCompatActivity {
         });
     }
 
+    private void updateBookStatus() {
+        // 현재 도서 상태를 UI에 설정
+        binding.bookStatus.setText(currentBookStatus);
+        if (currentBookStatus.equals("대출 중") || currentBookStatus.equals("예약 중")) {
+            binding.bookStatus.setTextColor(Color.RED);
+        } else {
+            binding.bookStatus.setTextColor(Color.parseColor("#009000"));
+        }
+    }
+
     // 예약 버튼 상태 업데이트 메소드
     private void updateReservationButton() {
-        if (isReserved) {
-            reservation.setText("예약 취소"); // 이 부분이 수정되었습니다.
+        if (currentBookStatus.equals("대출 중")) {
+            reservation.setText("예약 불가");
             reservation.setTextColor(Color.RED);
-            bookStatus.setText("대출 불가능");
-            bookStatus.setTextColor(Color.RED);
+        } else if (currentBookStatus.equals("예약 중")) {
+            reservation.setText("예약 취소");
+            reservation.setTextColor(Color.RED);
         } else {
-            reservation.setText("도서 예약"); // 이 부분이 수정되었습니다.
+            reservation.setText("도서 예약");
             reservation.setTextColor(Color.BLACK);
-            bookStatus.setText("대출 가능");
-            bookStatus.setTextColor(Color.parseColor("#009000"));
         }
     }
 

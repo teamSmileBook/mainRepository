@@ -21,6 +21,10 @@
         >
 
         <activity
+            android:name=".AdminBookListActivity"
+            android:exported="true"/>
+
+        <activity
             android:name=".user_book"
             android:exported="true"/>
 

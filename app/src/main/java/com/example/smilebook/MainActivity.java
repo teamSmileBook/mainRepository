@@ -169,14 +169,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //@Override
-//    툴바에 menu_toolbar 삽입
-    //public boolean onCreateOptionsMenu(Menu menu) {
-    //MenuInflater menuInflater = getMenuInflater();
-    //menuInflater.inflate(R.menu.menu_toolbar, menu);
-    //return true;
-    //}
-
     //상단에 있는 메뉴바
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
@@ -238,16 +230,4 @@ public class MainActivity extends AppCompatActivity {
 
         popupMenu.show();
     }
-
-
-
-
-
-//
-//    // 이미지 로드 메서드
-//    private void loadImage(String imageName, ImageView imageView) {
-//        Glide.with(this)
-//                .load(imageName)
-//                .into(imageView);
-//    }
 }

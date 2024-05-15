@@ -146,12 +146,14 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
             bookTitle.setText(data.getTitle());
             //도서 상태
             String status = data.getStatus();
-            bookStatus.setText(status);
 
             // 대출 가능 여부에 따라 텍스트 색상을 변경
             if (!"대출가능".equals(status)) {
                 bookStatus.setTextColor(Color.RED);
                 bookStatus.setText("대출 불가능");
+            } else {
+                bookStatus.setTextColor(Color.parseColor("#009000"));
+                bookStatus.setText(status);
             }
 
             // 찜 상태에 따라 하트 이미지 설정

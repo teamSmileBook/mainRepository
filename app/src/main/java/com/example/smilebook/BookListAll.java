@@ -25,6 +25,8 @@ import com.example.smilebook.ItemData.GridBookListData;
 import com.example.smilebook.api.ApiService;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -110,6 +112,8 @@ public class BookListAll extends AppCompatActivity {
                         // 사용자의 찜 목록을 가져오도록 요청
                         wishlistClient.getWishlistForCurrentUser(memberId);
                     }
+                } else if (selectedItem.equals("가나다순")) {
+                    sortBooksAlphabetically();
                 }
             }
 
@@ -167,18 +171,26 @@ public class BookListAll extends AppCompatActivity {
 
     //대출 가능 도서 목록 불러오는 메서드
     private void filterAvailableBooks() {
-        Log.d("BookListAll","filterAvailableBooks 호출됨");
-        Log.d("filterAvilableBooks","booklist " +bookList);
         // 대출 가능 도서만 필터링하여 표시
         List<GridBookListData> availableBooks = new ArrayList<>();
         for (GridBookListData book : bookList) {
             Log.d("filterAvilableBooks","booklist " +bookList);
             if ("대출가능".equals(book.getStatus())) {
-                Log.d("BookListAll", "도서 상태: " + book.getStatus());
                 availableBooks.add(book);
             }
         }
         gridAdapter.setData(availableBooks);
+    }
+
+    // 가나다순으로 도서 제목 정렬하는 메서드
+    private void sortBooksAlphabetically() {
+        Collections.sort(bookList, new Comparator<GridBookListData>() {
+            @Override
+            public int compare(GridBookListData book1, GridBookListData book2) {
+                return book1.getTitle().compareToIgnoreCase(book2.getTitle());
+            }
+        });
+        gridAdapter.setData(bookList); // 정렬된 목록을 어댑터에 설정
     }
 
     //상단에 있는 메뉴바

@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,24 +32,21 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AdminBookListAll extends AppCompatActivity{
-
+public class AdminBookListActivity extends AppCompatActivity {
     private static final String BASE_URL = "http://3.39.9.175:8080/";
     private RecyclerView recyclerView;
     private GridAdapter gridAdapter;
     private WishlistClient wishlistClient;
     private List<GridBookListData> bookList = new ArrayList<>();
     private String memberId; // memberId를 저장할 변수 추가
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_list);
-
         //검색 아이템 화면인텐트
         findViewById(R.id.item_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AdminBookListAll.this, SearchActivity.class));
+                startActivity(new Intent(AdminBookListActivity.this, SearchActivity.class));
             }
         });
 
@@ -78,7 +73,7 @@ public class AdminBookListAll extends AppCompatActivity{
         gridAdapter.setAdmin(true); // 관리자이므로 true로 설정
 
         // 전체 도서 목록 불러오기
-        loadAllBooks();
+        loadAllBooks(category);
 
 //        // SharedPreferences를 사용하여 memberId 값을 가져옴
 //        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
@@ -100,7 +95,7 @@ public class AdminBookListAll extends AppCompatActivity{
                 if (selectedItem.equals("전체")){
                     Log.d("onItemSelected","전체 선택됨");
                     // 전체 도서 목록을 출력
-                    loadAllBooks();
+                    loadAllBooks(category);
                 } else if (selectedItem.equals("대출 가능 도서")){
                     Log.d("onItemSelected","대출 가능 도서 선택됨");
                     // 대출 가능 도서만 필터링하여 표시
@@ -115,55 +110,43 @@ public class AdminBookListAll extends AppCompatActivity{
                 // 아무 항목도 선택되지 않았을 때의 처리
             }
         });
-
     }
-    // 전체 도서 목록을 불러오는 메서드
-    private void loadAllBooks() {
-        // Retrofit을 사용하여 서버에 HTTP 요청을 보냄
+    private void loadAllBooks(String category) {
+        // Retrofit을 사용하여 서버에서 카테고리별 도서 목록을 가져옴
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        // ApiService 인터페이스 구현체 생성
         ApiService apiService = retrofit.create(ApiService.class);
-
-        //전체 도서 정보 가져오기 요청
-        Call<List<GridBookListData>> call = apiService.getAllBooks();
+        Call<List<GridBookListData>> call = apiService.getBooksByCategory(category); // 서버에게 카테고리 전달하여 도서 목록 요청
 
         call.enqueue(new Callback<List<GridBookListData>>() {
             @Override
             public void onResponse(Call<List<GridBookListData>> call, Response<List<GridBookListData>> response) {
                 if (response.isSuccessful()) {
-                    //응답 받은 데이터들을 GridBookListData 형태로 bookList 리스트 생성
-                    bookList = response.body();
-                    //어댑터에 bookList 전송
-                    gridAdapter.setData(bookList);
-                    Log.d("BookListAll", "전체 도서 불러오기 성공");
-
-                    // 사용자가 로그인한 후에 찜 목록을 가져옴
-                    // memberId가 null이 아닌 경우에만 찜 목록을 가져오도록 함
+                    Log.d("BookListActivity", "도서 불러오기 성공 category : " + category);
+                    List<GridBookListData> books = response.body();
+                    gridAdapter.setData(books); // 불러온 도서 목록을 어댑터에 설정
+                    bookList = books; // bookList 변수 업데이트
                     if (memberId != null) {
-                        wishlistClient.getWishlistByMemberId(memberId, bookList);
+                        wishlistClient.getWishlistByMemberId(memberId, books); // 사용자의 찜 목록 가져오기
                     }
-                    // 어댑터에 전체 도서 목록 설정
-                    gridAdapter.setData(bookList);
                 } else {
-                    // 서버 응답에 실패한 경우
-                    Log.e("BookListAll", "서버 응답 실패");
+                    Log.e("BookListActivity", "서버 응답 실패");
                 }
             }
 
             @Override
             public void onFailure(Call<List<GridBookListData>> call, Throwable t) {
-                // 네트워크 요청 실패
-                Log.e("BookListAll", "네트워크 요청 실패", t);
+                Log.e("BookListActivity", "네트워크 요청 실패"+t);
             }
         });
     }
 
+    //대출 가능 도서 목록 불러오는 메서드
     private void filterAvailableBooks() {
-        Log.d("BookListAll","filterAvailableBooks 호출됨");
+        Log.d("AdminBookListActivity","filterAvailableBooks 호출됨");
         // 대출 가능 도서만 필터링하여 표시
         List<GridBookListData> availableBooks = new ArrayList<>();
         for (GridBookListData book : bookList) {
@@ -186,7 +169,6 @@ public class AdminBookListAll extends AppCompatActivity{
         });
         gridAdapter.setData(bookList); // 정렬된 목록을 어댑터에 설정
     }
-
     //상단에 있는 메뉴바
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
@@ -195,13 +177,13 @@ public class AdminBookListAll extends AppCompatActivity{
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.admin_registrationBtn) {
-                    startActivity(new Intent(AdminBookListAll.this, book_registration.class));
+                    startActivity(new Intent(AdminBookListActivity.this, book_registration.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.admin_userBtn) {
-                    startActivity(new Intent(AdminBookListAll.this, UserList.class));
+                    startActivity(new Intent(AdminBookListActivity.this, UserList.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.admin_transformBtn) {
-                    startActivity(new Intent(AdminBookListAll.this, MainActivity.class));
+                    startActivity(new Intent(AdminBookListActivity.this, MainActivity.class));
                     return true;
                 } else {
                     return false;
@@ -212,13 +194,4 @@ public class AdminBookListAll extends AppCompatActivity{
         popupMenu.show();
 
     }
-
-    @Override
-    //툴바에 menu_toolbar 삽입
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_toolbar, menu);
-        return true;
-    }
 }
-
