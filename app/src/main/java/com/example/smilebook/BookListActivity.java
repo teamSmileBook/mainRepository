@@ -43,6 +43,7 @@
         private WishlistClient wishlistClient;
         private List<GridBookListData> bookList = new ArrayList<>();
         private String memberId; // memberId를 저장할 변수 추가
+        private String currentCategory; // 현재 선택된 카테고리를 저장할 변수 추가
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -92,8 +93,11 @@
             // WishlistClient 인스턴스 생성
             wishlistClient = new WishlistClient(this, gridAdapter);
 
+            // 카테고리 이름을 인텐트에서 받아와 텍스트뷰에 표시 및 카테고리 값 저장
+            currentCategory = getIntent().getStringExtra("category"); // 현재 카테고리 설정
+
             //카테고리별 도서 목록 불러오기
-            loadAllBooks(category);
+            loadAllBooks(currentCategory); // 초기 카테고리로 도서 목록 불러오기
 
             //스피너 설정
             String[] items = {"전체", "가나다순", "대출 가능 도서", "찜 도서"};
@@ -111,7 +115,7 @@
                     if (selectedItem.equals("전체")){
                         Log.d("onItemSelected","전체 선택됨");
                         // 전체 도서 목록을 출력
-                        loadAllBooks(category);
+                        loadAllBooks(currentCategory);
                     } else if (selectedItem.equals("대출 가능 도서")){
                         Log.d("onItemSelected","대출 가능 도서 선택됨");
                         // 대출 가능 도서만 필터링하여 표시
@@ -132,6 +136,13 @@
                     // 아무 항목도 선택되지 않았을 때의 처리
                 }
             });
+        }
+
+        @Override
+        protected void onResume() {
+            super.onResume();
+            // 현재 선택된 카테고리에 해당하는 도서 목록을 다시 불러옴
+            loadAllBooks(currentCategory);
         }
 
         private void loadAllBooks(String category) {

@@ -2,6 +2,8 @@ package com.example.smilebook.model;
 
 import androidx.annotation.StringDef;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.time.LocalDateTime;
 
 public class BookDTO {
@@ -17,12 +19,14 @@ public class BookDTO {
     private String contents;
     private String bookStatus;
     private LocalDateTime reservationTime;
-    private LocalDateTime loneDate;
+    private String loneDate;
+    @SerializedName("dueDate")
+    private String dueDate;
     private MemberDTO member;
 
-    public BookDTO(Long bookId, String bookRFID, String bookTitle,  String coverUrl,
+    public BookDTO(Long bookId, String bookRFID, String bookTitle, String coverUrl,
                    String author, String publisher, String memo, String description, String contents,
-                   String bookStatus, LocalDateTime reservationTime, LocalDateTime loneDate, MemberDTO member) {
+                   String bookStatus, LocalDateTime reservationTime, String loneDate, String dueDate, MemberDTO member) {
 
         this.bookId = bookId;
         this.bookRFID = bookRFID;
@@ -36,6 +40,7 @@ public class BookDTO {
         this.bookStatus = bookStatus;
         this.reservationTime = reservationTime;
         this.loneDate = loneDate;
+        this.dueDate = dueDate;
         this.member = member;
     }
 
@@ -127,12 +132,20 @@ public class BookDTO {
         this.reservationTime = reservationTime;
     }
 
-    public LocalDateTime getLoneDate() {
+    public String getLoneDate() {
         return loneDate;
     }
 
-    public void setLoneDate(LocalDateTime loneDate) {
+    public void setLoneDate(String loneDate) {
         this.loneDate = loneDate;
+    }
+
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
     }
 
     public MemberDTO getMember() {

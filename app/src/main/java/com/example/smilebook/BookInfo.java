@@ -115,6 +115,8 @@ public class BookInfo extends AppCompatActivity {
                                 ReservationResponseDTO responseBody = response.body();
                                 if (responseBody.isSuccess()) {
                                     isReserved = !isReserved; // 예약 상태 업데이트
+                                    currentBookStatus = isReserved ? "예약 중" : "대출 가능"; // 도서 상태 업데이트
+                                    updateBookStatus(); // 도서 상태 업데이트
                                     updateReservationButton(); // 버튼 상태 업데이트
                                     SharedPreferences.Editor editor = prefs.edit();
                                     editor.putBoolean("isReserved", isReserved); // 예약 상태 저장
@@ -169,21 +171,8 @@ public class BookInfo extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     BookDTO book = response.body();
                     Log.d("BookInfo", "서버 응답 성공");
-                    Glide.with(BookInfo.this)
-                            .load(book.getCoverUrl())
-                            .into(bookCover);
-                    bookTitle.setText(book.getBookTitle());
-                    bookAuthor.setText(book.getAuthor());
-                    currentBookStatus = book.getBookStatus(); // 현재 도서 상태 저장
-                    bookDescription.setText(book.getDescription());
-
-                    updateBookStatus(); // 도서 상태 업데이트
-
-                    // 저장된 예약 상태 가져오기
-                    SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                    isReserved = prefs.getBoolean("isReserved", false);
-                    updateReservationButton(); // 버튼 상태 업데이트
-
+                    // 도서 정보 설정
+                    setBookInfo(book);
                 } else {
                     Log.e("BookInfo", "서버 응답 실패");
                     Toast.makeText(BookInfo.this, "도서 정보를 불러 오는데 실패했습니다.", Toast.LENGTH_SHORT).show();
@@ -195,6 +184,39 @@ public class BookInfo extends AppCompatActivity {
                 Log.e("error", "네트워크 요청 실패", t);
             }
         });
+    }
+
+    // 도서 정보 설정
+    private void setBookInfo(BookDTO book) {
+        Glide.with(BookInfo.this)
+                .load(book.getCoverUrl())
+                .into(bookCover);
+        bookTitle.setText(book.getBookTitle());
+        bookAuthor.setText(book.getAuthor());
+        currentBookStatus = book.getBookStatus(); // 현재 도서 상태 저장
+        bookDescription.setText(book.getDescription());
+
+        // 도서 상태에 따라 예약 상태 설정
+        if (book.getBookStatus().equals("예약 중")) {
+            isReserved = true;
+        } else {
+            isReserved = false;
+        }
+
+        // 예약 상태 업데이트
+        updateReservationStatus();
+
+        updateBookStatus(); // 도서 상태 업데이트
+        updateReservationButton(); // 버튼 상태 업데이트
+    }
+
+    // 예약 상태 업데이트
+    private void updateReservationStatus() {
+        // 저장된 예약 상태 업데이트
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isReserved", isReserved); // 예약 상태 저장
+        editor.apply();
     }
 
     private void updateBookStatus() {

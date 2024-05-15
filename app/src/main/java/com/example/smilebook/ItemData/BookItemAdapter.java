@@ -1,6 +1,7 @@
 package com.example.smilebook.ItemData;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.smilebook.MyBookExtextion;
 import com.example.smilebook.R;
 
 import java.util.ArrayList;
@@ -42,6 +44,18 @@ public class BookItemAdapter extends RecyclerView.Adapter<BookItemAdapter.ViewHo
         Glide.with(context)
                 .load(bookItem.getCoverUrl())
                 .into(holder.bookCover);
+
+        // 클릭 리스너 설정
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                long bookId = bookItem.getBookId();
+                // 클릭한 아이템의 bookId를 가져와서 MyBookExtention 액티비티를 시작
+                Intent intent = new Intent(context, MyBookExtextion.class);
+                intent.putExtra("bookId", bookId);
+                context.startActivity(intent);
+            }
+        });
     }
     @Override
     public int getItemCount() {

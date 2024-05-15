@@ -82,9 +82,6 @@ public class BookListAll extends AppCompatActivity {
         // WishlistClient 인스턴스 생성
         wishlistClient = new WishlistClient(this, gridAdapter);
 
-        // 전체 도서 목록 불러오기
-        loadAllBooks();
-
         //스피너 설정
         String[] items = {"전체", "가나다순", "대출 가능 도서", "찜 도서"};
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
@@ -124,6 +121,12 @@ public class BookListAll extends AppCompatActivity {
         });
 
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadAllBooks(); // onResume()이 호출될 때마다 책 목록을 다시 불러옴
+    }
+
     // 전체 도서 목록을 불러오는 메서드
     private void loadAllBooks() {
         // Retrofit을 사용하여 서버에 HTTP 요청을 보냄

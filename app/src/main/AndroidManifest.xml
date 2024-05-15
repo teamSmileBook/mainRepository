@@ -21,6 +21,10 @@
         >
 
         <activity
+            android:name=".MyBookExtextion"
+            android:exported="true"/>
+
+        <activity
             android:name=".AdminBookListActivity"
             android:exported="true"/>
 

@@ -94,6 +94,6 @@ public interface ApiService {
     @POST("/firebase/token")
     Call<Void> sendFirebaseToken(@Body TokenDTO tokenDTO);
 
-    @GET("/member/{memberId}/borrowed-books")
-    Call<List<BookItemData>> getBorrowedBooksForMember(@Path("memberId") String memberId);
+    @GET("/member/{memberId}/all-books")
+    Call<List<BookItemData>> getAllBooksForMember(@Path("memberId") String memberId);
 }

@@ -47,14 +47,21 @@ public class user_book extends AppCompatActivity {
         //리사이클러뷰 설정
         recyclerView = findViewById(R.id.user_book_recycler_view); //사용할 리사이클러뷰 id(=book_list 내 리사이클러뷰 id)
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); //사용할 LayoutManager (그리드레이아웃 2열로 정렬)
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchBooks(); // onResume()이 호출될 때마다 책 목록을 다시 불러옴
+    }
 
+    private void fetchBooks() {
         // Retrofit을 사용하여 서버에서 데이터 가져오기
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService apiService = retrofit.create(ApiService.class);
-        Call<List<BookItemData>> call = apiService.getBorrowedBooksForMember(memberId);
+        Call<List<BookItemData>> call = apiService.getAllBooksForMember(memberId);
 
         call.enqueue(new Callback<List<BookItemData>>() {
             @Override
