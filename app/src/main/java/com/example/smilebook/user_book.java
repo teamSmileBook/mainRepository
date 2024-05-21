@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,9 +32,42 @@ public class user_book extends AppCompatActivity {
     private static final String BASE_URL = "http://3.39.9.175:8080/";
     private String memberId;
 
+    private boolean  isAllUserVisible  = true;
+
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_book);
+
+        //전체도서 버튼에 클릭리스너 설정
+        Button all_book_btn = findViewById(R.id.all_book_btn);
+        Button no_return_btn = findViewById(R.id.no_return_btn);
+        View all_book_view = findViewById(R.id.all_book_view);
+        View no_return_view = findViewById(R.id.no_return_view);
+
+        all_book_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!isAllUserVisible) {
+                    all_book_view.setVisibility(View.VISIBLE);
+                    no_return_view.setVisibility(View.GONE);
+                    isAllUserVisible = true;
+                }
+            }
+        });
+
+        //반납미완료 버튼에 클릭 리스너 설정
+        no_return_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isAllUserVisible) {
+                    all_book_view.setVisibility(View.GONE);
+                    no_return_view.setVisibility(View.VISIBLE);
+                    isAllUserVisible = false;
+                    no_return_view.setBackgroundResource(R.drawable.user_btn);
+                }
+            }
+        });
+
 
         // SharedPreferences를 사용하여 memberId 값을 가져옴
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
