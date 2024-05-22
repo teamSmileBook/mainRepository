@@ -1,6 +1,7 @@
 package com.example.smilebook;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -38,15 +39,15 @@ public class AdminBookEdit extends AppCompatActivity {
     private BookEditBinding binding;
     private ToolbarTitleBinding toolbarTitleBinding;
 
+    private String currentBookStatus;
 
     @Override
     protected void onCreate(Bundle savedinstanceState) {
         super.onCreate(savedinstanceState);
         setContentView(R.layout.book_edit);
 
-        // 데이터 바인딩 설정
+        //데이터 바인딩 설정
         binding = DataBindingUtil.setContentView(this, R.layout.book_edit);
-        // TextView의 text 설정
         binding.setTitleText("도서 정보");
         toolbarTitleBinding = binding.toolbar;
 
@@ -110,8 +111,10 @@ public class AdminBookEdit extends AppCompatActivity {
                             .into(bookCover);
                     bookTitle.setText(book.getBookTitle());
                     bookAuthor.setText(book.getAuthor());
-                    bookStatus.setText(book.getBookStatus());
+                    currentBookStatus = book.getBookStatus(); // 현재 도서 상태 저장
                     bookDescription.setText(book.getDescription());
+
+                    updateBookStatus(); // 도서 상태 업데이트
 
                 } else {
                     Log.e("BookInfo", "서버 응답 실패");
@@ -126,6 +129,17 @@ public class AdminBookEdit extends AppCompatActivity {
         });
     }
 
+    private void updateBookStatus() {
+        // 현재 도서 상태를 UI에 설정
+        binding.bookStatus.setText(currentBookStatus);
+        if (currentBookStatus.equals("대출 중") || currentBookStatus.equals("예약 중")) {
+            binding.bookStatus.setTextColor(Color.RED);
+        }
+        else {
+            binding.bookStatus.setTextColor(Color.parseColor("#009000"));
+        }
+    }
+
     //상단에 있는 메뉴바
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
@@ -134,7 +148,7 @@ public class AdminBookEdit extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.admin_registrationBtn) {
-                    startActivity(new Intent(AdminBookEdit.this, book_registration.class));
+                    startActivity(new Intent(AdminBookEdit.this, BookRegistration.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.admin_userBtn) {
                     startActivity(new Intent(AdminBookEdit.this, UserList.class));

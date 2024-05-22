@@ -144,7 +144,7 @@ public class AdminMainActivity extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.admin_registrationBtn) {
-                    startActivity(new Intent(AdminMainActivity.this, book_registration.class));
+                    startActivity(new Intent(AdminMainActivity.this, BookRegistration.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.admin_userBtn) {
                     startActivity(new Intent(AdminMainActivity.this, UserList.class));

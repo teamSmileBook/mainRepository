@@ -45,10 +45,10 @@
 
         <Spinner
             android:id="@+id/filter"
-            android:layout_width="20dp"
+            android:layout_width="40dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:textAlignment="center" />
 

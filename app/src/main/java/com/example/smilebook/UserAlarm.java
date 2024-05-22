@@ -2,7 +2,6 @@ package com.example.smilebook;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
-import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
@@ -120,7 +119,7 @@ public class UserAlarm extends AppCompatActivity {
                     startActivity(new Intent(UserAlarm.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(UserAlarm.this, user_book.class));
+                    startActivity(new Intent(UserAlarm.this, UserBook.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(UserAlarm.this, UserAdminModeSwitch.class));

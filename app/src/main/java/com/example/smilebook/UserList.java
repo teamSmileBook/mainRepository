@@ -34,7 +34,6 @@ public class UserList extends AppCompatActivity {
     private static final String BASE_URL = "http://3.39.9.175:8080/";
     private RecyclerView recyclerView;
     private UserAdapter adapter;
-    private List<UserListData> userList;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +47,7 @@ public class UserList extends AppCompatActivity {
             }
         });
 
-        //item_more 클릭 이벤트 처리
+        //more 클릭 이벤트 처리
         findViewById(R.id.item_more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +60,7 @@ public class UserList extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Retrofit을 사용하여 서버에서 카테고리별 도서 목록을 가져옴
+        // Retrofit 설정
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -136,7 +135,7 @@ public class UserList extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.admin_registrationBtn) {
-                    startActivity(new Intent(UserList.this, book_registration.class));
+                    startActivity(new Intent(UserList.this, BookRegistration.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.admin_userBtn) {
                     startActivity(new Intent(UserList.this, UserList.class));

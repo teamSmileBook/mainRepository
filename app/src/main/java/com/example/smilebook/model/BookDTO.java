@@ -20,13 +20,13 @@ public class BookDTO {
     private String bookStatus;
     private LocalDateTime reservationTime;
     private String loneDate;
-    @SerializedName("dueDate")
     private String dueDate;
     private MemberDTO member;
+    private String category;
 
     public BookDTO(Long bookId, String bookRFID, String bookTitle, String coverUrl,
                    String author, String publisher, String memo, String description, String contents,
-                   String bookStatus, LocalDateTime reservationTime, String loneDate, String dueDate, MemberDTO member) {
+                   String bookStatus, LocalDateTime reservationTime, String loneDate, String dueDate, MemberDTO member, String category) {
 
         this.bookId = bookId;
         this.bookRFID = bookRFID;
@@ -42,6 +42,7 @@ public class BookDTO {
         this.loneDate = loneDate;
         this.dueDate = dueDate;
         this.member = member;
+        this.category = category;
     }
 
     public Long getBookId() {
@@ -154,5 +155,13 @@ public class BookDTO {
 
     public void setMember(MemberDTO member) {
         this.member = member;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

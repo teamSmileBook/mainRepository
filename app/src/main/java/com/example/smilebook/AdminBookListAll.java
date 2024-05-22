@@ -1,8 +1,6 @@
 package com.example.smilebook;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -69,20 +67,16 @@ public class AdminBookListAll extends AppCompatActivity{
         categoryTextView.setText(category);
 
         //리사이클러뷰 설정
-        recyclerView = findViewById(R.id.recycler_view); //사용할 리사이클러뷰 id(=book_list 내 리사이클러뷰 id)
-        gridAdapter = new GridAdapter(new ArrayList<>(), this); //사용할 어댑터
-        recyclerView.setAdapter(gridAdapter); //리사이클러뷰랑 어댑터 연결
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); //사용할 LayoutManager (그리드레이아웃 2열로 정렬)
+        recyclerView = findViewById(R.id.recycler_view);
+        gridAdapter = new GridAdapter(new ArrayList<>(), this);
+        recyclerView.setAdapter(gridAdapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         // GridAdapter 생성 후 관리자 여부 설정
         gridAdapter.setAdmin(true); // 관리자이므로 true로 설정
 
         // 전체 도서 목록 불러오기
         loadAllBooks();
-
-//        // SharedPreferences를 사용하여 memberId 값을 가져옴
-//        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-//        memberId = sharedPreferences.getString("memberId", null);
 
         //스피너 설정
         String[] items = {"전체", "가나다순", "대출 가능 도서"};
@@ -98,15 +92,14 @@ public class AdminBookListAll extends AppCompatActivity{
                 // 스피너에서 선택된 항목의 위치(position)을 확인하여 조건을 처리
                 String selectedItem = items[position]; // 선택된 항목의 문자열을 가져옴
                 if (selectedItem.equals("전체")){
-                    Log.d("onItemSelected","전체 선택됨");
                     // 전체 도서 목록을 출력
                     loadAllBooks();
                 } else if (selectedItem.equals("대출 가능 도서")){
-                    Log.d("onItemSelected","대출 가능 도서 선택됨");
                     // 대출 가능 도서만 필터링하여 표시
                     filterAvailableBooks();
                 } else if (selectedItem.equals("가나다순")) {
-                    sortBooksAlphabetically(); // "가나다순"일 때 정렬 메서드 호출
+                    // "가나다순" 정렬 메서드 호출
+                    sortBooksAlphabetically();
                 }
             }
 
@@ -139,7 +132,7 @@ public class AdminBookListAll extends AppCompatActivity{
                     bookList = response.body();
                     //어댑터에 bookList 전송
                     gridAdapter.setData(bookList);
-                    Log.d("BookListAll", "전체 도서 불러오기 성공");
+                    Log.d("AdminBookListAll", "전체 도서 불러오기 성공");
 
                     // 사용자가 로그인한 후에 찜 목록을 가져옴
                     // memberId가 null이 아닌 경우에만 찜 목록을 가져오도록 함
@@ -150,7 +143,7 @@ public class AdminBookListAll extends AppCompatActivity{
                     gridAdapter.setData(bookList);
                 } else {
                     // 서버 응답에 실패한 경우
-                    Log.e("BookListAll", "서버 응답 실패");
+                    Log.e("AdminBookListAll", "서버 응답 실패");
                 }
             }
 
@@ -162,6 +155,7 @@ public class AdminBookListAll extends AppCompatActivity{
         });
     }
 
+    //대출 가능 도서 목록 불러오는 메서드
     private void filterAvailableBooks() {
         Log.d("BookListAll","filterAvailableBooks 호출됨");
         // 대출 가능 도서만 필터링하여 표시
@@ -169,7 +163,6 @@ public class AdminBookListAll extends AppCompatActivity{
         for (GridBookListData book : bookList) {
             Log.d("filterAvilableBooks","booklist " +bookList);
             if ("대출가능".equals(book.getStatus())) {
-                Log.d("BookListAll", "도서 상태: " + book.getStatus());
                 availableBooks.add(book);
             }
         }
@@ -195,7 +188,7 @@ public class AdminBookListAll extends AppCompatActivity{
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.admin_registrationBtn) {
-                    startActivity(new Intent(AdminBookListAll.this, book_registration.class));
+                    startActivity(new Intent(AdminBookListAll.this, BookRegistration.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.admin_userBtn) {
                     startActivity(new Intent(AdminBookListAll.this, UserList.class));

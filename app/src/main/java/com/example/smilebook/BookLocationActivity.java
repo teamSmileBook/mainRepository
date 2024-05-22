@@ -2,7 +2,6 @@ package com.example.smilebook;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -108,7 +107,7 @@ public class BookLocationActivity extends AppCompatActivity {
                     startActivity(new Intent(BookLocationActivity.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(BookLocationActivity.this, user_book.class));
+                    startActivity(new Intent(BookLocationActivity.this, UserBook.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(BookLocationActivity.this, UserAdminModeSwitch.class));

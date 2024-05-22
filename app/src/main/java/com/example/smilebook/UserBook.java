@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smilebook.ItemData.BookItemAdapter;
 import com.example.smilebook.ItemData.BookItemData;
-import com.example.smilebook.ItemData.GridAdapter;
 import com.example.smilebook.api.ApiService;
 
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class user_book extends AppCompatActivity {
+public class UserBook extends AppCompatActivity {
     private RecyclerView recyclerView;
     private BookItemAdapter bookItemAdapter;
     private static final String BASE_URL = "http://3.39.9.175:8080/";
@@ -108,19 +107,19 @@ public class user_book extends AppCompatActivity {
                         // 가져온 데이터를 어댑터에 설정하여 리사이클러뷰에 표시
                         ArrayList<BookItemData> bookItemsArrayList = new ArrayList<>(bookItems);
                         Log.d("user_book","BookItemData : "+bookItemsArrayList);
-                        bookItemAdapter = new BookItemAdapter(user_book.this, bookItemsArrayList);
+                        bookItemAdapter = new BookItemAdapter(UserBook.this, bookItemsArrayList);
                         recyclerView.setAdapter(bookItemAdapter);
                     } else {
-                        Toast.makeText(user_book.this, "데이터가 없습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserBook.this, "데이터가 없습니다.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(user_book.this, "데이터를 가져오지 못했습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserBook.this, "데이터를 가져오지 못했습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<BookItemData>> call, Throwable t) {
-                Toast.makeText(user_book.this, "네트워크 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserBook.this, "네트워크 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

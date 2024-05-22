@@ -22,25 +22,10 @@ public class AdminSearch extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // 데이터 바인딩 설정
+        //데이터 바인딩 설정
         binding = DataBindingUtil.setContentView(this, R.layout.search);
-
-        // TextView의 text 설정
         binding.setTitleText("검색");
-
         toolbarTitleBinding = binding.toolbar;
-
-        //홈(main_b.xml)으로
-//        toolbarTitleBinding.icons8Smile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // main_b 화면으로 이동하는 인텐트 생성
-//                Intent intent = new Intent(search.this, main_b.class);
-//                startActivity(intent);
-//                // 현재 액티비티 종료
-//                finish();
-//            }
-//        });
 
         //뒤로가기
         toolbarTitleBinding.back.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +76,7 @@ public class AdminSearch extends AppCompatActivity{
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.admin_registrationBtn) {
-                    startActivity(new Intent(AdminSearch.this, book_registration.class));
+                    startActivity(new Intent(AdminSearch.this, BookRegistration.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.admin_userBtn) {
                     startActivity(new Intent(AdminSearch.this, UserList.class));

@@ -18,76 +18,121 @@
             app:titleText="@{titleText}" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="600dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:layout_gravity="center"
             android:background="@drawable/registration"
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/ISBN"
+                android:id="@+id/edt_book_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="15"
                 android:inputType="text"
-                android:text="ISBN : "
+                android:hint="ISBN : "
                 android:textSize="14sp"
                 android:layout_gravity="center"/>
 
             <EditText
-                android:id="@+id/book_title"
+                android:id="@+id/edt_book_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="15"
                 android:inputType="text"
-                android:text="책 제목 : "
+                android:hint="책 제목 : "
                 android:textSize="14sp"
                 android:layout_gravity="center"/>
 
             <EditText
-                android:id="@+id/author"
+                android:id="@+id/edt_author"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="15"
                 android:inputType="text"
-                android:text="저자 : "
+                android:hint="저자 : "
                 android:textSize="14sp"
                 android:layout_gravity="center"/>
 
             <EditText
-                android:id="@+id/publisher"
+                android:id="@+id/edt_publisher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="15"
                 android:inputType="text"
-                android:text="출판사 : "
+                android:hint="출판사 : "
                 android:textSize="14sp"
                 android:layout_gravity="center"/>
 
             <EditText
-                android:id="@+id/descripsion"
+                android:id="@+id/edt_cover_url"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="15"
                 android:inputType="text"
-                android:text=" 목차 : "
+                android:hint="표지 URL : "
+                android:textSize="14sp"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:id="@+id/edt_book_rfid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="15"
+                android:inputType="text"
+                android:hint="RFID : "
+                android:textSize="14sp"
+                android:layout_gravity="center"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_gravity="center"
+                    android:text="카테고리 : " />
+
+                <Spinner
+                    android:id="@+id/category_filter"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/edt_descripsion"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:ems="15"
+                android:inputType="text"
+                android:hint=" 목차 : "
                 android:textSize="14sp"
                 android:layout_gravity="center"
                 android:background="@drawable/memo_border"/>
 
             <EditText
-                android:id="@+id/contents"
+                android:id="@+id/edt_contents"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
                 android:ems="15"
                 android:inputType="text"
-                android:text=" 책 소개 : "
+                android:hint=" 책 소개 : "
                 android:textSize="14sp"
                 android:layout_gravity="center"
                 android:background="@drawable/memo_border"
@@ -107,7 +152,7 @@
                     android:orientation="horizontal">
 
                     <android.widget.Button
-                        android:id="@+id/available"
+                        android:id="@+id/available_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_weight="1"
@@ -117,7 +162,7 @@
                         android:textColor="#FFFFFF"/>
 
                     <android.widget.Button
-                        android:id="@+id/impossible"
+                        android:id="@+id/impossible_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_weight="1"
@@ -130,7 +175,7 @@
                 </LinearLayout>
 
                 <android.widget.Button
-                    android:id="@+id/registration"
+                    android:id="@+id/registration_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="10dp"
                     android:layout_gravity="center"

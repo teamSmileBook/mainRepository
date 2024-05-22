@@ -27,6 +27,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -96,4 +97,10 @@ public interface ApiService {
 
     @GET("/member/{memberId}/all-books")
     Call<List<BookItemData>> getAllBooksForMember(@Path("memberId") String memberId);
+
+    @POST("/books/add")
+    Call<Void> addbook(@Body BookDTO bookDTO);
+
+    @PUT("/books/{bookId}/extendLoan")
+    Call<Void> extendLoan(@Path("bookId") Long bookId);
 }

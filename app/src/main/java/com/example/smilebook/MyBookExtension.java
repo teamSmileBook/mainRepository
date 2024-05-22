@@ -1,5 +1,6 @@
 package com.example.smilebook;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -13,6 +14,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -31,7 +33,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MyBookExtextion extends AppCompatActivity {
+public class MyBookExtension extends AppCompatActivity {
     private MyBookExtensionBinding binding;
     private ToolbarTitleBinding toolbarTitleBinding;
     private static final String BASE_URL = "http://3.39.9.175:8080/";
@@ -45,6 +47,7 @@ public class MyBookExtextion extends AppCompatActivity {
     private Button extention;
     private boolean isReserved = false; // 예약 상태를 저장할 변수
     private String currentBookStatus;
+    private AlertDialog.Builder builder;
 
     private BookItemAdapter adapter; // 어댑터 선언
     @Override
@@ -107,7 +110,7 @@ public class MyBookExtextion extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     BookDTO book = response.body();
                     Log.d("MyBookExtention", "fatchBookInfo() 서버 응답 성공");
-                    Glide.with(MyBookExtextion.this)
+                    Glide.with(MyBookExtension.this)
                             .load(book.getCoverUrl())
                             .into(bookCover);
                     bookTitle.setText(book.getBookTitle());
@@ -130,6 +133,14 @@ public class MyBookExtextion extends AppCompatActivity {
                         // 대출 중인 경우에는 대출 연장 버튼 표시
                         extention.setVisibility(View.VISIBLE);
                         extention.setText("대출 연장");
+
+                        // 대출 연장 버튼 클릭 이벤트 처리
+                        extention.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                extendLoan(bookId);
+                            }
+                        });
                     } else if (currentBookStatus.equals("예약 중")) {
                         // 예약 중인 경우에는 예약 취소 버튼 표시
                         extention.setVisibility(View.VISIBLE);
@@ -138,9 +149,6 @@ public class MyBookExtextion extends AppCompatActivity {
                         extention.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                                String memberId = prefs.getString("memberId", "");
-
                                 // 예약 취소
                                 cancelReservation(bookId);
                             }
@@ -152,16 +160,64 @@ public class MyBookExtextion extends AppCompatActivity {
                     updateBookStatus(); // 도서 상태 업데이트
 
                 } else {
-                    Log.e("BookInfo", "서버 응답 실패");
-                    Toast.makeText(MyBookExtextion.this, "도서 정보를 불러 오는데 실패했습니다.", Toast.LENGTH_SHORT).show();
+                    Log.e("MyBookExtention", "fetchBookInfo() 서버 응답 실패");
+                    Toast.makeText(MyBookExtension.this, "도서 정보를 불러 오는데 실패했습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<BookDTO> call, Throwable t) {
-                Log.e("error", "네트워크 요청 실패", t);
+                Log.e("MyBookExtention", "네트워크 요청 실패", t);
             }
         });
+    }
+
+    // 대출 연장 다이얼로그
+    private void extendLoan(Long bookId) {
+        builder = new AlertDialog.Builder(this);
+        builder.setMessage("대출을 연장하시겠습니까?")
+                .setPositiveButton("예", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // 대출 연장 요청 보내기
+                        sendExtendLoanRequest(bookId);
+                    }
+                })
+                .setNegativeButton("아니오", null) // 사용자가 아니오를 선택하면 아무 동작도 하지 않음
+                .show();
+    }
+    // 대출 연장 메서드
+    private void sendExtendLoanRequest(Long bookId) {
+        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String memberId = prefs.getString("memberId", "");
+
+        if (!memberId.isEmpty()) {
+            // 연장 요청을 서버에 보냄
+            Call<Void> call = apiService.extendLoan(bookId);
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if (response.isSuccessful()) {
+                        // 연장 성공 시 메시지 표시
+                        Toast.makeText(MyBookExtension.this, "대출이 연장되었습니다.", Toast.LENGTH_SHORT).show();
+                        // 연장 후 도서 정보 다시 불러오기
+                        fetchBookInfo();
+                    } else {
+                        // 연장 실패 시 메시지 표시
+                        Toast.makeText(MyBookExtension.this, "대출 연장에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    // 연장 요청 실패 시 메시지 표시
+                    Toast.makeText(MyBookExtension.this, "네트워크 요청 실패", Toast.LENGTH_SHORT).show();
+                    Log.e("MyBookExtension", "sendExtendLoanRequest() 네트워크 요청 실패", t);
+                }
+            });
+        } else {
+            Toast.makeText(MyBookExtension.this, "로그인이 필요합니다.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     // 도서 예약 취소 메서드
@@ -184,32 +240,34 @@ public class MyBookExtextion extends AppCompatActivity {
                             editor.putBoolean("isReserved", isReserved); // 예약 상태 저장
                             editor.apply();
 
-                            Toast.makeText(MyBookExtextion.this, "예약이 취소되었습니다.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyBookExtension.this, "예약이 취소되었습니다.", Toast.LENGTH_SHORT).show();
                         } else {
                             // 예약 취소 실패 시 메시지 표시
-                            Toast.makeText(MyBookExtextion.this, responseBody.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyBookExtension.this, responseBody.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(MyBookExtextion.this, "서버 응답 실패", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyBookExtension.this, "서버 응답 실패", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ReservationResponseDTO> call, Throwable t) {
                     Log.e("error", "네트워크 요청 실패", t);
-                    Toast.makeText(MyBookExtextion.this, "네트워크 요청 실패", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyBookExtension.this, "네트워크 요청 실패", Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
-            Toast.makeText(MyBookExtextion.this, "로그인이 필요합니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MyBookExtension.this, "로그인이 필요합니다.", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void updateBookStatus() {
         // 현재 도서 상태를 UI에 설정
         binding.bookStatus.setText(currentBookStatus);
-        if (currentBookStatus.equals("대출 중") || currentBookStatus.equals("예약 중")) {
+        if (currentBookStatus.equals("대출 중")) {
             binding.bookStatus.setTextColor(Color.RED);
+        } else if(currentBookStatus.equals("예약 중")) {
+            binding.bookStatus.setTextColor(Color.parseColor("#DA9D00"));
         } else {
             binding.bookStatus.setTextColor(Color.parseColor("#009000"));
         }
@@ -223,16 +281,16 @@ public class MyBookExtextion extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.user_alarmBtn) {
-                    startActivity(new Intent(MyBookExtextion.this, UserAlarm.class));
+                    startActivity(new Intent(MyBookExtension.this, UserAlarm.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
-                    startActivity(new Intent(MyBookExtextion.this, UserMyInfo.class));
+                    startActivity(new Intent(MyBookExtension.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(MyBookExtextion.this, user_book.class));
+                    startActivity(new Intent(MyBookExtension.this, UserBook.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
-                    startActivity(new Intent(MyBookExtextion.this, UserAdminModeSwitch.class));
+                    startActivity(new Intent(MyBookExtension.this, UserAdminModeSwitch.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_logOutBtn) {
                     // SharedPreferences를 사용하여 "memberId" 값을 가져오기
@@ -241,14 +299,14 @@ public class MyBookExtextion extends AppCompatActivity {
 
                     if (memberId == null) {
                         // "로그인" 버튼을 눌렀을 때 로그인 액티비티로 이동
-                        startActivity(new Intent(MyBookExtextion.this, LoginActivity.class));
+                        startActivity(new Intent(MyBookExtension.this, LoginActivity.class));
                     } else {
                         // SharedPreferences에서 "memberId" 값을 null로 변경
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("memberId", null);
                         editor.apply();
 
-                        Toast.makeText(MyBookExtextion.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyBookExtension.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
                     }
                     return true;
                 } else {

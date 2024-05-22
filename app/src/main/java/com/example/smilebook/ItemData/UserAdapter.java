@@ -2,6 +2,7 @@ package com.example.smilebook.ItemData;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         UserListData user = userList.get(position);
         holder.memberIdTextView.setText(user.getMemberId());
         holder.nicknameTextView.setText(user.getNickname());
+        holder.memberStatusTextView.setText(user.getMemberStatus());
+
+        // memberStatus에 따라 텍스트 색상 변경
+        if ("이용 가능한 사용자".equals(user.getMemberStatus())) {
+            holder.memberStatusTextView.setTextColor(Color.parseColor("#009000")); // 초록색
+        } else if ("이용 정지 대상자".equals(user.getMemberStatus())) {
+            holder.memberStatusTextView.setTextColor(Color.RED); // 빨간색
+        }
         holder.memberStatusTextView.setText(user.getMemberStatus());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

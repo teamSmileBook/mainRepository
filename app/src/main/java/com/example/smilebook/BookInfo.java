@@ -1,10 +1,8 @@
 package com.example.smilebook;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -21,9 +19,9 @@ import androidx.databinding.DataBindingUtil;
 import com.bumptech.glide.Glide;
 import com.example.smilebook.api.ApiService;
 import com.example.smilebook.databinding.BookInfoBinding;
-import com.example.smilebook.databinding.SearchBinding;
 import com.example.smilebook.databinding.ToolbarTitleBinding;
 import com.example.smilebook.model.BookDTO;
+import com.example.smilebook.model.MemberDTO;
 import com.example.smilebook.model.ReservationDTO;
 import com.example.smilebook.model.ReservationResponseDTO;
 
@@ -44,6 +42,7 @@ public class BookInfo extends AppCompatActivity {
     private TextView bookDescription;
     private Button reservation;
     private boolean isReserved = false; // 예약 상태를 저장할 변수
+    private MemberDTO reservedBy; // 예약자 ID를 저장할 변수
     private BookInfoBinding binding;
     private ToolbarTitleBinding toolbarTitleBinding;
     private String currentBookStatus;
@@ -54,7 +53,6 @@ public class BookInfo extends AppCompatActivity {
 
         // 데이터 바인딩 설정
         binding = DataBindingUtil.setContentView(this, R.layout.book_info);
-        // TextView의 text 설정
         binding.setTitleText("도서 정보");
         toolbarTitleBinding = binding.toolbar;
 
@@ -188,6 +186,9 @@ public class BookInfo extends AppCompatActivity {
 
     // 도서 정보 설정
     private void setBookInfo(BookDTO book) {
+        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String memberId = prefs.getString("memberId", "");
+
         Glide.with(BookInfo.this)
                 .load(book.getCoverUrl())
                 .into(bookCover);
@@ -195,13 +196,17 @@ public class BookInfo extends AppCompatActivity {
         bookAuthor.setText(book.getAuthor());
         currentBookStatus = book.getBookStatus(); // 현재 도서 상태 저장
         bookDescription.setText(book.getDescription());
+        String reservedBy = (book.getMember() != null) ? book.getMember().getMemberId() : null; // 예약자 ID 저장
+
+//        // 도서 상태에 따라 예약 상태 설정
+//        if (book.getBookStatus().equals("예약 중")) {
+//            isReserved = true;
+//        } else {
+//            isReserved = false;
+//        }
 
         // 도서 상태에 따라 예약 상태 설정
-        if (book.getBookStatus().equals("예약 중")) {
-            isReserved = true;
-        } else {
-            isReserved = false;
-        }
+        isReserved = book.getBookStatus().equals("예약 중") && memberId != null && memberId.equals(reservedBy);
 
         // 예약 상태 업데이트
         updateReservationStatus();
@@ -224,24 +229,38 @@ public class BookInfo extends AppCompatActivity {
         binding.bookStatus.setText(currentBookStatus);
         if (currentBookStatus.equals("대출 중") || currentBookStatus.equals("예약 중")) {
             binding.bookStatus.setTextColor(Color.RED);
-        } else {
+        }
+        else {
             binding.bookStatus.setTextColor(Color.parseColor("#009000"));
         }
     }
 
     // 예약 버튼 상태 업데이트 메소드
     private void updateReservationButton() {
+        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String memberId = prefs.getString("memberId", "");
+
         if (currentBookStatus.equals("대출 중")) {
             reservation.setText("예약 불가");
             reservation.setTextColor(Color.RED);
+            reservation.setEnabled(false); // 버튼 비활성화
         } else if (currentBookStatus.equals("예약 중")) {
-            reservation.setText("예약 취소");
-            reservation.setTextColor(Color.RED);
+            if (memberId != null && memberId.equals(reservedBy)) {
+                reservation.setText("예약 취소");
+                reservation.setTextColor(Color.RED);
+                reservation.setEnabled(true); // 버튼 활성화
+            } else {
+                reservation.setText("예약 불가");
+                reservation.setTextColor(Color.RED);
+                reservation.setEnabled(false); // 버튼 비활성화
+            }
         } else {
             reservation.setText("도서 예약");
             reservation.setTextColor(Color.BLACK);
+            reservation.setEnabled(true); // 버튼 활성화
         }
     }
+
 
     //상단에 있는 메뉴바
     private void showPopup(View v) {
@@ -257,7 +276,7 @@ public class BookInfo extends AppCompatActivity {
                     startActivity(new Intent(BookInfo.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(BookInfo.this, user_book.class));
+                    startActivity(new Intent(BookInfo.this, UserBook.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(BookInfo.this, UserAdminModeSwitch.class));

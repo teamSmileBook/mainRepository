@@ -56,7 +56,7 @@ public class UserMyBook extends AppCompatActivity {
                     startActivity(new Intent(UserMyBook.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(UserMyBook.this, user_book.class));
+                    startActivity(new Intent(UserMyBook.this, UserBook.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(UserMyBook.this, UserAdminModeSwitch.class));

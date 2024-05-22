@@ -221,7 +221,7 @@
                         startActivity(new Intent(BookListActivity.this, UserMyInfo.class));
                         return true;
                     } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                        startActivity(new Intent(BookListActivity.this, user_book.class));
+                        startActivity(new Intent(BookListActivity.this, UserBook.class));
                         return true;
                     } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                         startActivity(new Intent(BookListActivity.this, UserAdminModeSwitch.class));

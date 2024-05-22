@@ -90,7 +90,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    Log.d("UserSearch","searchBooks() 요청 보냄");
+                    Log.d("SearchActivity","searchBooks() 요청 보냄");
                     URL url = new URL("http://3.39.9.175:8080/books/search?query=" + query); //검색 요청
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection(); //서버와의 연결 설정
                     conn.setRequestMethod("GET"); //GET 요청 사용
@@ -112,7 +112,7 @@ public class SearchActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            handleSearchResponse(jsonResponse);
+                            handleSearchResponse(jsonResponse, query);
                         }
                     });
                 } catch (IOException e) {
@@ -134,14 +134,14 @@ public class SearchActivity extends AppCompatActivity {
                 String coverUrl = jsonObject.getString("coverUrl");
                 String bookTitle = jsonObject.getString("bookTitle");
                 String bookStatus = jsonObject.getString("bookStatus");
-                boolean isBookWished = jsonObject.getBoolean("isBookWished");
+                boolean isBookWished = jsonObject.has("bookWished") && jsonObject.getBoolean("bookWished");
                 // 도서 정보를 GridBookListData 객체로 생성하여 리스트에 추가
                 GridBookListData bookData = new GridBookListData(bookId, coverUrl, bookTitle, bookStatus, isBookWished);
                 bookList.add(bookData);
             }
-            Log.d("UserSearch", "parseJsonArray() 데이터 파싱 성공");
+            Log.d("SearchActivity", "parseJsonArray() 데이터 파싱 성공");
         } catch (JSONException e) {
-            Log.e("UserSearch", "parseJsonArray() 데이터 파싱 실패");
+            Log.e("SearchActivity", "parseJsonArray() 데이터 파싱 실패");
             e.printStackTrace();
         }
 
@@ -149,7 +149,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     //서버로 부터 받은 검색 결과 파싱, SearchResult 액티비티로 검색 결과 전달
-    private void handleSearchResponse (String jsonResponse) {
+    private void handleSearchResponse (String jsonResponse, String query) {
         try {
             JSONArray jsonArray = new JSONArray(jsonResponse);
             List<GridBookListData> bookList = parseJsonArray(jsonArray);
@@ -161,6 +161,7 @@ public class SearchActivity extends AppCompatActivity {
                 // SearchResult 액티비티로 전환하고 검색 결과를 전달하는 Intent 생성
                 Intent intent = new Intent(SearchActivity.this, SearchResult.class);
                 intent.putExtra("bookList", (Serializable) bookList);
+                intent.putExtra("query", query);
                 startActivity(intent);
             }
         } catch (JSONException e) {
@@ -182,7 +183,7 @@ public class SearchActivity extends AppCompatActivity {
                     startActivity(new Intent(SearchActivity.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(SearchActivity.this, user_book.class));
+                    startActivity(new Intent(SearchActivity.this, UserBook.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(SearchActivity.this, UserAdminModeSwitch.class));

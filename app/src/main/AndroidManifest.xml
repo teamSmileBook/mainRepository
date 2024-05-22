@@ -21,7 +21,7 @@
         >
 
         <activity
-            android:name=".MyBookExtextion"
+            android:name=".MyBookExtension"
             android:exported="true"/>
 
         <activity
@@ -29,7 +29,7 @@
             android:exported="true"/>
 
         <activity
-            android:name=".user_book"
+            android:name=".UserBook"
             android:exported="true"/>
 
         <activity
@@ -81,7 +81,7 @@
             android:exported="true" />
 
         <activity
-            android:name=".book_registration"
+            android:name=".BookRegistration"
             android:exported="true"/>
 
         <activity

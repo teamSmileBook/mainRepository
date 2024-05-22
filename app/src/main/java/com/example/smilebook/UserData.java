@@ -38,6 +38,7 @@ public class UserData extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //데이터 바인딩 설정
         binding = DataBindingUtil.setContentView(this, R.layout.user_data);
         binding.setTitleText("회원 정보");
         toolbarTitleBinding = binding.toolbar;
@@ -49,6 +50,9 @@ public class UserData extends AppCompatActivity {
         userStopButton = binding.userStopButton;
         userWarningButton = binding.userWarningButton;
         warningReasonEditText = binding.warningReason;
+
+        // 이전 액티비티로부터 memberId를 받음
+        String memberId = getIntent().getStringExtra("memberId");
 
         //more 클릭 이벤트 처리
         findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
@@ -66,7 +70,7 @@ public class UserData extends AppCompatActivity {
             }
         });
 
-        loadUserData(); // 회원 정보 초기 로딩
+        loadUserData(memberId); // 회원 정보 초기 로딩
 
         userStopButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,9 +87,10 @@ public class UserData extends AppCompatActivity {
         });
     }
 
-    private void loadUserData() {
+    //사용자 조회 기능
+    private void loadUserData(String memberId) {
         ApiService apiService = RetrofitClient.getApiService();
-        Call<UserDataDTO> call = apiService.getMemberInfo("test");
+        Call<UserDataDTO> call = apiService.getMemberInfo(memberId);
         call.enqueue(new Callback<UserDataDTO>() {
             @Override
             public void onResponse(Call<UserDataDTO> call, Response<UserDataDTO> response) {
@@ -122,9 +127,11 @@ public class UserData extends AppCompatActivity {
         });
     }
 
+    //
     private void updateUserStatus() {
         String suspensionReasonText = warningReasonEditText.getText().toString();
-        String memberId = "test";
+        // 이전 액티비티로부터 memberId를 받음
+        String memberId = getIntent().getStringExtra("memberId");
 
         SuspensionReasonDTO suspensionReasonDTO = new SuspensionReasonDTO(memberId, suspensionReasonText);
 
@@ -157,8 +164,9 @@ public class UserData extends AppCompatActivity {
         });
     }
 
+    //회원 경고 기능
     private void giveUserWarning() {
-        String memberId = "test";
+        String memberId = getIntent().getStringExtra("memberId");
         String suspensionReason = warningReasonEditText.getText().toString().trim();
 
         SuspensionReasonDTO suspensionReasonDTO = new SuspensionReasonDTO(memberId, suspensionReason);
@@ -190,7 +198,7 @@ public class UserData extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.admin_registrationBtn) {
-                    startActivity(new Intent(UserData.this, book_registration.class));
+                    startActivity(new Intent(UserData.this, BookRegistration.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.admin_userBtn) {
                     startActivity(new Intent(UserData.this, UserList.class));

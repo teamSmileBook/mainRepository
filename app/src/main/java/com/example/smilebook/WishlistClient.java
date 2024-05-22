@@ -112,7 +112,7 @@ public class WishlistClient {
             }
         });
     }
-    // 특정 사용자의 찜 목록 불러오기 (도서 목록에서 사용)
+    // 특정 사용자의 찜 목록 불러오기 (도서 목록 내 찜 버튼 표시에 사용)
     public void getWishlistByMemberId(String memberId, List<GridBookListData> bookList) {
         // API 서비스를 통해 찜 목록을 가져오기 위한 요청
         Call<WishlistItemDTO> call = apiService.getWishlistByMemberId(memberId);
@@ -163,19 +163,25 @@ public class WishlistClient {
                         List<Long> wishlistIds = wishlistItemDTO.getBookIds();
                         Log.d("BookListAll", "getWishlistForCurrentUser() wishlist " + wishlistIds);
 
-                        // 찜 목록의 도서 ID를 사용하여 각 도서의 상세 정보를 가져와서 리스트로 변환
-                        List<GridBookListData> wishlistBooks = new ArrayList<>();
-                        for (Long bookId : wishlistIds) {
-                            // 도서 ID를 사용하여 각 도서의 상세 정보를 가져오는 메서드 호출
-                            getBookDetailsById(bookId, wishlistBooks);
-                        }
+                        if (wishlistIds.isEmpty()) {
+                            // 찜 목록이 비어있는 경우
+                            Toast.makeText(context, "찜 내역이 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // 찜 목록의 도서 ID를 사용하여 각 도서의 상세 정보를 가져와서 리스트로 변환
+                            List<GridBookListData> wishlistBooks = new ArrayList<>();
+                            for (Long bookId : wishlistIds) {
+                                // 도서 ID를 사용하여 각 도서의 상세 정보를 가져오는 메서드 호출
+                                getBookDetailsById(bookId, wishlistBooks);
+                            }
 
-                        // 리사이클러뷰 어댑터에 찜 목록 데이터를 전달하여 갱신
-                        adapter.setData(wishlistBooks);
+                            // 리사이클러뷰 어댑터에 찜 목록 데이터를 전달하여 갱신
+                            adapter.setData(wishlistBooks);
+                        }
                     }
                 } else {
                     // 찜 목록을 가져오는데 실패한 경우
                     Log.e("BookListAll", "getWishlistForCurrentUser : Failed to fetch wishlist");
+                    Toast.makeText(context, "찜 내역이 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -187,9 +193,8 @@ public class WishlistClient {
         });
     }
 
-    // 각 도서의 상세 정보를 가져오는 메서드
+    // 각 도서의 기본 정보를 가져오는 메서드
     private void getBookDetailsById(Long bookId, List<GridBookListData> wishlistBooks) {
-        // API 서비스를 통해 도서의 상세 정보를 가져오기 위한 요청
         Call<BookDTO> call = apiService.getBookById(bookId);
         // 비동기적으로 API 요청 수행
         call.enqueue(new Callback<BookDTO>() {
@@ -198,7 +203,7 @@ public class WishlistClient {
                 if (response.isSuccessful()) {
                     BookDTO bookDetailsDTO = response.body();
                     if (bookDetailsDTO != null) {
-                        // 도서의 상세 정보를 GridBookListData 객체로 변환하여 리스트에 추가
+                        // 도서의 기본 정보를 GridBookListData 객체로 변환하여 리스트에 추가
                         GridBookListData gridBook = new GridBookListData(
                                 bookDetailsDTO.getBookId(),
                                 bookDetailsDTO.getCoverUrl(),
@@ -211,37 +216,16 @@ public class WishlistClient {
                         adapter.notifyDataSetChanged();
                     }
                 } else {
-                    // 도서의 상세 정보를 가져오는데 실패한 경우
-                    Log.e("BookListAll", "Failed to fetch book details");
+                    // 도서의 기본 정보를 가져오는데 실패한 경우
+                    Log.e("WishlistClient", "getBookDetailsById() 찜 도서 정보 불러오기 실패, "+response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<BookDTO> call, Throwable t) {
-                // 네트워크 오류 등으로 도서의 상세 정보를 가져오는데 실패한 경우
-                Log.e("BookListAll", "Failed to fetch book details: " + t.getMessage());
+                // 네트워크 오류 등으로 데이터를 가져오는데 실패한 경우
+                Log.e("WishlistClient", "getBookDetailsById() 찜 도서 정보 불러오기 실패: " + t.getMessage());
             }
         });
-    }
-
-    // WishlistListener 인터페이스를 구현하여 찜 목록을 받아올 경우의 동작 정의
-    private WishlistListener wishlistListener = new WishlistListener() {
-        @Override
-        public void onWishlistReceived(List<Long> wishlist) {
-            // 찜 목록을 어댑터에 전달하여 데이터를 업데이트
-            adapter.updateWishlistData(wishlist);
-        }
-
-        @Override
-        public void onWishlistFailed(String errorMessage) {
-            // 찜 목록을 받아오지 못한 경우에 대한 처리
-            Toast.makeText(context, "찜 목록을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show();
-        }
-    };
-
-    public interface WishlistListener {
-        void onWishlistReceived(List<Long> wishlist);
-
-        void onWishlistFailed(String errorMessage);
     }
 }

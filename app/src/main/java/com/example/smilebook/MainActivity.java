@@ -52,18 +52,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //item_more 클릭 이벤트 처리
+        //more 클릭 이벤트 처리
         findViewById(R.id.item_more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showPopup(view);
             }
         });
-
-
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar); //툴바 사용 설정
-        //getSupportActionBar().setDisplayShowTitleEnabled(false); //타이틀 안 보이게
 
         //메인화면 카테고리별 도서 ImageView
         allImageView1 = findViewById(R.id.all_book_1);
@@ -89,8 +84,7 @@ public class MainActivity extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), UserData.class);
-                //원래 로그인으로 가는건데 임시로 회원관리로 연결
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -183,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(MainActivity.this, user_book.class));
+                    startActivity(new Intent(MainActivity.this, UserBook.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(MainActivity.this, UserAdminModeSwitch.class));

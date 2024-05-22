@@ -2,7 +2,6 @@ package com.example.smilebook;
 
 import static android.app.ProgressDialog.show;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -179,7 +177,7 @@ public class UserMyInfo extends AppCompatActivity {
                     startActivity(new Intent(UserMyInfo.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(UserMyInfo.this, user_book.class));
+                    startActivity(new Intent(UserMyInfo.this, UserBook.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(UserMyInfo.this, UserAdminModeSwitch.class));

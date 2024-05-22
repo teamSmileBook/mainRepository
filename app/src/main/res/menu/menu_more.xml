@@ -9,7 +9,7 @@
 
     <item
         android:id="@+id/user_myBookBtn"
-        android:title="내도서"/>
+        android:title="내 도서"/>
 
     <item
         android:id="@+id/user_adminTransBtn"

@@ -109,7 +109,7 @@ public class UserAdminModeSwitch extends AppCompatActivity {
                     startActivity(new Intent(UserAdminModeSwitch.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(UserAdminModeSwitch.this, user_book.class));
+                    startActivity(new Intent(UserAdminModeSwitch.this, UserBook.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(UserAdminModeSwitch.this, UserAdminModeSwitch.class));
