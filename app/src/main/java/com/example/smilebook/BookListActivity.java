@@ -77,15 +77,6 @@
             recyclerView.setAdapter(gridAdapter); //리사이클러뷰랑 어댑터 연결
             recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); //사용할 LayoutManager (그리드레이아웃 2열로 정렬)
 
-    //        // Retrofit을 사용하여 서버에서 카테고리별 도서 목록을 가져옴
-    //        Retrofit retrofit = new Retrofit.Builder()
-    //                .baseUrl(BASE_URL)
-    //                .addConverterFactory(GsonConverterFactory.create())
-    //                .build();
-    //
-    //        ApiService apiService = retrofit.create(ApiService.class);
-    //        Call<List<GridBookListData>> call = apiService.getBooksByCategory(category); //서버에게 카테고리 전달하여 도서 목록 요청
-
             // SharedPreferences를 사용하여 memberId 값을 가져옴
             SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
             memberId = sharedPreferences.getString("memberId", null);

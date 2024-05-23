@@ -27,28 +27,11 @@ public class UserAdminModeSwitch extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.admin_mode_switch);
 
-        //툴바 관련 코드
         // 데이터 바인딩 설정
         binding = DataBindingUtil.setContentView(this, R.layout.admin_mode_switch);
-
-        // TextView의 text 설정
         binding.setTitleText("관리자 인증");
-
         toolbarTitleBinding = binding.toolbar;
-
-        //홈(main_b.xml)으로
-//        toolbarTitleBinding.icons8Smile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // main_b 화면으로 이동하는 인텐트 생성
-//                Intent intent = new Intent(admin_mode_switch.this, main_b.class);
-//                startActivity(intent);
-//                // 현재 액티비티 종료
-//                finish();
-//            }
-//        });
 
         //뒤로가기(more.xml)
         toolbarTitleBinding.back.setOnClickListener(new View.OnClickListener() {

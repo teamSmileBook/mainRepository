@@ -28,10 +28,8 @@ import retrofit2.Response;
 public class UserMyInfo extends AppCompatActivity {
 
     private EditText editNickname, editEmail, editPassword, editPhoneNumber;
-
     private Button editButton;
     private ApiService apiService;
-    private UserMyInfoBinding binding;
     private ToolbarTitleBinding toolbarTitleBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

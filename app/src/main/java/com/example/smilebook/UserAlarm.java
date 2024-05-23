@@ -3,24 +3,32 @@ package com.example.smilebook;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
+import android.widget.CompoundButton;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.example.smilebook.ItemData.AlarmAdapter;
+import com.example.smilebook.ItemData.AlarmData;
 import com.example.smilebook.databinding.ToolbarTitleBinding;
 import com.example.smilebook.databinding.UserAlarmBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserAlarm extends AppCompatActivity {
     private UserAlarmBinding binding;
     private ToolbarTitleBinding toolbarTitleBinding;
-    private ListView listView;
-    private AlarmListViewItemAdapter adapter;
+    private RecyclerView recyclerView;
+    private AlarmAdapter adapter;
+    private List<AlarmData> alarmList;
     private SwitchCompat alarmSwitch;
 
     @Override
@@ -29,31 +37,32 @@ public class UserAlarm extends AppCompatActivity {
 
         // 데이터 바인딩 설정
         binding = DataBindingUtil.setContentView(this, R.layout.user_alarm);
+        binding.setTitleText("알림");
+        toolbarTitleBinding = binding.toolbar;
+
+        // 데이터 초기화
+        alarmList = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            AlarmData alarmData = new AlarmData();
+            alarmData.setAlarm_text("알림 내용 " + i);
+            alarmList.add(alarmData);
+        }
+
+        // RecyclerView 설정
+        recyclerView = findViewById(R.id.alarm_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // 어댑터 설정
+        adapter = new AlarmAdapter(alarmList);
+        recyclerView.setAdapter(adapter);
 
         //item_more 클릭 이벤트 처리
-        findViewById(R.id.item_more).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showPopup(view);
             }
         });
-
-
-        // TextView의 text 설정
-        //binding.setTitleText("알림");
-        //toolbarTitleBinding = binding.toolbar;
-
-        //홈(main_b.xml)으로
-//        toolbarTitleBinding.icons8Smile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // main_b 화면으로 이동하는 인텐트 생성
-//                Intent intent = new Intent(user_alarm_b.this, main_b.class);
-//                startActivity(intent);
-//                // 현재 액티비티 종료
-//                finish();
-//            }
-//        });
 
         //뒤로가기
         toolbarTitleBinding.back.setOnClickListener(new View.OnClickListener() {
@@ -63,47 +72,27 @@ public class UserAlarm extends AppCompatActivity {
             }
         });
 
-        //더보기
-        //toolbarTitleBinding.more.setOnClickListener(new View.OnClickListener() {
-            //@Override
-            //public void onClick(View view) {
-                //Intent intent = new Intent(UserAlarm.this, UserMore.class);
-                //startActivity(intent);
-            //}
-        //});
-
         // 스위치 on/off에 대한 코드
         alarmSwitch = binding.pushAlarmSwitch; //스위치 초기화
         alarmSwitch.setChecked(true); //스위치 기본값 설정
 
-        // 스위치 리스너 설정
-//        alarmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//
-//            //스위치 on/off에 대한 동작
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                // 스위치가 true인 경우
-//                if (isChecked) {
-//                    // 리스트뷰를 보이게 함
-//                    listView.setVisibility(View.VISIBLE);
-//                } else {
-//                    // 스위치가 false인 경우
-//                    // 리스트뷰를 숨김
-//                    listView.setVisibility(View.GONE);
-//                }
-//            }
-//        });
+         //스위치 리스너 설정
+        alarmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
-        //알림 내용
-        //listview 참조
-        listView = binding.alarmList;
-//        listView = findViewById(R.id.alarm_list);
-
-        //adapter 초기화
-        adapter = new AlarmListViewItemAdapter(this);
-
-        //listview에 adapter 설정
-        listView.setAdapter(adapter);
+            //스위치 on/off에 대한 동작
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // 스위치가 true인 경우
+                if (isChecked) {
+                    // 리스트뷰를 보이게 함
+                    recyclerView.setVisibility(View.VISIBLE);
+                } else {
+                    // 스위치가 false인 경우
+                    // 리스트뷰를 숨김
+                    recyclerView.setVisibility(View.GONE);
+                }
+            }
+        });
     }
     //상단에 있는 메뉴바
     private void showPopup(View v) {

@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/alarm_text"
-        android:layout_width="350dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"

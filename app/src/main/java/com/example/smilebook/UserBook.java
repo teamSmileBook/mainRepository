@@ -119,7 +119,8 @@ public class UserBook extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<BookItemData>> call, Throwable t) {
-                Toast.makeText(UserBook.this, "네트워크 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserBook.this, "네트워크 오류: ", Toast.LENGTH_SHORT).show();
+                Log.e("UserBook","네트워크 오류 : "+ t);
             }
         });
     }

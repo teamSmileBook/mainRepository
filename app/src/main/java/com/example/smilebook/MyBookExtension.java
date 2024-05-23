@@ -19,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.bumptech.glide.Glide;
-import com.example.smilebook.ItemData.BookItemAdapter;
 import com.example.smilebook.api.ApiService;
 import com.example.smilebook.databinding.MyBookExtensionBinding;
 import com.example.smilebook.databinding.ToolbarTitleBinding;
@@ -49,7 +48,6 @@ public class MyBookExtension extends AppCompatActivity {
     private String currentBookStatus;
     private AlertDialog.Builder builder;
 
-    private BookItemAdapter adapter; // 어댑터 선언
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

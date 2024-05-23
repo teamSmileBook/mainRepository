@@ -75,17 +75,8 @@
         <activity
             android:name=".AdminSearch"
             android:exported="true" />
-
-        <activity
-            android:name=".AdminMore"
-            android:exported="true" />
-
         <activity
             android:name=".BookRegistration"
-            android:exported="true"/>
-
-        <activity
-            android:name=".AdminCodeEditActivity"
             android:exported="true"/>
         <activity
             android:name=".UserAdminModeSwitch"
@@ -105,14 +96,9 @@
         <activity
             android:name=".SearchActivity"
             android:exported="true"/>
-
-        <activity
-            android:name=".UserMore"
-            android:exported="true" />
         <activity
             android:name=".AdminMainActivity"
             android:exported="true"/>
-
 
         <activity android:name=".MainActivity"
             android:exported="true" >

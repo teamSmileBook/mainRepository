@@ -198,13 +198,6 @@ public class BookInfo extends AppCompatActivity {
         bookDescription.setText(book.getDescription());
         String reservedBy = (book.getMember() != null) ? book.getMember().getMemberId() : null; // 예약자 ID 저장
 
-//        // 도서 상태에 따라 예약 상태 설정
-//        if (book.getBookStatus().equals("예약 중")) {
-//            isReserved = true;
-//        } else {
-//            isReserved = false;
-//        }
-
         // 도서 상태에 따라 예약 상태 설정
         isReserved = book.getBookStatus().equals("예약 중") && memberId != null && memberId.equals(reservedBy);
 

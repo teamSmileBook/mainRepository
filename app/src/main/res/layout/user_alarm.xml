@@ -82,11 +82,10 @@
             android:textColor="#676767"
             android:text="   알림 내용" />
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/alarm_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
     </LinearLayout>
 </layout>
 
