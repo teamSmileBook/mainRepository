@@ -13,8 +13,7 @@
         android:layout_height="match_parent"
         android:clipToOutline="true"
         android:background="#FFFFFF"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <include
             layout="@layout/toolbar_title"
@@ -24,14 +23,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="26dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:background="#F2F2F2"
             android:padding="3dp"
             android:textSize="14sp"
             android:textColor="#676767"
             android:text="   푸시 알림" />
-
 
         <FrameLayout
             android:id="@+id/table_row"
@@ -48,8 +44,7 @@
                 android:text="알림 켜기"
                 android:layout_marginTop="16dp"
                 android:layout_marginLeft="16dp"
-                android:gravity="center_vertical"
-                />
+                android:gravity="center_vertical" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/push_alarm_switch"
@@ -57,35 +52,30 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|right"
                 android:layout_margin="10dp"
+                android:padding="12dp"
                 android:thumb="@drawable/switch_thumb"
                 app:track="@drawable/switch_track_selector"
                 app:thumbTextPadding="24dp"
                 android:textOff=""
-                android:textOn=""/>
+                android:textOn="" />
 
-            <!--        <Switch-->
-            <!--            android:layout_width="wrap_content"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            android:layout_gravity="center|right"-->
-            <!--            android:layout_margin="10dp"-->
-            <!--            />-->
         </FrameLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="26dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:background="#F2F2F2"
             android:padding="3dp"
             android:textSize="14sp"
             android:textColor="#676767"
-            android:text="   알림 내용" />
+            android:text="   알림 내용"
+            android:id="@+id/alarm_text" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/alarm_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
     </LinearLayout>
 </layout>
 

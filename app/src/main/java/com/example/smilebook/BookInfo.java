@@ -34,31 +34,44 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+//도서의 상태에 따라 UI를 업데이트하고 예약 기능을 구현
 public class BookInfo extends AppCompatActivity {
 
+    // 도서 정보를 요청할 기본 URL
     private static final String BASE_URL = "http://3.39.9.175:8080/";
+
+    // API 서비스 인터페이스
     private ApiService apiService;
+
+    //도서 정보를 표시할 뷰 요소들
     private ImageView bookCover;
     private TextView bookTitle;
     private TextView bookAuthor;
     private TextView bookStatus;
     private TextView bookDescription;
     private Button reservation;
-    private boolean isReserved = false; // 예약 상태를 저장할 변수
-    private MemberDTO reservedBy; // 예약자 ID를 저장할 변수
+
+    // 예약 상태와 예약자 ID를 저장할 변수
+    private boolean isReserved = false;
+    private MemberDTO reservedBy;
+
+    //데이터 바인딩을 위한 변수
     private BookInfoBinding binding;
     private ToolbarTitleBinding toolbarTitleBinding;
+
+    //현재 도서의 상태를 저장할 변수
     private String currentBookStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // 데이터 바인딩 설정
+        // 레이아웃, 데이터 바인딩 설정
         binding = DataBindingUtil.setContentView(this, R.layout.book_info);
         binding.setTitleText("도서 정보");
         toolbarTitleBinding = binding.toolbar;
 
+        //뷰 요소 초기화
         bookCover = findViewById(R.id.book_cover);
         bookTitle = findViewById(R.id.book_title);
         bookAuthor = findViewById(R.id.book_author);
@@ -69,7 +82,7 @@ public class BookInfo extends AppCompatActivity {
         reservation = findViewById(R.id.reservation);
 
 
-        //more 클릭 이벤트 처리
+        //more 클릭 시 팝업 표시
         findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,7 +90,7 @@ public class BookInfo extends AppCompatActivity {
             }
         });
 
-        //뒤로가기
+        //뒤로가기 버튼 클릭 시 현재 액티비티 종료
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,6 +105,7 @@ public class BookInfo extends AppCompatActivity {
         // 도서 정보 불러오기
         fetchBookInfo();
 
+        //"위치 확인" 버튼 클릭 시 도서 위치 조회 액티비티로 이동
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,17 +115,21 @@ public class BookInfo extends AppCompatActivity {
             }
         });
 
+        // "도서 예약" 버튼 클릭 시 도서 예약, "예약 취소" 버튼 클릭 시 도서 예약 취소
         binding.reservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // 사용자의 로그인 상태 확인(로그인 시에만 도서 예약이 가능)
                 SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
                 String memberId = prefs.getString("memberId", "");
 
                 if (!memberId.isEmpty()) {
+                    // 도서 예약 요청
                     Call<ReservationResponseDTO> call = apiService.reserveBook(new ReservationDTO(memberId, bookId));
                     call.enqueue(new Callback<ReservationResponseDTO>() {
                         @Override
                         public void onResponse(Call<ReservationResponseDTO> call, Response<ReservationResponseDTO> response) {
+                            // 예약 요청 응답 처리
                             if (response.isSuccessful() && response.body() != null) {
                                 ReservationResponseDTO responseBody = response.body();
                                 if (responseBody.isSuccess()) {
@@ -123,27 +141,31 @@ public class BookInfo extends AppCompatActivity {
                                     editor.putBoolean("isReserved", isReserved); // 예약 상태 저장
                                     editor.apply();
 
+                                    //예약 성공 메시지 출력
                                     if (isReserved) {
                                         Toast.makeText(BookInfo.this, "도서가 예약되었습니다.", Toast.LENGTH_SHORT).show();
                                     } else {
                                         Toast.makeText(BookInfo.this, "예약이 취소되었습니다.", Toast.LENGTH_SHORT).show();
                                     }
                                 } else {
-                                    // 예약 실패 시 메시지 표시
+                                    // 예약 실패 시 메시지 출력
                                     Toast.makeText(BookInfo.this, responseBody.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             } else {
+                                //서버 응답 실패 시 메시지 출력
                                 Toast.makeText(BookInfo.this, "서버 응답 실패", Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<ReservationResponseDTO> call, Throwable t) {
+                            // 네트워크 요청 실패 시 메시지 출력
                             Log.e("error", "네트워크 요청 실패", t);
                             Toast.makeText(BookInfo.this, "네트워크 요청 실패", Toast.LENGTH_SHORT).show();
                         }
                     });
                 } else {
+                    //로그인 요청 메시지 출력
                     Toast.makeText(BookInfo.this, "로그인이 필요합니다.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -156,7 +178,7 @@ public class BookInfo extends AppCompatActivity {
         Intent intent = getIntent();
         Long bookId = intent.getLongExtra("bookId", -1L);
 
-        // Retrofit 객체 생성
+        // Retrofit을 사용해 도서 정보 요청
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -164,17 +186,19 @@ public class BookInfo extends AppCompatActivity {
 
         apiService = retrofit.create(ApiService.class);
 
-        // bookId에 해당하는 도서 정보 가져오기 요청
+        // bookId에 해당하는 도서 정보 요청
         Call<BookDTO> call = apiService.getBookById(bookId);
         call.enqueue(new Callback<BookDTO>() {
             @Override
             public void onResponse(Call<BookDTO> call, Response<BookDTO> response) {
                 if (response.isSuccessful() && response.body() != null) {
+                    //도서 정보를 성공적으로 받아올 시 UI 업데이트
                     BookDTO book = response.body();
                     Log.d("BookInfo", "서버 응답 성공");
                     // 도서 정보 설정
                     setBookInfo(book);
                 } else {
+                    // 도서 정보 요청 실패 시 메시지 출력
                     Log.e("BookInfo", "서버 응답 실패");
                     Toast.makeText(BookInfo.this, "도서 정보를 불러 오는데 실패했습니다.", Toast.LENGTH_SHORT).show();
                 }
@@ -182,6 +206,7 @@ public class BookInfo extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<BookDTO> call, Throwable t) {
+                //네트워크 요청 실패 시 로그 출력
                 Log.e("error", "네트워크 요청 실패", t);
             }
         });
@@ -189,9 +214,11 @@ public class BookInfo extends AppCompatActivity {
 
     // 도서 정보 설정
     private void setBookInfo(BookDTO book) {
+        // 로그인 상태 확인
         SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         String memberId = prefs.getString("memberId", "");
 
+        //도서 정보 UI 업데이트
         Glide.with(BookInfo.this)
                 .load(book.getCoverUrl())
                 .into(bookCover);
@@ -207,19 +234,22 @@ public class BookInfo extends AppCompatActivity {
         // 예약 상태 업데이트
         updateReservationStatus();
 
-        updateBookStatus(); // 도서 상태 업데이트
-        updateReservationButton(); // 버튼 상태 업데이트
+        // 도서 상태 업데이트
+        updateBookStatus();
+
+        // 버튼 상태 업데이트
+        updateReservationButton();
     }
 
-    // 예약 상태 업데이트
+    // 예약 상태 저장
     private void updateReservationStatus() {
-        // 저장된 예약 상태 업데이트
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("isReserved", isReserved); // 예약 상태 저장
         editor.apply();
     }
 
+    // 도서 상태 업데이트
     private void updateBookStatus() {
         // 현재 도서 상태를 UI에 설정
         binding.bookStatus.setText(currentBookStatus);
@@ -231,7 +261,7 @@ public class BookInfo extends AppCompatActivity {
         }
     }
 
-    // 예약 버튼 상태 업데이트 메소드
+    // 예약 버튼 상태 업데이트
     private void updateReservationButton() {
         SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         String memberId = prefs.getString("memberId", "");

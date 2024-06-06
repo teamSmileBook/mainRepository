@@ -23,7 +23,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-//관리자 모드 전환
+//관리자 모드 전환 액티비티: 입력된 코드를 서버로 전송해 조회 한 뒤 관리자 인증 처리
 public class AdminModeSwitchActivity extends AppCompatActivity {
 
     private EditText adminCodeEditText;
@@ -35,13 +35,16 @@ public class AdminModeSwitchActivity extends AppCompatActivity {
 
         adminCodeEditText = findViewById(R.id.admin_switch_code);
 
+        // TextWatcher를 사용해 입력된 코드의 변화를 감지
         adminCodeEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // 입력 전 동작
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // 입력 중 동작
             }
 
             @Override
@@ -49,7 +52,7 @@ public class AdminModeSwitchActivity extends AppCompatActivity {
                 String adminCode = s.toString();
                 // 입력된 코드가 4자리인지 확인
                 if (adminCode.length() == 4) {
-                    // API 호출
+                    // API 호출해 관리자 코드 조회
                     checkAdminCode(adminCode);
                 }
             }
@@ -98,7 +101,7 @@ public class AdminModeSwitchActivity extends AppCompatActivity {
 
     }
 
-    //api 응답 처리
+    //관리자 코드 확인을 위한 api 호출 및 응답 처리
     private void checkAdminCode(String adminCode) {
         ApiService apiService = RetrofitClient.getInstance().create(ApiService.class);
         Call<String> call = apiService.checkAdminCode(adminCode);

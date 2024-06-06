@@ -26,11 +26,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+//도서의 위치 좌표를 받아 해당 위치에 마킹, 카테고리와 층 정보를 표시
 public class BookLocationActivity extends AppCompatActivity {
 
+    //API 서비스 인터페이스
     private ApiService apiService;
+
+    //도서 위치 표기 이미지뷰
     private CustomImageView imageView;
+
+    //표시할 도서의 ID
     private Long bookId;
+
+    //데이터 바인딩을 위한 변수
     private BookLocationBinding binding;
     private ToolbarTitleBinding toolbarTitleBinding;
 
@@ -54,14 +62,16 @@ public class BookLocationActivity extends AppCompatActivity {
         });
 
         Button back = findViewById(R.id.back);
-        //뒤로가기
+        //뒤로가기 버튼 클릭 시 현재 액티비티 종료
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { finish(); }
         });
 
+        // 도서 위치를 표시할 이미지뷰 초기화
         imageView = findViewById(R.id.imageView36);
 
+        // 인텐트로부터 도서 ID 받아옴
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             bookId = extras.getLong("bookId");
@@ -70,13 +80,16 @@ public class BookLocationActivity extends AppCompatActivity {
         // Retrofit 객체 생성
         apiService = RetrofitClient.getInstance().create(ApiService.class);
 
+        //도서 위치 정보 요청
         Call<BookLocationDTO> call = apiService.getBookLocationById(bookId);
         call.enqueue(new Callback<BookLocationDTO>() {
             @Override
             public void onResponse(Call<BookLocationDTO> call, Response<BookLocationDTO> response) {
                 if (response.isSuccessful() && response.body() != null) {
+                    //서버 응답 성공 시 도서 위치 정보를 가져와 UI 업데이트
                     BookLocationDTO book = response.body();
 
+                    //도서 위치 좌표에 마킹
                     float circleX = book.getXCoordinate();
                     float circleY = book.getYCoordinate();
                     imageView.setCirclePosition(circleX, circleY);
@@ -91,7 +104,8 @@ public class BookLocationActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<BookLocationDTO> call, Throwable t) {
-                // 오류 처리
+                // 도서 위치 정보 요청 실패 시 메시지 출력
+                Toast.makeText(BookLocationActivity.this, "도서 위치 조회 실패", Toast.LENGTH_SHORT).show();
             }
         });
     }

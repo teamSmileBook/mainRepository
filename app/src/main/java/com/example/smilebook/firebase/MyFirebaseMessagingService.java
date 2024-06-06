@@ -19,12 +19,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+// Firebase 클라우드 메시징을 통해 수신된 메시지를 처리
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
     private static final String CHANNEL_ID = "default_channel_id";
     private static final String CHANNEL_NAME = "Default Channel";
 
+    // 메시지 수신 시 호출되는 메서드
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         if (remoteMessage.getData().size() > 0) {
@@ -56,15 +58,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 jsonArray = new JSONArray(existingData);
             }
 
+            // 알림의 최대 개수를 10개로 제한
             if (jsonArray.length() >= 10) {
                 jsonArray.remove(0);
             }
 
+            // 새로운 알림을 JSON 객체로 생성하여 배열에 추가
             JSONObject newNotification = new JSONObject();
             newNotification.put("title", title);
             newNotification.put("body", body);
             jsonArray.put(newNotification);
 
+            // 업데이트된 배열을 SharedPreferences에 저장
             editor.putString("notifications", jsonArray.toString());
             editor.apply();
 
@@ -78,6 +83,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
 
+    // 알림을 생성하고 표시하는 메서드
     private void showNotification(Context context, String title, String body) {
         // Notification을 생성하고 표시
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -92,6 +98,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         notificationManager.notify(0, builder.build());
     }
 
+
     private void createNotificationChannel(NotificationManager notificationManager) {
         // Android O 이상에서는 NotificationChannel을 생성하여 사용해야 함
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -100,6 +107,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
     }
 
+    // BroadcastReceiver를 통해 알림을 수신하고 표시하는 내부 클래스
     public static class NotificationReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -108,6 +116,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             showNotification(context, title, body);
         }
 
+        // 알림을 생성하고 표시하는 메서드
         private void showNotification(Context context, String title, String body) {
             // Notification을 생성하고 표시
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

@@ -28,12 +28,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+//내 정보 조회 및 수정 액티비티: 사용자가 개인 정보를 수정하고 저장할 때, 입력된 정보를 서버에 전송하여 업데이트 함
+
 public class UserMyInfo extends AppCompatActivity {
 
-    private EditText editNickname, editEmail, editPassword, editPhoneNumber;
-    private Button editButton;
-    private ApiService apiService;
-    private ToolbarTitleBinding toolbarTitleBinding;
+    private EditText editNickname, editEmail, editPassword, editPhoneNumber;//EditText 변수들
+    private Button editButton;//수정 버튼
+    private ApiService apiService;//ApiService 객체
+    private ToolbarTitleBinding toolbarTitleBinding;//데이터 바인딩 객체
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +100,7 @@ public class UserMyInfo extends AppCompatActivity {
 
     }
 
+    //서버에서 회원 정보를 조회하는 메서드
     private void getMemberDetailsFromServer() {
         // SharedPreferences에서 memberId 가져오기
         SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
@@ -130,6 +133,7 @@ public class UserMyInfo extends AppCompatActivity {
         });
     }
 
+    //서버에 회원 정보 수정 요청 메서드
     private void updateMemberInfo(String newNickname, String newEmail, String newPhoneNumber, String newPassword) {
         // SharedPreferences에서 memberId 가져오기
         SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
