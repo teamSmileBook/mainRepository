@@ -1,11 +1,13 @@
-package com.example.smilebook;
+package com.example.smilebook.admin;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,37 +15,36 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import com.example.smilebook.admin.UserAdminModeSwitch;
 import com.example.smilebook.alarm.UserAlarm;
+import com.example.smilebook.LoginActivity;
 import com.example.smilebook.myBook.MyBookList;
-import com.example.smilebook.api.ApiService;
-import com.example.smilebook.api.RetrofitClient;
-import com.example.smilebook.databinding.BookLocationBinding;
+import com.example.smilebook.R;
+import com.example.smilebook.UserMyInfo;
+import com.example.smilebook.databinding.AdminModeSwitchBinding;
 import com.example.smilebook.databinding.ToolbarTitleBinding;
-import com.example.smilebook.model.BookLocationDTO;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+public class UserAdminModeSwitch extends AppCompatActivity {
 
-public class BookLocationActivity extends AppCompatActivity {
-
-    private ApiService apiService;
-    private CustomImageView imageView;
-    private Long bookId;
-    private BookLocationBinding binding;
     private ToolbarTitleBinding toolbarTitleBinding;
+    private AdminModeSwitchBinding binding;
 
+    private EditText adminSwitchCodeEditText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.book_location);
 
         // 데이터 바인딩 설정
-        binding = DataBindingUtil.setContentView(this, R.layout.book_location);
-        // TextView의 text 설정
-        binding.setTitleText("도서 정보");
+        binding = DataBindingUtil.setContentView(this, R.layout.admin_mode_switch);
+        binding.setTitleText("관리자 인증");
         toolbarTitleBinding = binding.toolbar;
+
+        //뒤로가기(more.xml)
+        toolbarTitleBinding.back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         //more 클릭 이벤트 처리
         findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
@@ -53,47 +54,33 @@ public class BookLocationActivity extends AppCompatActivity {
             }
         });
 
-        Button back = findViewById(R.id.back);
-        //뒤로가기
-        back.setOnClickListener(new View.OnClickListener() {
+
+        //숫자 4자리 입력 받고 엔터 눌렀을 때 관리자 화면으로 전환
+        adminSwitchCodeEditText = findViewById(R.id.admin_switch_code);
+
+        adminSwitchCodeEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public void onClick(View view) { finish(); }
-        });
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
 
-        imageView = findViewById(R.id.imageView36);
-
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            bookId = extras.getLong("bookId");
-        }
-
-        // Retrofit 객체 생성
-        apiService = RetrofitClient.getInstance().create(ApiService.class);
-
-        Call<BookLocationDTO> call = apiService.getBookLocationById(bookId);
-        call.enqueue(new Callback<BookLocationDTO>() {
-            @Override
-            public void onResponse(Call<BookLocationDTO> call, Response<BookLocationDTO> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    BookLocationDTO book = response.body();
-
-                    float circleX = book.getXCoordinate();
-                    float circleY = book.getYCoordinate();
-                    imageView.setCirclePosition(circleX, circleY);
-
-                    // 카테고리와 층 정보를 텍스트뷰에 설정
-                    TextView categoryTextView = findViewById(R.id.category);
-                    TextView floorTextView = findViewById(R.id.floor);
-                    categoryTextView.setText(book.getCategory());
-                    floorTextView.setText(book.getFloor());
+                //엔터키를 눌렀을 때
+                if(actionId == EditorInfo.IME_ACTION_DONE) {
+                    //입력된 코드가 4자리면
+                    if (adminSwitchCodeEditText.getText().length() == 4) {
+                        //화면이동
+                        moveAdminMain();
+                        return true;
+                    }
                 }
-            }
-
-            @Override
-            public void onFailure(Call<BookLocationDTO> call, Throwable t) {
-                // 오류 처리
+                return false;
             }
         });
+    }
+
+    //admin_main.xml로 이동
+    private void moveAdminMain() {
+        Intent adminSwitchIntent = new Intent(UserAdminModeSwitch.this, AdminMainActivity.class);
+        startActivity(adminSwitchIntent);
+        finish(); // 현재 액티비티 종료
     }
 
     //상단에 있는 메뉴바
@@ -104,16 +91,16 @@ public class BookLocationActivity extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.user_alarmBtn) {
-                    startActivity(new Intent(BookLocationActivity.this, UserAlarm.class));
+                    startActivity(new Intent(UserAdminModeSwitch.this, UserAlarm.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
-                    startActivity(new Intent(BookLocationActivity.this, UserMyInfo.class));
+                    startActivity(new Intent(UserAdminModeSwitch.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(BookLocationActivity.this, MyBookList.class));
+                    startActivity(new Intent(UserAdminModeSwitch.this, MyBookList.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
-                    startActivity(new Intent(BookLocationActivity.this, UserAdminModeSwitch.class));
+                    startActivity(new Intent(UserAdminModeSwitch.this, UserAdminModeSwitch.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_logOutBtn) {
                     // SharedPreferences를 사용하여 "memberId" 값을 가져오기
@@ -122,14 +109,14 @@ public class BookLocationActivity extends AppCompatActivity {
 
                     if (memberId == null) {
                         // "로그인" 버튼을 눌렀을 때 로그인 액티비티로 이동
-                        startActivity(new Intent(BookLocationActivity.this, LoginActivity.class));
+                        startActivity(new Intent(UserAdminModeSwitch.this, LoginActivity.class));
                     } else {
                         // SharedPreferences에서 "memberId" 값을 null로 변경
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("memberId", null);
                         editor.apply();
 
-                        Toast.makeText(BookLocationActivity.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserAdminModeSwitch.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
                     }
                     return true;
                 } else {

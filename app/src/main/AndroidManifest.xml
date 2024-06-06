@@ -21,31 +21,31 @@
         >
 
         <activity
-            android:name=".MyBookExtension"
+            android:name=".myBook.MyBookExtension"
             android:exported="true"/>
 
         <activity
-            android:name=".AdminBookListActivity"
+            android:name=".admin.AdminBookListActivity"
             android:exported="true"/>
 
         <activity
-            android:name=".UserBook"
+            android:name=".myBook.MyBookList"
             android:exported="true"/>
 
         <activity
-            android:name=".AdminBookListAll"
+            android:name=".admin.AdminBookListAll"
             android:exported="true"/>
 
         <activity
-            android:name=".AdminBookEdit"
+            android:name=".bookManage.AdminBookEdit"
             android:exported="true"/>
 
         <activity
-            android:name=".SearchResult"
+            android:name=".search.SearchResult"
             android:exported="true"/>
 
         <activity
-            android:name=".BookListActivity"
+            android:name=".bookList.BookListActivity"
             android:exported="true"/>
 
         <activity
@@ -53,15 +53,15 @@
             android:exported="true"/>
 
         <activity
-            android:name=".BookListAll"
+            android:name=".bookList.BookListAll"
             android:exported="true"/>
 
         <activity
-            android:name=".AdminmodeSwitchActivity"
+            android:name=".admin.AdminModeSwitchActivity"
             android:exported="true" />
 
         <activity
-            android:name=".UserData"
+            android:name=".userManage.UserData"
             android:exported="true" />
 
         <activity
@@ -69,23 +69,23 @@
             android:exported="true" />
 
         <activity
-            android:name=".UserList"
+            android:name=".userManage.UserList"
             android:exported="true" />
 
         <activity
-            android:name=".AdminSearch"
+            android:name=".search.AdminSearch"
             android:exported="true" />
         <activity
-            android:name=".BookRegistration"
+            android:name=".bookManage.BookRegistration"
             android:exported="true"/>
         <activity
-            android:name=".UserAdminModeSwitch"
+            android:name=".admin.UserAdminModeSwitch"
             android:exported="true" />
         <activity
             android:name=".UserMyInfo"
             android:exported="true" />
         <activity
-            android:name=".UserAlarm"
+            android:name=".alarm.UserAlarm"
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
@@ -94,10 +94,10 @@
             android:name=".JoinActivity"
             android:exported="true"/>
         <activity
-            android:name=".SearchActivity"
+            android:name=".search.SearchActivity"
             android:exported="true"/>
         <activity
-            android:name=".AdminMainActivity"
+            android:name=".admin.AdminMainActivity"
             android:exported="true"/>
 
         <activity android:name=".MainActivity"

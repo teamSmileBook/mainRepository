@@ -31,7 +31,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    buildFeatures { //0324 보라
+    buildFeatures {
         dataBinding = true
     }
 

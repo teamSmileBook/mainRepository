@@ -2,8 +2,8 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/signup"
-    android:layout_width="411dp"
-    android:layout_height="732dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:clipToOutline="true"
     android:orientation="vertical"
     android:background="#FFFFFF">

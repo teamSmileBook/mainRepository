@@ -17,6 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.bumptech.glide.Glide;
+import com.example.smilebook.admin.UserAdminModeSwitch;
+import com.example.smilebook.alarm.UserAlarm;
+import com.example.smilebook.myBook.MyBookList;
 import com.example.smilebook.api.ApiService;
 import com.example.smilebook.databinding.BookInfoBinding;
 import com.example.smilebook.databinding.ToolbarTitleBinding;
@@ -269,7 +272,7 @@ public class BookInfo extends AppCompatActivity {
                     startActivity(new Intent(BookInfo.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(BookInfo.this, UserBook.class));
+                    startActivity(new Intent(BookInfo.this, MyBookList.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(BookInfo.this, UserAdminModeSwitch.class));

@@ -61,13 +61,13 @@
                     android:layout_marginStart="22dp"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="20dp"
-                    android:text="전체 도서"
+                    android:text="인기 도서"
                     android:textAppearance="@style/mainScrollTitle"
                     android:gravity="center_horizontal|top"
                     />
 
                 <android.widget.Button
-                    android:id="@+id/all_arrow_btn"
+                    android:id="@+id/best_arrow_btn"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentLeft="true"

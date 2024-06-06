@@ -1,7 +1,6 @@
 package com.example.smilebook.api;
-import com.example.smilebook.ItemData.BookItemData;
-import com.example.smilebook.ItemData.GridBookListData;
-import com.example.smilebook.ItemData.UserListData;
+import com.example.smilebook.myBook.MyBookItemData;
+import com.example.smilebook.bookList.GridBookListData;
 import com.example.smilebook.model.BookDTO;
 import com.example.smilebook.model.BookLocationDTO;
 import com.example.smilebook.model.LoginRequest;
@@ -16,15 +15,12 @@ import com.example.smilebook.model.UserListDTO;
 import com.example.smilebook.model.WishlistDTO;
 import com.example.smilebook.model.WishlistItemDTO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -96,11 +92,12 @@ public interface ApiService {
     Call<Void> sendFirebaseToken(@Body TokenDTO tokenDTO);
 
     @GET("/member/{memberId}/all-books")
-    Call<List<BookItemData>> getAllBooksForMember(@Path("memberId") String memberId);
+    Call<List<MyBookItemData>> getAllBooksForMember(@Path("memberId") String memberId);
 
     @POST("/books/add")
     Call<Void> addbook(@Body BookDTO bookDTO);
 
     @PUT("/books/{bookId}/extendLoan")
     Call<Void> extendLoan(@Path("bookId") Long bookId);
+
 }

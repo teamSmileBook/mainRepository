@@ -1,9 +1,6 @@
-package com.example.smilebook;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.smilebook.admin;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -11,14 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.example.smilebook.admin.UserAdminModeSwitch;
-import com.example.smilebook.alarm.UserAlarm;
-import com.example.smilebook.bookList.BookListActivity;
-import com.example.smilebook.bookList.BookListAll;
-import com.example.smilebook.myBook.MyBookList;
+import com.example.smilebook.bookManage.BookRegistration;
+import com.example.smilebook.MainActivity;
+import com.example.smilebook.userManage.UserList;
+import com.example.smilebook.R;
 import com.example.smilebook.search.SearchActivity;
 import com.example.smilebook.api.ApiService;
 import com.example.smilebook.api.RetrofitClient;
@@ -31,7 +28,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class MainActivity extends AppCompatActivity {
+public class AdminMainActivity extends AppCompatActivity {
 
     private ImageView allImageView1, allImageView2, allImageView3, allImageView4; //전체 ImageView
     private ImageView eduImageView1, eduImageView2, eduImageView3, eduImageView4; //교육 ImageView
@@ -41,36 +38,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_main);
-
-        // SharedPreferences를 사용하여 "memberId" 값을 가져옴
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        String memberId = sharedPreferences.getString("memberId", "");
-
-        Button loginbtn = findViewById(R.id.rectangle_login);
-
-        // memberId가 null 값이 아닐 시 로그인 요청 버튼 숨김
-        if (!memberId.isEmpty()) {
-            loginbtn.setVisibility(View.GONE);
-        } else {
-            loginbtn.setVisibility(View.VISIBLE);
-        }
-
-        //검색 아이템 화면인텐트
-        findViewById(R.id.item_search).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SearchActivity.class));
-            }
-        });
-
-        //more 클릭 이벤트 처리
-        findViewById(R.id.item_more).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showPopup(view);
-            }
-        });
+        setContentView(R.layout.admin_main);
 
         //메인화면 카테고리별 도서 ImageView
         allImageView1 = findViewById(R.id.all_book_1);
@@ -92,14 +60,6 @@ public class MainActivity extends AppCompatActivity {
         toonImageView2 = findViewById(R.id.cartoon_book_2);
         toonImageView3 = findViewById(R.id.cartoon_book_3);
         toonImageView4 = findViewById(R.id.cartoon_book_4);
-
-        loginbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
 
         // 이미지 로드
         String eduImageName1 = "9791158742188.jpg";
@@ -134,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         bestArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BookListAll.class);
+                Intent intent = new Intent(getApplicationContext(), AdminBookListAll.class);
                 intent.putExtra("category","인기 도서");
                 startActivity(intent);
             }
@@ -145,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         eduArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BookListActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AdminBookListActivity.class);
                 intent.putExtra("category","교육");
                 startActivity(intent);
             }
@@ -156,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         ficArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BookListActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AdminBookListActivity.class);
                 intent.putExtra("category","소설");
                 startActivity(intent);
             }
@@ -167,9 +127,25 @@ public class MainActivity extends AppCompatActivity {
         toonArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BookListActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AdminBookListActivity.class);
                 intent.putExtra("category","만화");
                 startActivity(intent);
+            }
+        });
+
+        //검색 아이템 화면 인텐트
+        findViewById(R.id.item_search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AdminMainActivity.this, SearchActivity.class));
+            }
+        });
+
+        //item_more 클릭 이벤트 처리
+        findViewById(R.id.item_more).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopup(view);
             }
         });
 
@@ -210,43 +186,18 @@ public class MainActivity extends AppCompatActivity {
     //상단에 있는 메뉴바
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
-        popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
+        popupMenu.getMenuInflater().inflate(R.menu.menu_more_admin, popupMenu.getMenu());
 
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
-                if (menuItem.getItemId() == R.id.user_alarmBtn) {
-                    startActivity(new Intent(MainActivity.this, UserAlarm.class));
+                if (menuItem.getItemId() == R.id.admin_registrationBtn) {
+                    startActivity(new Intent(AdminMainActivity.this, BookRegistration.class));
                     return true;
-                } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
-                    startActivity(new Intent(MainActivity.this, UserMyInfo.class));
+                } else if (menuItem.getItemId() == R.id.admin_userBtn) {
+                    startActivity(new Intent(AdminMainActivity.this, UserList.class));
                     return true;
-                } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(MainActivity.this, MyBookList.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
-                    startActivity(new Intent(MainActivity.this, UserAdminModeSwitch.class));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.user_logOutBtn) {
-                    // SharedPreferences를 사용하여 "memberId" 값을 가져오기
-                    SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                    String memberId = sharedPreferences.getString("memberId", null);
-
-                    if (memberId == null) {
-                        // "로그인" 버튼을 눌렀을 때 로그인 액티비티로 이동
-                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                    } else {
-                        // SharedPreferences에서 "memberId" 값을 null로 변경
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("memberId", null);
-                        editor.apply();
-
-                        Toast.makeText(MainActivity.this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show();
-
-                        // MainActivity 새로고침
-                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
+                } else if (menuItem.getItemId() == R.id.admin_transformBtn) {
+                    startActivity(new Intent(AdminMainActivity.this, MainActivity.class));
                     return true;
                 } else {
                     return false;
@@ -254,18 +205,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-// SharedPreferences를 사용하여 "memberId" 값을 가져오기
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        String memberId = sharedPreferences.getString("memberId", null);
-
-// memberId가 null이면 로그인 버튼 텍스트 설정
-        MenuItem logOutMenuItem = popupMenu.getMenu().findItem(R.id.user_logOutBtn);
-        if (memberId == null) {
-            logOutMenuItem.setTitle("로그인");
-        } else {
-            logOutMenuItem.setTitle("로그아웃");
-        }
-
         popupMenu.show();
+
     }
+
 }
+

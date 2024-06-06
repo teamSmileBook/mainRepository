@@ -15,6 +15,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.example.smilebook.admin.UserAdminModeSwitch;
+import com.example.smilebook.alarm.UserAlarm;
+import com.example.smilebook.myBook.MyBookList;
 import com.example.smilebook.api.ApiService;
 import com.example.smilebook.api.RetrofitClient;
 import com.example.smilebook.databinding.ToolbarTitleBinding;
@@ -175,7 +178,7 @@ public class UserMyInfo extends AppCompatActivity {
                     startActivity(new Intent(UserMyInfo.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
-                    startActivity(new Intent(UserMyInfo.this, UserBook.class));
+                    startActivity(new Intent(UserMyInfo.this, MyBookList.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
                     startActivity(new Intent(UserMyInfo.this, UserAdminModeSwitch.class));
