@@ -18,6 +18,7 @@ import org.json.JSONException;
 
 import java.util.List;
 
+// RecyclerView의 아이템을 표시하기 위한 Adapter 파일. 알림 목록을 관리하고 사용자가 알림을 삭제할 수 있는 제공
 public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.AlarmViewHolder>{
     private List<AlarmData> alarmList;
     private Context context;
@@ -39,6 +40,7 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.AlarmViewHol
         }
     }
 
+    // 새로운 ViewHolder 생성
     @NonNull
     @Override
     public AlarmViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -46,18 +48,19 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.AlarmViewHol
         return new AlarmViewHolder(itemView);
     }
 
+    // ViewHolder의 데이터를 설정
     @Override
     public void onBindViewHolder(@NonNull AlarmViewHolder holder, int position) {
         AlarmData currentItem = alarmList.get(position);
         holder.alarmTextView.setText(currentItem.getAlarm_text());
 
-        //알림 삭제
+        // 알림 삭제 기능 구현
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int adapterPosition = holder.getAdapterPosition();
                 if (adapterPosition != RecyclerView.NO_POSITION) {
-                    alarmList.remove(adapterPosition); // 항목 제거
+                    alarmList.remove(adapterPosition); // 목록에서 항목 제거
                     notifyItemRemoved(adapterPosition); // 어댑터에 변경 사항 알림
                     notifyItemRangeChanged(adapterPosition, alarmList.size()); // 변경된 범위 알림
 
@@ -83,6 +86,7 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.AlarmViewHol
         });
     }
 
+    // 데이터 리스트의 크기 반환
     @Override
     public int getItemCount() {
         return alarmList.size();

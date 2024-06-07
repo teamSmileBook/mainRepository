@@ -18,13 +18,16 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+//사용자의 찜 목록을 관리하고 API를 통해 찜 목록을 업데이트하고 가져오는 역할
 public class WishlistClient {
 
-    private static final String BASE_URL = "http://3.39.9.175:8080/";
-    private ApiService apiService;
+    private static final String BASE_URL = "http://3.39.9.175:8080/"; // 서버의 기본 URL
+    private ApiService apiService; // Retrofit을 사용하여 API와 통신하기 위한 ApiService 객체
     private Context context;
-    private GridAdapter adapter;
-    private List<GridBookListData> wishlist = new ArrayList<>();
+    private GridAdapter adapter;  // RecyclerView에 데이터를 표시하기 위한 어댑터 객체
+    private List<GridBookListData> wishlist = new ArrayList<>(); // 사용자의 찜 목록을 저장하는 리스트
+
+    // 생성자: Retrofit을 초기화하고 ApiService 인터페이스를 구현하는 객체를 생성
     public WishlistClient(Context context, GridAdapter adapter) {
 
         this.context = context;
@@ -38,7 +41,8 @@ public class WishlistClient {
         wishlist = new ArrayList<>();
     }
 
-    //찜 상태 업데이트 메서드
+    // 찜 목록에 도서를 추가 또는 삭제하는 메서드
+    // API를 통해 해당 도서가 이미 찜 목록에 있는지 확인하고, 그에 따라 추가 또는 삭제를 처리한다.
     public void addToWishlist(String memberId, Long bookId) {
         Log.d("WishlistClient", "addToWishlist() memberId:" + memberId + " bookId: " + bookId);
         WishlistDTO wishlistDTO = new WishlistDTO(memberId, bookId);
@@ -69,6 +73,7 @@ public class WishlistClient {
         });
     }
 
+    // 찜 목록에서 도서를 삭제하는 메서드
     private void deleteFromWishlist(String memberId, long bookId) {
         Call<Void> call = apiService.deleteFromWishlist(memberId, bookId);
         call.enqueue(new Callback<Void>() {
@@ -89,6 +94,7 @@ public class WishlistClient {
         });
     }
 
+    // 찜 목록에 도서를 추가하는 메서드
     private void addNewToWishlist(String memberId, long bookId) {
         WishlistDTO wishlistDTO = new WishlistDTO(memberId, bookId);
         Call<Void> call = apiService.addToWishlist(wishlistDTO);
@@ -109,11 +115,14 @@ public class WishlistClient {
             }
         });
     }
-    // 특정 사용자의 찜 목록 불러오기 (도서 목록 내 찜 버튼 표시에 사용)
+
+    // 특정 사용자의 찜 목록을 불러와 찜 처리 후 버튼 상태를 업데이트하는 메서드
     public void getWishlistByMemberId(String memberId, List<GridBookListData> bookList) {
-        // API 서비스를 통해 찜 목록을 가져오기 위한 요청
+
+        // API를 통해 특정 사용자의 찜 목록을 가져오기
         Call<WishlistItemDTO> call = apiService.getWishlistByMemberId(memberId);
         Log.d("WishlistClient","찜 목록 요청 memberId : "+memberId);
+
         // 비동기적으로 API 요청 수행
         call.enqueue(new Callback<WishlistItemDTO>() {
             @Override
@@ -144,11 +153,13 @@ public class WishlistClient {
         });
     }
 
-    //특정 사용자의 찜 목록 불러오기 (스피너에서 사용)
+    // 특정 사용자의 찜 목록을 불러와 RecyclerView에 표시하는 메서드
     public void getWishlistForCurrentUser(String memberId) {
-        // API 서비스를 통해 사용자의 찜 목록을 가져오기 위한 요청
+
+        // API를 통해 특정 사용자의 찜 목록을 불러오기
         Call<WishlistItemDTO> call = apiService.getWishlistByMemberId(memberId);
         Log.d("BookListAll", "사용자의 찜 목록 가져오기 요청 memberId : " + memberId);
+
         // 비동기적으로 API 요청 수행
         call.enqueue(new Callback<WishlistItemDTO>() {
             @Override
@@ -190,7 +201,7 @@ public class WishlistClient {
         });
     }
 
-    // 각 도서의 기본 정보를 가져오는 메서드
+    // 각 도서의 기본 정보를 가져와 RecyclerView에 표시하는 메서드
     private void getBookDetailsById(Long bookId, List<GridBookListData> wishlistBooks) {
         Call<BookDTO> call = apiService.getBookById(bookId);
         // 비동기적으로 API 요청 수행

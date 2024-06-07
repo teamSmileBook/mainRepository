@@ -40,20 +40,21 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+// 도서 목록을 표시하고 관련된 기능을 제공하는 액티비티. 사용자가 도서 목록을 필터링하고, 정렬할 수 있음.
 public class BookListAll extends AppCompatActivity {
 
-    private static final String BASE_URL = "http://3.39.9.175:8080/";
-    private RecyclerView recyclerView;
-    private GridAdapter gridAdapter;
-    private WishlistClient wishlistClient;
-    private List<GridBookListData> bookList = new ArrayList<>();
-    private String memberId; // memberId를 저장할 변수 추가
+    private static final String BASE_URL = "http://3.39.9.175:8080/"; // 서버의 기본 URL
+    private RecyclerView recyclerView; // 도서 목록을 표시하는 RecyclerView
+    private GridAdapter gridAdapter; // RecyclerView에 데이터를 설정하는 어댑터
+    private WishlistClient wishlistClient; // 찜 목록 클라이언트
+    private List<GridBookListData> bookList = new ArrayList<>(); // 도서 목록을 저장하는 리스트
+    private String memberId; // memberId를 저장할 변수
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_list);
 
-        //검색 아이템 화면인텐트
+        // 검색 화면으로 이동하는 클릭 이벤트 처리
         findViewById(R.id.item_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +62,7 @@ public class BookListAll extends AppCompatActivity {
             }
         });
 
-        //item_more 클릭 이벤트 처리
+        // 더보기 메뉴 클릭 이벤트 처리
         findViewById(R.id.item_more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,10 +76,10 @@ public class BookListAll extends AppCompatActivity {
         categoryTextView.setText(category);
 
         //리사이클러뷰 설정
-        recyclerView = findViewById(R.id.recycler_view); //사용할 리사이클러뷰 id(=book_list 내 리사이클러뷰 id)
-        gridAdapter = new GridAdapter(new ArrayList<>(), this); //사용할 어댑터
+        recyclerView = findViewById(R.id.recycler_view); // 사용할 리사이클러뷰 id 설정
+        gridAdapter = new GridAdapter(new ArrayList<>(), this); // 사용할 어댑터 생성
         recyclerView.setAdapter(gridAdapter); //리사이클러뷰랑 어댑터 연결
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); //사용할 LayoutManager (그리드레이아웃 2열로 정렬)
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); // LayoutManager 그리드 레이아웃 2열로 설정
 
         // SharedPreferences를 사용하여 memberId 값을 가져옴
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
@@ -98,23 +99,22 @@ public class BookListAll extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // 스피너에서 선택된 항목의 위치(position)을 확인하여 조건을 처리
+
                 String selectedItem = items[position]; // 선택된 항목의 문자열을 가져옴
+
                 if (selectedItem.equals("전체")){
-                    Log.d("onItemSelected","전체 선택됨");
                     // 전체 도서 목록을 출력
                     loadAllBooks();
                 } else if (selectedItem.equals("대출 가능 도서")){
-                    Log.d("onItemSelected","대출 가능 도서 선택됨");
                     // 대출 가능 도서만 필터링하여 표시
                     filterAvailableBooks();
                 } else if (selectedItem.equals("찜 도서")) {
-                    // "찜 도서"를 선택했을 때의 동작
+                    // 회원일 경우 찜 목록 가져오기
                     if (memberId != null) {
-                        // 사용자의 찜 목록을 가져오도록 요청
                         wishlistClient.getWishlistForCurrentUser(memberId);
                     }
                 } else if (selectedItem.equals("가나다순")) {
+                    // 가나다순 정렬
                     sortBooksAlphabetically();
                 }
             }
@@ -129,12 +129,13 @@ public class BookListAll extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadAllBooks(); // onResume()이 호출될 때마다 책 목록을 다시 불러옴
+        loadAllBooks(); // 도서 목록을 다시 불러옴
     }
 
     //도서 목록을 불러오는 메서드
     private void loadAllBooks() {
-        // Retrofit을 사용하여 서버에 HTTP 요청을 보냄
+
+        // Retrofit을 사용하여 서버에서 도서 목록을 가져옴
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -143,7 +144,7 @@ public class BookListAll extends AppCompatActivity {
         // ApiService 인터페이스 구현체 생성
         ApiService apiService = retrofit.create(ApiService.class);
 
-        //전체 도서 정보 가져오기 요청
+        // 도서 목록 불러오기
         Call<List<GridBookListData>> call = apiService.getAllBooks();
 
         call.enqueue(new Callback<List<GridBookListData>>() {
@@ -172,25 +173,30 @@ public class BookListAll extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<GridBookListData>> call, Throwable t) {
                 // 네트워크 요청 실패
-                Log.e("BookListAll", "네트워크 요청 실패", t);
+                Log.e("BookListAll", "네트워크 요청 실패" + t);
             }
         });
     }
 
     //대출 가능 도서 목록 불러오는 메서드
     private void filterAvailableBooks() {
-        // 대출 가능 도서만 필터링하여 표시
-        List<GridBookListData> availableBooks = new ArrayList<>();
-        for (GridBookListData book : bookList) {
-            Log.d("filterAvilableBooks","booklist " +bookList);
-            if ("대출가능".equals(book.getStatus())) {
-                availableBooks.add(book);
+        Log.d("BookListAll", "filterAvailableBooks 호출됨");
+        if (bookList != null) {
+            // 대출 가능 도서만 필터링하여 표시
+            List<GridBookListData> availableBooks = new ArrayList<>();
+            for (GridBookListData book : bookList) {
+                if ("대출가능".equals(book.getStatus())) {
+                    Log.d("BookListActivity", "도서 상태: " + book.getStatus());
+                    availableBooks.add(book);
+                }
             }
+            gridAdapter.setData(availableBooks); // 필터링된 목록을 어댑터에 설정
+        } else {
+            Log.e("BookListActivity", "bookList가 null입니다.");
         }
-        gridAdapter.setData(availableBooks);
     }
 
-    // 가나다순으로 도서 제목 정렬하는 메서드
+    // 가나다순으로 도서 제목을 정렬하는 메서드
     private void sortBooksAlphabetically() {
         Collections.sort(bookList, new Comparator<GridBookListData>() {
             @Override
@@ -201,7 +207,7 @@ public class BookListAll extends AppCompatActivity {
         gridAdapter.setData(bookList); // 정렬된 목록을 어댑터에 설정
     }
 
-    //상단에 있는 메뉴바
+    // 상단의 메뉴바 팝업을 표시하는 메서드
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
         popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
@@ -209,15 +215,19 @@ public class BookListAll extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.user_alarmBtn) {
+                    // 알림 화면으로 이동
                     startActivity(new Intent(BookListAll.this, UserAlarm.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
+                    // 내 정보 화면으로 이동
                     startActivity(new Intent(BookListAll.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
+                    // 내 도서 화면으로 이동
                     startActivity(new Intent(BookListAll.this, MyBookList.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
+                    // 관리자 인증 화면으로 이동
                     startActivity(new Intent(BookListAll.this, UserAdminModeSwitch.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_logOutBtn) {

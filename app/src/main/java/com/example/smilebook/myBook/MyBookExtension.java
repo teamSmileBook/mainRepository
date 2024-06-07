@@ -37,11 +37,20 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+// 사용자의 도서 관리 화면. 사용자가 대출하거나 예약한 도서의 정보를 표시하고 대출 연장이나 에약 취소와 같은 기능을 제공함
 public class MyBookExtension extends AppCompatActivity {
+
+    // 데이터 바인딩을 위한 객체
     private MyBookExtensionBinding binding;
     private ToolbarTitleBinding toolbarTitleBinding;
+
+    // 서버의 기본 URL
     private static final String BASE_URL = "http://3.39.9.175:8080/";
+
+    // Retrofit을 사용하여 API와 통신하기 위한 ApiService 객체
     private ApiService apiService;
+
+    // UI 요소들
     private ImageView bookCover;
     private TextView bookTitle;
     private TextView bookAuthor;
@@ -49,7 +58,9 @@ public class MyBookExtension extends AppCompatActivity {
     private TextView dateTime;
     private TextView bookDescription;
     private Button extention;
-    private boolean isReserved = false; // 예약 상태를 저장할 변수
+
+    // 예약 상태를 저장할 변수
+    private boolean isReserved = false;
     private String currentBookStatus;
     private AlertDialog.Builder builder;
 
@@ -59,10 +70,10 @@ public class MyBookExtension extends AppCompatActivity {
 
         // 데이터 바인딩 설정
         binding = DataBindingUtil.setContentView(this, R.layout.my_book_extension);
-        // TextView의 text 설정
         binding.setTitleText("내 도서");
         toolbarTitleBinding = binding.toolbar;
 
+        // UI 요소 초기화
         bookCover = findViewById(R.id.book_cover);
         bookTitle = findViewById(R.id.book_title);
         bookAuthor = findViewById(R.id.book_author);
@@ -71,7 +82,7 @@ public class MyBookExtension extends AppCompatActivity {
         bookDescription = findViewById(R.id.book_description);
         extention = findViewById(R.id.extension_btn);
 
-        //뒤로가기
+        // 뒤로가기 버튼 클릭 시 액티비티 종료
         toolbarTitleBinding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +90,7 @@ public class MyBookExtension extends AppCompatActivity {
             }
         });
 
-        //more 클릭 이벤트 처리
+        // 더보기 메뉴 클릭 시 팝업 메뉴 표시
         findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,9 +124,13 @@ public class MyBookExtension extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     BookDTO book = response.body();
                     Log.d("MyBookExtention", "fatchBookInfo() 서버 응답 성공");
+
+                    // Glide 라이브러리를 사용하여 도서 표지 이미지 표시
                     Glide.with(MyBookExtension.this)
                             .load(book.getCoverUrl())
                             .into(bookCover);
+
+                    // 도서 정보 UI에 설정
                     bookTitle.setText(book.getBookTitle());
                     bookAuthor.setText(book.getAuthor());
                     currentBookStatus = book.getBookStatus(); // 현재 도서 상태 저장
@@ -160,7 +175,8 @@ public class MyBookExtension extends AppCompatActivity {
                         dateTime.setVisibility(View.GONE);
                     }
 
-                    updateBookStatus(); // 도서 상태 업데이트
+                    // 도서 상태 업데이트
+                    updateBookStatus();
 
                 } else {
                     Log.e("MyBookExtention", "fetchBookInfo() 서버 응답 실패");
@@ -264,8 +280,8 @@ public class MyBookExtension extends AppCompatActivity {
         }
     }
 
+    // 현재 도서 상태를 UI에 설정하는 메서드
     private void updateBookStatus() {
-        // 현재 도서 상태를 UI에 설정
         binding.bookStatus.setText(currentBookStatus);
         if (currentBookStatus.equals("대출 중")) {
             binding.bookStatus.setTextColor(Color.RED);
@@ -276,7 +292,7 @@ public class MyBookExtension extends AppCompatActivity {
         }
     }
 
-    //상단에 있는 메뉴바
+    // 상단의 메뉴바 팝업을 표시하는 메서드
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
         popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
@@ -284,15 +300,19 @@ public class MyBookExtension extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.user_alarmBtn) {
+                    // 알림 화면으로 이동
                     startActivity(new Intent(MyBookExtension.this, UserAlarm.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
+                    // 내 정보 화면으로 이동
                     startActivity(new Intent(MyBookExtension.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
+                    // 내 도서 화면으로 이동
                     startActivity(new Intent(MyBookExtension.this, MyBookList.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
+                    // 관리자 인증 화면으로 이동
                     startActivity(new Intent(MyBookExtension.this, UserAdminModeSwitch.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_logOutBtn) {

@@ -43,7 +43,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
     }
 
-    //수신한 알림을 SharedPreferences에 저장하는 메서드
+    // 수신한 알림을 SharedPreferences에 저장하는 메서드
     private void saveDataToSharedPreferences(Context context, String title, String body) {
         SharedPreferences prefs = context.getSharedPreferences("FCM_PREFS", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();

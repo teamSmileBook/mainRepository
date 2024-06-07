@@ -31,16 +31,17 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+// 사용자의 알림을 표시하고 관리하는 화면을 제공
 public class UserAlarm extends AppCompatActivity {
 
     private static final String BASE_URL = "http://3.39.9.175:8080/";
-    private ApiService apiService;
-    private UserAlarmBinding binding;
-    private ToolbarTitleBinding toolbarTitleBinding;
-    private RecyclerView recyclerView;
-    private AlarmAdapter adapter;
-    private List<AlarmData> alarmList;
-    private SwitchCompat alarmSwitch;
+    private ApiService apiService; // Retrofit을 사용하여 API와 통신하기 위한 ApiService 객체
+    private UserAlarmBinding binding; // 데이터 바인딩을 위한 객체
+    private ToolbarTitleBinding toolbarTitleBinding; // 툴바 데이터 바인딩을 위한 객체
+    private RecyclerView recyclerView; // 알림 목록을 표시하기 위한 RecyclerView
+    private AlarmAdapter adapter; // 알림 목록을 관리하기 위한 Adapter 객체
+    private List<AlarmData> alarmList; // 알림 데이터를 저장하는 List 객체
+    private SwitchCompat alarmSwitch; // 알림 목록을 표시하는 스위치
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class UserAlarm extends AppCompatActivity {
         // SharedPreferences에서 알림 목록을 가져와서 표시
         fetchNotificationList();
 
-        //item_more 클릭 이벤트 처리
+        // 더보기 메뉴 클릭 시 팝업 메뉴 표시
         findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,32 +72,31 @@ public class UserAlarm extends AppCompatActivity {
             }
         });
 
-        // 뒤로가기 버튼 클릭 이벤트 처리
+        // 뒤로가기 버튼 클릭 시 액티비티 종료
         toolbarTitleBinding.back.setOnClickListener(view -> finish());
 
         // 스위치 on/off에 대한 코드
-        alarmSwitch = binding.pushAlarmSwitch; //스위치 초기화
-        alarmSwitch.setChecked(true); //스위치 기본값 설정
+        alarmSwitch = binding.pushAlarmSwitch; // 스위치 초기화
+        alarmSwitch.setChecked(true); // 스위치 기본값 설정
 
          //스위치 리스너 설정
         alarmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
-            //스위치 on/off에 대한 동작
+            // 스위치 on/off에 대한 동작
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // 스위치가 true인 경우
+                // 스위치가 true인 경우 리스트뷰를 보이게 함
                 if (isChecked) {
-                    // 리스트뷰를 보이게 함
                     recyclerView.setVisibility(View.VISIBLE);
                 } else {
-                    // 스위치가 false인 경우
-                    // 리스트뷰를 숨김
+                    // 스위치가 false인 경우 리스트뷰를 숨김
                     recyclerView.setVisibility(View.GONE);
                 }
             }
         });
     }
 
+    // SharedPreferences에서 알림 목록을 가져와서 표시하는 메서드
     private void fetchNotificationList() {
         SharedPreferences prefs = getSharedPreferences("FCM_PREFS", MODE_PRIVATE);
         String existingData = prefs.getString("notifications", "");
@@ -121,7 +121,7 @@ public class UserAlarm extends AppCompatActivity {
         }
     }
 
-    //상단에 있는 메뉴바
+    // 상단의 메뉴바 팝업을 표시하는 메서드
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
         popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
@@ -129,15 +129,19 @@ public class UserAlarm extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.user_alarmBtn) {
+                    // 알림 화면으로 이동
                     startActivity(new Intent(UserAlarm.this, UserAlarm.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
+                    // 내 정보 화면으로 이동
                     startActivity(new Intent(UserAlarm.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
+                    // 내 도서 화면으로 이동
                     startActivity(new Intent(UserAlarm.this, MyBookList.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
+                    // 관리자 인증 화면으로 이동
                     startActivity(new Intent(UserAlarm.this, UserAdminModeSwitch.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_logOutBtn) {

@@ -29,11 +29,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+// 회원 전체 목록을 표시하는 클래스
 public class UserList extends AppCompatActivity {
+
+    private static final String BASE_URL = "http://3.39.9.175:8080/"; // 서버의 기본 URL
     private View allUserView;
     private View stopUserView;
     private boolean  isAllUserVisible  = true;
-    private static final String BASE_URL = "http://3.39.9.175:8080/";
     private RecyclerView recyclerView;
     private UserAdapter adapter;
 
@@ -41,7 +43,7 @@ public class UserList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_list);
 
-        //검색 아이템 화면인텐트
+        // 검색 화면으로 이동하는 클릭 이벤트 처리
         findViewById(R.id.item_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,7 +51,7 @@ public class UserList extends AppCompatActivity {
             }
         });
 
-        //more 클릭 이벤트 처리
+        // 더보기 메뉴 클릭 시 팝업 메뉴 표시
         findViewById(R.id.item_more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

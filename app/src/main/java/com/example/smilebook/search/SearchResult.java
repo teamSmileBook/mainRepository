@@ -29,6 +29,7 @@ import com.example.smilebook.UserMyInfo;
 
 import java.util.List;
 
+// 검색 결과 도서 목록을 표시함.
 public class SearchResult extends AppCompatActivity {
 
     private static final String BASE_URL = "http://3.39.9.175:8080/";
@@ -40,7 +41,7 @@ public class SearchResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_list);
 
-        //검색 아이템 화면인텐트
+        // 검색 화면으로 이동
         findViewById(R.id.item_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,7 +50,7 @@ public class SearchResult extends AppCompatActivity {
             }
         });
 
-        //more 클릭 이벤트 처리
+        // 더보기 메뉴 클릭 시 팝업 메뉴 표시
         findViewById(R.id.item_more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,7 +58,7 @@ public class SearchResult extends AppCompatActivity {
             }
         });
 
-        //메인으로
+        // 홈 버튼 클릭 시 메인 화면으로 이동
         Button home_btn = (Button) findViewById(R.id.icons8_smile);
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +69,7 @@ public class SearchResult extends AppCompatActivity {
             }
         });
 
+        // 검색어 표시
         TextView categoryTextView = findViewById(R.id.categoryTextView);
         Intent intent = getIntent();
         String query = intent.getStringExtra("query");
@@ -77,25 +79,20 @@ public class SearchResult extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
-        // 검색 결과 데이터를 가져옴
+        // 검색 결과 데이터 가져오기
         List <GridBookListData> bookList = (List <GridBookListData>) getIntent().getSerializableExtra("bookList");
 
         // 어댑터 설정
-        if (bookList != null) { //검색 결과가 비어있지 않으면 데이터 표시
+        if (bookList != null) {
+            //검색 결과가 비어있지 않으면 데이터 표시
             Log.d("SearchResult","검색 결과 불러오기 성공");
             gridAdapter = new GridAdapter(bookList, this);
             recyclerView.setAdapter(gridAdapter);
         } else {
+            // 검색 결과가 비어있으면 오류 메시지 표시
             Log.e("SearchResult","검색 결과 불러오기 실패");
             Toast.makeText(SearchResult.this, "검색 결과를 불러오지 못했습니다.", Toast.LENGTH_SHORT).show();
         }
-
-//        //스피너 설정
-//        String[] items = {"전체", "가나다순", "대출 가능 도서", "찜 도서"};
-//        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
-//        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        Spinner spinner = findViewById(R.id.filter);
-//        spinner.setAdapter(spinnerAdapter);
     }
     @Override
     //툴바에 menu_toolbar 삽입
@@ -105,7 +102,7 @@ public class SearchResult extends AppCompatActivity {
         return true;
     }
 
-    //상단에 있는 메뉴바
+    // 상단의 메뉴바 팝업을 표시하는 메서드
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
         popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
@@ -113,15 +110,19 @@ public class SearchResult extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.user_alarmBtn) {
+                    // 알림 화면으로 이동
                     startActivity(new Intent(SearchResult.this, UserAlarm.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
+                    // 내 정보 화면으로 이동
                     startActivity(new Intent(SearchResult.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
+                    // 내 도서 화면으로 이동
                     startActivity(new Intent(SearchResult.this, MyBookList.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
+                    // 관리자 인증 화면으로 이동
                     startActivity(new Intent(SearchResult.this, UserAdminModeSwitch.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_logOutBtn) {

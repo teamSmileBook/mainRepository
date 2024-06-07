@@ -37,9 +37,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+
+// 사용자가 도서를 검색하는 화면을 제공하는 액티비티
 public class SearchActivity extends AppCompatActivity {
-    private SearchBinding binding;
-    private ToolbarTitleBinding toolbarTitleBinding;
+    private SearchBinding binding; // 데이터 바인딩을 위한 객체
+    private ToolbarTitleBinding toolbarTitleBinding; // 툴바 타이틀 바인딩 객체
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,23 +49,22 @@ public class SearchActivity extends AppCompatActivity {
 
         // 데이터 바인딩 설정
         binding = DataBindingUtil.setContentView(this, R.layout.search);
-        // TextView의 text 설정
         binding.setTitleText("검색");
         toolbarTitleBinding = binding.toolbar;
 
-        //뒤로가기
+        // 더보기 메뉴 클릭 시 팝업 메뉴 표시
+        findViewById(R.id.item_more).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopup(view);
+            }
+        });
+
+        // 뒤로가기 버튼 클릭 시 액티비티 종료
         toolbarTitleBinding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
-            }
-        });
-
-        //more 클릭 이벤트 처리
-        findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showPopup(view);
             }
         });
 
@@ -73,7 +74,7 @@ public class SearchActivity extends AppCompatActivity {
         //검색 버튼 클릭 시 호출되는 리스너
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) { //검색 버튼을 눌렀을 때;
+            public boolean onQueryTextSubmit(String query) {
                 if (!query.isEmpty()) {
                     searchBooks(query);
                 } else {
@@ -89,7 +90,7 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-    //사용자가 입력한 검색어를 서버로 전송하고, 서버로부터 받은 검색 결과를 처리
+    //사용자가 입력한 검색어를 서버로 전송하고, 검색 결과를 처리
     private void searchBooks(final String query){
         //새로운 Thread 생성하여 백그라운드에서 네트워크 요청 처리
         new Thread(new Runnable() {
@@ -175,7 +176,7 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
-    //상단에 있는 메뉴바
+    // 상단의 메뉴바 팝업을 표시하는 메서드
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
         popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
@@ -183,15 +184,19 @@ public class SearchActivity extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.user_alarmBtn) {
+                    // 알림 화면으로 이동
                     startActivity(new Intent(SearchActivity.this, UserAlarm.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
+                    // 내 정보 화면으로 이동
                     startActivity(new Intent(SearchActivity.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
+                    // 내 도서 화면으로 이동
                     startActivity(new Intent(SearchActivity.this, MyBookList.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
+                    // 관리자 인증 화면으로 이동
                     startActivity(new Intent(SearchActivity.this, UserAdminModeSwitch.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_logOutBtn) {

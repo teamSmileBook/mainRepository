@@ -30,15 +30,16 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+// 도서 등록 액티비티
 public class BookRegistration extends AppCompatActivity {
 
-    private static final String BASE_URL = "http://3.39.9.175:8080/";
-    private ApiService apiService;
-    private BookRegistrationBinding binding;
-    private ToolbarTitleBinding toolbarTitleBinding;
+    private static final String BASE_URL = "http://3.39.9.175:8080/"; // 서버의 기본 URL
+    private ApiService apiService; // Retrofit을 사용하여 API와 통신하기 위한 ApiService 객체
+    private BookRegistrationBinding binding; // 데이터 바인딩을 위한 객체
+    private ToolbarTitleBinding toolbarTitleBinding; // 툴바 데이터 바인딩을 위한 객체
 
     private EditText edtBookId, edtBookTitle, edtAuthor, edtPublisher, edtCoverUrl, edtBookRfid,
-            edtDescription, edtContents;
+            edtDescription, edtContents; // 도서 등록에 필요한 데이터들의 UI 요소
     private Button btnRegister, btnavailable, btnimpossible;
     private String bookStatus = null;
 
@@ -51,6 +52,7 @@ public class BookRegistration extends AppCompatActivity {
         binding.setTitleText("도서 등록");
         toolbarTitleBinding = binding.toolbar;
 
+        // UI 요소 초기화
         edtBookId = findViewById(R.id.edt_book_id);
         edtBookTitle = findViewById(R.id.edt_book_title);
         edtAuthor = findViewById(R.id.edt_author);
@@ -63,7 +65,7 @@ public class BookRegistration extends AppCompatActivity {
         btnavailable = findViewById(R.id.available_btn);
         btnimpossible = findViewById(R.id.impossible_btn);
 
-        //more 클릭 이벤트 처리
+        // 더보기 메뉴 클릭 시 팝업 메뉴 표시
         findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,7 +73,7 @@ public class BookRegistration extends AppCompatActivity {
             }
         });
 
-        //뒤로가기
+        // 뒤로가기 버튼 클릭 시 액티비티 종료
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,7 +124,7 @@ public class BookRegistration extends AppCompatActivity {
                 String contents = edtContents.getText().toString();
                 String selectedCategory = spinner.getSelectedItem().toString(); //스피너에서 선택된 카테고리 값 가져오기
 
-                // 입력값 검증
+                // 입력값이 공백인지 확인한다.
                 if (bookIdStr.isEmpty()) {
                     Toast.makeText(BookRegistration.this, "책 ID를 입력해주세요.", Toast.LENGTH_SHORT).show();
                     Log.d("book_registration", "책 ID가 입력되지 않음");
@@ -224,7 +226,7 @@ public class BookRegistration extends AppCompatActivity {
         });
     }
 
-    // 상단에 있는 메뉴바
+    // 상단의 메뉴바 팝업을 표시하는 메서드
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
         popupMenu.getMenuInflater().inflate(R.menu.menu_more_admin, popupMenu.getMenu());
@@ -232,12 +234,14 @@ public class BookRegistration extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.admin_registrationBtn) {
-                    // 아무 동작 하지않음
+                    // 도서 등록 화면으로 이동
                     return true;
                 } else if (menuItem.getItemId() == R.id.admin_userBtn) {
+                    // 사용자 목록 화면으로 이동
                     startActivity(new Intent(BookRegistration.this, UserList.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.admin_transformBtn) {
+                    // 메인 화면으로 이동
                     startActivity(new Intent(BookRegistration.this, MainActivity.class));
                     return true;
                 } else {

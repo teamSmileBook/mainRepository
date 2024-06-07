@@ -24,19 +24,20 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+// 회원이 대출 중이거나 예약 중인 도서를 목록으로 표시
 public class MyBookList extends AppCompatActivity {
-    private RecyclerView recyclerView;
-    private MyBookItemAdapter bookItemAdapter;
-    private static final String BASE_URL = "http://3.39.9.175:8080/";
-    private String memberId;
 
-    private boolean  isAllUserVisible  = true;
+    private static final String BASE_URL = "http://3.39.9.175:8080/"; // 서버의 기본 URL
+    private RecyclerView recyclerView; // 도서 목록을 표시하는 RecyclerView
+    private MyBookItemAdapter bookItemAdapter; // RecyclerView에 데이터를 설정하는 어댑터
+    private String memberId; // 현재 사용자의 회원 ID
+    private boolean  isAllUserVisible;  // 반납 상태를 저장하는 변수 (true : 전체 도서 목록 표시, false : 반납되지 않은 도서 목록 표시)
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_book);
 
-        //전체도서 버튼에 클릭리스너 설정
+        // 전체 도서 및 반납 미완료 버튼에 대한 클릭 리스너 설정
         Button all_book_btn = findViewById(R.id.all_book_btn);
         Button no_return_btn = findViewById(R.id.no_return_btn);
         View all_book_view = findViewById(R.id.all_book_view);
@@ -81,14 +82,16 @@ public class MyBookList extends AppCompatActivity {
         recyclerView = findViewById(R.id.user_book_recycler_view); //사용할 리사이클러뷰 id(=book_list 내 리사이클러뷰 id)
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); //사용할 LayoutManager (그리드레이아웃 2열로 정렬)
     }
+
+    // 액티비티가 다시 활성화될 때 호출되는 메서드
     @Override
     protected void onResume() {
         super.onResume();
-        fetchBooks(); // onResume()이 호출될 때마다 책 목록을 다시 불러옴
+        fetchBooks(); // 사용자의 도서 목록을 다시 불러옴
     }
 
+    // 서버에서 도서 목록을 가져오는 메서드
     private void fetchBooks() {
-        // Retrofit을 사용하여 서버에서 데이터 가져오기
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -119,7 +122,7 @@ public class MyBookList extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<MyBookItemData>> call, Throwable t) {
                 Toast.makeText(MyBookList.this, "네트워크 오류: ", Toast.LENGTH_SHORT).show();
-                Log.e("UserBook","네트워크 오류 : "+ t);
+                Log.e("UserBook","네트워크 오류 : " + t);
             }
         });
     }

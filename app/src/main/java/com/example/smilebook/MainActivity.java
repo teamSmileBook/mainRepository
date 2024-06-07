@@ -30,9 +30,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
+// 일반 사용자의 메인 액티비티 : 각 카테고리별 도서 목록을 보여주고, 검색 기능 등 사용자 메뉴들을 제공함
 public class MainActivity extends AppCompatActivity {
 
+    // 전체, 교육, 소설, 만화 카테고리별 도서 ImageView 변수 선언
     private ImageView allImageView1, allImageView2, allImageView3, allImageView4; //전체 ImageView
     private ImageView eduImageView1, eduImageView2, eduImageView3, eduImageView4; //교육 ImageView
     private ImageView ficImageView1, ficImageView2, ficImageView3, ficImageView4; //소설 ImageView
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             loginbtn.setVisibility(View.VISIBLE);
         }
 
-        //검색 아이템 화면인텐트
+        // 검색 화면으로 이동하는 클릭 이벤트 처리
         findViewById(R.id.item_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //more 클릭 이벤트 처리
+        // 더보기 메뉴 클릭 시 팝업 메뉴 표시
         findViewById(R.id.item_more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //메인화면 카테고리별 도서 ImageView
+        // 메인 화면 카테고리별 도서 ImageView 초기화
         allImageView1 = findViewById(R.id.all_book_1);
         allImageView2 = findViewById(R.id.all_book_2);
         allImageView3 = findViewById(R.id.all_book_3);
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // 이미지 로드
+        // 교육 카테고리의 이미지 로드
         String eduImageName1 = "9791158742188.jpg";
         String eduImageName2 = "9788996100768.jpg";
         String eduImageName3 = "9788950968113.jpg";
@@ -111,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         loadImage(eduImageName3, eduImageView3);
         loadImage(eduImageName4, eduImageView4);
 
+        // 소설 카테고리의 이미지 로드
         String ficImageName1 = "9788998441012.jpg";
         String ficImageName2 = "9791130646381.jpg";
         String ficImageName3 = "9791161571188.jpg";
@@ -120,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
         loadImage(ficImageName3, ficImageView3);
         loadImage(ficImageName4, ficImageView4);
 
+        // 만화 카테고리의 이미지 로드
         String toonImageName1 = "9791198527288.jpg";
         String toonImageName2 = "9791191884333.jpg";
         String toonImageName3 = "9791170626503.jpg";
@@ -129,8 +132,8 @@ public class MainActivity extends AppCompatActivity {
         loadImage(toonImageName3, toonImageView3);
         loadImage(toonImageName4, toonImageView4);
 
-        //인기 도서 book_list 이동
-        Button bestArrow = (Button) findViewById(R.id.best_arrow_btn); //오른쪽 더보기 버튼 book_list 이동
+        // 인기 도서 목록으로 이동하는 버튼 클릭 이벤트 처리
+        Button bestArrow = (Button) findViewById(R.id.best_arrow_btn);
         bestArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //교육 book_list
+        // 교육 카테고리 도서 목록으로 이동하는 버튼 클릭 이벤트 처리
         Button eduArrow = (Button) findViewById(R.id.edu_arrow_btn);
         eduArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //소설 book_list
+        // 소설 카테고리 도서 목록으로 이동하는 버튼 클릭 이벤트 처리
         Button ficArrow = (Button) findViewById(R.id.fiction_arrow_btn);
         ficArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //만화 book_list
+        // 만화 카테고리 도서 목록으로 이동하는 버튼 클릭 이벤트 처리
         Button toonArrow = (Button) findViewById(R.id. cartoon_arrow_btn);
         toonArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // 서버로부터 도서 이미지를 불러오는 메서드
     public static void loadImage(String imageName, ImageView imageView) {
         ApiService apiService = RetrofitClient.getInstance().create(ApiService.class);
 
@@ -207,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //상단에 있는 메뉴바
+    // 상단의 메뉴바 팝업을 표시하는 메서드
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
         popupMenu.getMenuInflater().inflate(R.menu.menu_more, popupMenu.getMenu());
@@ -215,15 +219,19 @@ public class MainActivity extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.user_alarmBtn) {
+                    // 알림 화면으로 이동
                     startActivity(new Intent(MainActivity.this, UserAlarm.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myInfoBtn) {
+                    // 내 정보 화면으로 이동
                     startActivity(new Intent(MainActivity.this, UserMyInfo.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_myBookBtn) {
+                    // 내 도서 화면으로 이동
                     startActivity(new Intent(MainActivity.this, MyBookList.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_adminTransBtn) {
+                    // 관리자 인증 화면으로 이동
                     startActivity(new Intent(MainActivity.this, UserAdminModeSwitch.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.user_logOutBtn) {
@@ -254,11 +262,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-// SharedPreferences를 사용하여 "memberId" 값을 가져오기
+        // SharedPreferences를 사용하여 "memberId" 값을 가져오기
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         String memberId = sharedPreferences.getString("memberId", null);
 
-// memberId가 null이면 로그인 버튼 텍스트 설정
+        // memberId가 null이면 로그인 버튼 텍스트 설정
         MenuItem logOutMenuItem = popupMenu.getMenu().findItem(R.id.user_logOutBtn);
         if (memberId == null) {
             logOutMenuItem.setTitle("로그인");

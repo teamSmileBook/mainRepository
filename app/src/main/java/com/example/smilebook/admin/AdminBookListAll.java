@@ -38,20 +38,21 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+// 관리자 모드에서 도서 목록을 불러와 표시하고, 필터링 및 정렬 기능을 제공함.
 public class AdminBookListAll extends AppCompatActivity{
 
-    private static final String BASE_URL = "http://3.39.9.175:8080/";
-    private RecyclerView recyclerView;
-    private GridAdapter gridAdapter;
-    private WishlistClient wishlistClient;
-    private List<GridBookListData> bookList = new ArrayList<>();
-    private String memberId; // memberId를 저장할 변수 추가
+    private static final String BASE_URL = "http://3.39.9.175:8080/"; // 서버의 기본 URL
+    private RecyclerView recyclerView; // 도서 목록을 표시하는 RecyclerView
+    private GridAdapter gridAdapter; // RecyclerView에 데이터를 설정하는 어댑터
+    private WishlistClient wishlistClient; // 찜 목록 클라이언트
+    private List<GridBookListData> bookList = new ArrayList<>(); // 도서 목록을 저장하는 리스트
+    private String memberId; // memberId를 저장할 변수
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_list);
 
-        //검색 아이템 화면인텐트
+        // 검색 화면으로 이동하는 클릭 이벤트 처리
         findViewById(R.id.item_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,7 +60,7 @@ public class AdminBookListAll extends AppCompatActivity{
             }
         });
 
-        //item_more 클릭 이벤트 처리
+        // 더보기 메뉴 클릭 이벤트 처리
         findViewById(R.id.item_more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,9 +117,9 @@ public class AdminBookListAll extends AppCompatActivity{
         });
 
     }
-    // 전체 도서 목록을 불러오는 메서드
+    // 도서 목록을 불러오는 메서드
     private void loadAllBooks() {
-        // Retrofit을 사용하여 서버에 HTTP 요청을 보냄
+        // Retrofit을 사용하여 서버에서 도서 목록을 가져옴
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -127,7 +128,7 @@ public class AdminBookListAll extends AppCompatActivity{
         // ApiService 인터페이스 구현체 생성
         ApiService apiService = retrofit.create(ApiService.class);
 
-        //전체 도서 정보 가져오기 요청
+        // 도서 목록 불러오기
         Call<List<GridBookListData>> call = apiService.getAllBooks();
 
         call.enqueue(new Callback<List<GridBookListData>>() {
@@ -156,12 +157,12 @@ public class AdminBookListAll extends AppCompatActivity{
             @Override
             public void onFailure(Call<List<GridBookListData>> call, Throwable t) {
                 // 네트워크 요청 실패
-                Log.e("BookListAll", "네트워크 요청 실패", t);
+                Log.e("BookListAll", "네트워크 요청 실패" + t);
             }
         });
     }
 
-    //대출 가능 도서 목록 불러오는 메서드
+    //대출 가능 도서 목록을 불러오는 메서드
     private void filterAvailableBooks() {
         Log.d("BookListAll","filterAvailableBooks 호출됨");
         // 대출 가능 도서만 필터링하여 표시
@@ -172,10 +173,10 @@ public class AdminBookListAll extends AppCompatActivity{
                 availableBooks.add(book);
             }
         }
-        gridAdapter.setData(availableBooks);
+        gridAdapter.setData(availableBooks); // 필터링된 목록을 어댑터에 설정
     }
 
-    // 가나다순으로 도서 제목 정렬하는 메서드
+    // 가나다순으로 도서 제목을 정렬하는 메서드
     private void sortBooksAlphabetically() {
         Collections.sort(bookList, new Comparator<GridBookListData>() {
             @Override
@@ -186,7 +187,7 @@ public class AdminBookListAll extends AppCompatActivity{
         gridAdapter.setData(bookList); // 정렬된 목록을 어댑터에 설정
     }
 
-    //상단에 있는 메뉴바
+    // 상단의 메뉴바 팝업을 표시하는 메서드
     private void showPopup(View v) {
         PopupMenu popupMenu = new PopupMenu(this, v);
         popupMenu.getMenuInflater().inflate(R.menu.menu_more_admin, popupMenu.getMenu());
@@ -194,12 +195,15 @@ public class AdminBookListAll extends AppCompatActivity{
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.admin_registrationBtn) {
+                    // 도서 등록 화면으로 이동
                     startActivity(new Intent(AdminBookListAll.this, BookRegistration.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.admin_userBtn) {
+                    // 사용자 목록 화면으로 이동
                     startActivity(new Intent(AdminBookListAll.this, UserList.class));
                     return true;
                 } else if (menuItem.getItemId() == R.id.admin_transformBtn) {
+                    // 메인 화면으로 이동
                     startActivity(new Intent(AdminBookListAll.this, MainActivity.class));
                     return true;
                 } else {

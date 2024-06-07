@@ -1,5 +1,6 @@
 package com.example.smilebook.myBook;
 
+// 내 도서 화면의 RecyclerView에 표시될 데이터를 나타냄.
 public class MyBookItemData {
     private Long bookId;
     private String coverUrl;

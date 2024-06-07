@@ -2,6 +2,7 @@ package com.example.smilebook.userManage;
 
 import java.io.Serializable;
 
+// 회원 목록 RecyclerView 아이템에 표시될 데이터들을 나타냄.
 public class UserListData implements Serializable {
 
     private String memberId;
