@@ -101,9 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:text="책 소개\n1947년 미국에서 초판이 출간된 이후 60여 년\n의 세월 동안 끊임없이
-사랑받아 온, 명실상부한 세일즈의 최고 고전. 『실패에서 성공으로』가 세기를 뛰어넘어서도 식을 줄 모르는 관심으로 여
-..." />
+                android:text="책 소개" />
         </ScrollView>
 
     </LinearLayout>

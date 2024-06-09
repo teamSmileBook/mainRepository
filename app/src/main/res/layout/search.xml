@@ -7,9 +7,6 @@
             type="String" />
     </data>
 
-    <!--    버튼 클릭시 색 변경 (selector_tag, selector_switch) 수정 예정-->
-    <!--    아마 button말고 ToggleButton으로 바꾸는게 나을거 같음-->
-
     <RelativeLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/search_xml"

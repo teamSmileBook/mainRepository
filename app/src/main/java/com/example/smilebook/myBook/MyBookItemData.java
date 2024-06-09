@@ -7,13 +7,11 @@ public class MyBookItemData {
     private String bookTitle;
     private String bookStatus;
 
-
     public MyBookItemData(Long bookId, String coverUrl, String bookTitle, String bookStatus) {
         this.bookId = bookId;
         this.coverUrl = coverUrl;
         this.bookTitle = bookTitle;
         this.bookStatus = bookStatus;
-
     }
 
     public Long getBookId() {
