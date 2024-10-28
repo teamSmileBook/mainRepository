@@ -7,12 +7,13 @@
             type="String" />
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/some_id"
-        android:layout_width="411dp"
-        android:layout_height="732dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:clipToOutline="true"
-        android:background="#FFFFFF" >
+        android:background="#FFFFFF"
+        android:orientation="vertical">
 
         <include
             layout="@layout/toolbar_title"
@@ -22,13 +23,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="185dp"
+            android:layout_marginTop="120dp"
+            android:layout_gravity="center"
             android:orientation="vertical" >
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp" >
 
                 <TextView
@@ -41,7 +43,7 @@
                     android:textAppearance="@style/guide" />
                 <View
                     android:id="@+id/rectangle_modify_nickname"
-                    android:layout_width="344dp"
+                    android:layout_width="310dp"
                     android:layout_height="39dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
@@ -51,12 +53,12 @@
 
                 <EditText
                     android:id="@+id/editNickname"
-                    android:layout_width="334dp"
+                    android:layout_width="305dp"
                     android:layout_height="39dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginLeft="9dp"
                     android:layout_marginTop="28dp"
+                    android:layout_marginLeft="4dp"
                     android:background="@null"
                     android:gravity="center_vertical"
                     android:hint="닉네임"
@@ -67,7 +69,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
                 >
 
@@ -81,7 +83,7 @@
                     android:textAppearance="@style/guide" />
                 <View
                     android:id="@+id/rectangle_modify_email"
-                    android:layout_width="344dp"
+                    android:layout_width="310dp"
                     android:layout_height="39dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
@@ -91,11 +93,11 @@
 
                 <EditText
                     android:id="@+id/editEmail"
-                    android:layout_width="334dp"
+                    android:layout_width="305dp"
                     android:layout_height="39dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginLeft="9dp"
+                    android:layout_marginLeft="4dp"
                     android:layout_marginTop="28dp"
                     android:background="@null"
                     android:gravity="center_vertical"
@@ -107,7 +109,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp">
 
                 <TextView
@@ -121,7 +123,7 @@
                     />
 
                 <View
-                    android:layout_width="344dp"
+                    android:layout_width="310dp"
                     android:layout_height="39dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
@@ -130,12 +132,12 @@
 
                 <EditText
                     android:id="@+id/editPassword"
-                    android:layout_width="334dp"
+                    android:layout_width="305dp"
                     android:layout_height="39dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="27dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="4dp"
                     android:textAppearance="@style/login_join"
                     android:hint="비밀번호"
                     android:background="@null" />
@@ -145,7 +147,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_gravity="center"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp" >
 
                 <TextView
@@ -160,7 +162,7 @@
                     />
 
                 <View
-                    android:layout_width="344dp"
+                    android:layout_width="310dp"
                     android:layout_height="39dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
@@ -169,12 +171,12 @@
 
                 <EditText
                     android:id="@+id/editPhonenumber"
-                    android:layout_width="334dp"
+                    android:layout_width="305dp"
                     android:layout_height="39dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="27dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="4dp"
                     android:textAppearance="@style/login_join"
                     android:hint="전화번호"
                     android:background="@null"
@@ -189,14 +191,14 @@
             android:layout_width="169dp"
             android:layout_height="47dp"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="121dp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="600dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
             android:text="수정"
             android:textAppearance="@style/btn_bold_white"
             android:background="@drawable/rectangle_mainbutton" />
 
-    </RelativeLayout>
+    </LinearLayout>
 </layout>
 
 

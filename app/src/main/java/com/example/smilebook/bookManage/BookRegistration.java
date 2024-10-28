@@ -103,8 +103,8 @@ public class BookRegistration extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bookStatus = "대출 불가능";
-                btnimpossible.setTextColor(Color.RED); // 글자 색 변경
-                btnimpossible.setTextColor(Color.parseColor("#FFFFFF")); // 대출 가능 버튼의 글자 색 원래대로 변경
+                btnavailable.setTextColor(Color.parseColor("#FFFFFF")); // 글자 색 변경
+                btnimpossible.setTextColor(Color.parseColor("#FF0000")); // 대출 가능 버튼의 글자 색 원래대로 변경
             }
         });
 

@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -143,4 +145,32 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    // 화면 터치 시 키보드를 내리는 메서드
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            View view = getCurrentFocus();
+            if (view instanceof EditText) {
+                int[] l = {0, 0};
+                view.getLocationOnScreen(l);
+                float x = event.getRawX() + view.getLeft() - l[0];
+                float y = event.getRawY() + view.getTop() - l[1];
+                if (x < 0 || x > view.getWidth() || y < 0 || y > view.getHeight()) {
+                    hideKeyboard(view);
+                    view.clearFocus(); // EditText의 포커스를 제거
+                }
+            }
+        }
+        return super.onTouchEvent(event);
+    }
+
+    // 키보드를 내리는 메서드
+    private void hideKeyboard(View view) {
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
 }

@@ -7,13 +7,14 @@
             type="String" />
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/search_xml"
-        android:layout_width="411dp"
-        android:layout_height="732dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:clipToOutline="true"
         android:background="#FFFFFF"
+        android:orientation="vertical"
         >
 
         <include
@@ -25,24 +26,25 @@
             android:id="@+id/searchView"
             android:layout_width="379dp"
             android:layout_height="45dp"
-            android:layout_marginTop="65dp"
             android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
             android:background="@drawable/search_box"
             />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
             android:orientation="horizontal">
 
             <android.widget.Button
                 android:id="@+id/admin_tag_best"
-                android:layout_width="59dp"
+                android:layout_width="55dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="12dp"
                 android:layout_alignParentTop="true"
+                android:layout_margin="3dp"
                 android:textAppearance="@style/search_tag"
                 android:background="@drawable/rectangle_tag"
                 android:text="인기"
@@ -51,11 +53,11 @@
 
             <android.widget.Button
                 android:id="@+id/admin_tag_all"
-                android:layout_width="59dp"
+                android:layout_width="55dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="7dp"
                 android:layout_alignParentTop="true"
+                android:layout_margin="3dp"
                 android:textAppearance="@style/search_tag"
                 android:background="@drawable/rectangle_tag"
                 android:text="전체"
@@ -63,11 +65,11 @@
 
             <android.widget.Button
                 android:id="@+id/admin_tag_cook"
-                android:layout_width="59dp"
+                android:layout_width="55dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="7dp"
                 android:layout_alignParentTop="true"
+                android:layout_margin="3dp"
                 android:textAppearance="@style/search_tag"
                 android:background="@drawable/rectangle_tag"
                 android:text="요리"
@@ -75,11 +77,11 @@
 
             <android.widget.Button
                 android:id="@+id/admin_tag_cartoon"
-                android:layout_width="59dp"
+                android:layout_width="55dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="7dp"
                 android:layout_alignParentTop="true"
+                android:layout_margin="3dp"
                 android:textAppearance="@style/search_tag"
                 android:background="@drawable/rectangle_tag"
                 android:text="만화"
@@ -87,11 +89,11 @@
 
             <android.widget.Button
                 android:id="@+id/admin_tag_child"
-                android:layout_width="59dp"
+                android:layout_width="55dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="7dp"
                 android:layout_alignParentTop="true"
+                android:layout_margin="3dp"
                 android:textAppearance="@style/search_tag"
                 android:background="@drawable/rectangle_tag"
                 android:text="아동"
@@ -99,11 +101,11 @@
 
             <android.widget.Button
                 android:id="@+id/admin_tag_sports"
-                android:layout_width="59dp"
+                android:layout_width="55dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="7dp"
                 android:layout_alignParentTop="true"
+                android:layout_margin="3dp"
                 android:textAppearance="@style/search_tag"
                 android:background="@drawable/rectangle_tag"
                 android:text="스포츠"
@@ -112,18 +114,19 @@
 
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
             android:orientation="horizontal">
 
             <android.widget.Button
                 android:id="@+id/admin_tag_literature"
-                android:layout_width="59dp"
+                android:layout_width="55dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="12dp"
                 android:layout_alignParentTop="true"
+                android:layout_margin="3dp"
                 android:textAppearance="@style/search_tag"
                 android:background="@drawable/rectangle_tag"
                 android:text="소설/시"
@@ -131,11 +134,11 @@
 
             <android.widget.Button
                 android:id="@+id/admin_tag_humanities"
-                android:layout_width="59dp"
+                android:layout_width="55dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="7dp"
                 android:layout_alignParentTop="true"
+                android:layout_margin="3dp"
                 android:textAppearance="@style/search_tag"
                 android:background="@drawable/rectangle_tag"
                 android:text="인문"
@@ -143,11 +146,11 @@
 
             <android.widget.Button
                 android:id="@+id/admin_tag_IT"
-                android:layout_width="59dp"
+                android:layout_width="55dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="7dp"
                 android:layout_alignParentTop="true"
+                android:layout_margin="3dp"
                 android:textAppearance="@style/search_tag"
                 android:background="@drawable/rectangle_tag"
                 android:text="IT"
@@ -155,11 +158,11 @@
 
             <android.widget.Button
                 android:id="@+id/admin_tag_edu"
-                android:layout_width="59dp"
+                android:layout_width="55dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="7dp"
                 android:layout_alignParentTop="true"
+                android:layout_margin="3dp"
                 android:textAppearance="@style/search_tag"
                 android:background="@drawable/rectangle_tag"
                 android:text="교육"
@@ -167,10 +170,11 @@
 
             <android.widget.Button
                 android:id="@+id/admin_tag_travel"
-                android:layout_width="59dp"
+                android:layout_width="55dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="7dp"
+                android:layout_alignParentTop="true"
+                android:layout_margin="3dp"
                 android:textAppearance="@style/search_tag"
                 android:background="@drawable/rectangle_tag"
                 android:text="여행"
@@ -178,15 +182,15 @@
 
             <android.widget.Button
                 android:id="@+id/admin_tag_health"
-                android:layout_width="59dp"
+                android:layout_width="55dp"
                 android:layout_height="32dp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="7dp"
                 android:layout_alignParentTop="true"
+                android:layout_margin="3dp"
                 android:textAppearance="@style/search_tag"
                 android:background="@drawable/rectangle_tag"
                 android:text="건강"
                 />
         </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 </layout>

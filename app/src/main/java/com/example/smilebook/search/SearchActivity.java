@@ -53,7 +53,7 @@ public class SearchActivity extends AppCompatActivity {
         toolbarTitleBinding = binding.toolbar;
 
         // 더보기 메뉴 클릭 시 팝업 메뉴 표시
-        findViewById(R.id.item_more).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showPopup(view);

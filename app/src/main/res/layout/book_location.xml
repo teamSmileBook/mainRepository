@@ -18,8 +18,8 @@
             android:orientation="horizontal">
 
             <include
-                android:id="@+id/toolbar"
                 layout="@layout/toolbar_title"
+                android:id="@+id/toolbar"
                 app:titleText="@{titleText}" />
         </LinearLayout>
 
@@ -32,7 +32,7 @@
         <com.example.smilebook.CustomImageView
             android:id="@+id/imageView36"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="270dp"
             android:src="@drawable/location" />
 
         <View

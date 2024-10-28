@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/some_id"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToOutline="true"
+    android:background="#FFFFFF"
+    >
+
+    <ImageView
+        android:id="@+id/icons8_smile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="155dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="78dp"
+        android:background="@drawable/icons8_smile_32"
+        />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="91dp"
+        android:layout_height="22dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="178dp"
+        android:gravity="center"
+        android:text="스마일북"
+        android:textAppearance="@style/title" />
+
+    <ImageView
+        android:id="@+id/loginId"
+        android:layout_width="332dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="39dp"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="260dp"
+        android:hint="loginId"
+        android:background="@drawable/rectangle_logininfo"
+        />
+
+    <TextView
+        android:id="@+id/loginid_Text"
+        android:layout_width="45dp"
+        android:layout_height="18dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="55dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="276dp"
+        android:text="아이디"
+        android:textAppearance="@style/login_join"
+        android:gravity="center"
+        />
+
+    <EditText
+        android:id="@+id/input_id"
+        android:layout_width="240dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="276dp"
+        android:layout_marginLeft="130dp"
+        android:background="@null"
+        android:hint="id"/>
+
+    <View
+        android:id="@+id/loginPw"
+        android:layout_width="332dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="39dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="336dp"
+        android:background="@drawable/rectangle_logininfo"
+        />
+
+    <TextView
+        android:id="@+id/loginPw_text"
+        android:layout_width="60dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="54dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="352dp"
+        android:text="비밀번호"
+        android:textAppearance="@style/login_join"
+        android:gravity="center"
+        />
+
+    <EditText
+        android:id="@+id/input_password"
+        android:layout_width="240dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="352dp"
+        android:background="@null"
+        android:hint="password" />
+
+    <CheckBox
+        android:id="@+id/autologinCheckbox"
+        android:layout_width="133dp"
+        android:layout_height="22dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="250dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="401dp"
+        android:text="자동로그인"
+        android:gravity="center"
+        />
+
+    <android.widget.Button
+        android:id="@+id/loginButton"
+        android:layout_width="169dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="121dp"
+        android:layout_marginTop="473dp"
+        android:background="@drawable/rectangle_mainbutton"
+        android:contentDescription="로그인"
+        android:text="로그인"
+        android:textAppearance="@style/btn_bold" />
+
+    <android.widget.Button
+        android:id="@+id/joinButton"
+        android:layout_width="169dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="548dp"
+        android:background="@drawable/rectangle_mainbutton"
+        android:contentDescription="회원가입"
+        android:text="회원가입"
+        android:textAppearance="@style/btn_bold" />
+
+    <Button
+        android:id="@+id/find_id_button"
+        android:layout_width="75dp"
+        android:layout_height="21dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="118dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="612dp"
+        android:background="#00ff0000"
+        />
+
+    <TextView
+        android:id="@+id/find_id"
+        android:layout_width="58dp"
+        android:layout_height="13dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="126dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="617dp"
+        android:text="아이디 찾기"
+        android:textAppearance="@style/find_account"
+        android:gravity="center_horizontal|bottom"
+        />
+
+    <View
+        android:id="@+id/line_77"
+        android:layout_width="1dp"
+        android:layout_height="21dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="205dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="612dp"
+        android:background="@drawable/line"
+        />
+
+    <Button
+        android:id="@+id/find_pw_button"
+        android:layout_width="75dp"
+        android:layout_height="21dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="217dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="612dp"
+        android:background="#00ff0000"
+        />
+
+    <TextView
+        android:id="@+id/find_pw"
+        android:layout_width="75dp"
+        android:layout_height="13dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="217dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="617dp"
+        android:text="비밀번호 찾기"
+        android:textAppearance="@style/find_account"
+        android:gravity="center_horizontal|bottom"
+        />
+
+</RelativeLayout>
+

@@ -8,7 +8,7 @@
     android:orientation="vertical"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    android:layout_marginLeft="20dp"
+    android:layout_marginLeft="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
